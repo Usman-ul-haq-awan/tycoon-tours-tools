@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 1 Quiz — What Is Truck Dispatching? | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 1 — What Is Truck Dispatching? 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+
+/* HERO */
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+
+/* CONTENT */
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+
+/* STUDENT FORM */
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+
+/* QUIZ */
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.selected{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+
+/* RESULTS */
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+
+/* FOOTER */
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+
+@media(max-width:600px){
+.form-grid{grid-template-columns:1fr;}
+.result-cards{grid-template-columns:1fr 1fr;}
+.tt-hero h1{font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 1 of 23</span>
+<h1>What Is <span>Truck Dispatching?</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<!-- STUDENT INFO FORM -->
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. This information is stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 1</button>
+</div>
+
+<!-- QUIZ AREA -->
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-wrap" id="results-wrap"></div>
+
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<!-- HIDDEN GOOGLE FORM SUBMISSION -->
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse"
+  method="POST"
+  target="tt_hidden_frame"
+  style="display:none;">
+  <input type="text" name="entry.162722829" id="gf-name"/>
+  <input type="text" name="entry.295556761" id="gf-email"/>
+  <input type="text" name="entry.777151074" id="gf-wa"/>
+  <input type="text" name="entry.2029299506" id="gf-modnum"/>
+  <input type="text" name="entry.171128487" id="gf-modtitle"/>
+  <input type="text" name="entry.1707671960" id="gf-score"/>
+  <input type="text" name="entry.255573310" id="gf-total"/>
+  <input type="text" name="entry.1021719303" id="gf-pct"/>
+  <input type="text" name="entry.746918137" id="gf-pass"/>
+  <input type="text" name="entry.170755011" id="gf-date"/>
+  <input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+// ============================================================
+// QUESTION BANK — 30 QUESTIONS BASED ON MODULE 1 CONTENT
+// ============================================================
+var QUESTION_BANK = [
+  {
+    q: "What percentage of all freight in the United States is moved by trucks?",
+    opts: ["50%","60%","70%","80%"],
+    correct: 2,
+    exp: "According to Module 1, approximately 70% of all freight in the United States is moved by trucks — not trains, ships, or airplanes."
+  },
+  {
+    q: "What is the annual revenue generated by the American trucking industry?",
+    opts: ["Over $500 billion","Over $900 billion","Over $1.2 trillion","Over $300 billion"],
+    correct: 1,
+    exp: "The American Trucking Associations (ATA) reports that the trucking industry generates over $900 billion in revenue annually."
+  },
+  {
+    q: "How many truck drivers are employed in the United States?",
+    opts: ["1.5 million","2 million","3.5 million","5 million"],
+    correct: 2,
+    exp: "According to Module 1, the trucking industry employs over 3.5 million truck drivers plus millions more in supporting roles."
+  },
+  {
+    q: "What is a truck dispatcher's primary role?",
+    opts: [
+      "Physically drive trucks across the country",
+      "Act as the operational manager and business representative for carriers",
+      "Negotiate insurance policies for trucking companies",
+      "Inspect trucks at weigh stations"
+    ],
+    correct: 1,
+    exp: "A truck dispatcher is a professional who acts as the operational manager and business representative for truck drivers and trucking companies called carriers."
+  },
+  {
+    q: "Who is described as a licensed intermediary between shippers and carriers?",
+    opts: ["The dispatcher","The driver","The freight broker","The shipper"],
+    correct: 2,
+    exp: "A freight broker is a licensed intermediary between shippers and carriers. Licensed by FMCSA, brokers post loads on load boards."
+  },
+  {
+    q: "In the example given in Module 1, a manufacturer in Chicago needs to ship electronics to Dallas. The shipper pays the broker $3,500. What does the broker pay the carrier?",
+    opts: ["$3,500","$3,200","$3,000","$2,800"],
+    correct: 2,
+    exp: "In the example, the broker agrees to pay $3,000 to the carrier, keeping $500 as their margin from the $3,500 the shipper paid."
+  },
+  {
+    q: "What dispatch fee percentage does the dispatcher charge in the example from Module 1?",
+    opts: ["5-7%","8-10%","10-12%","3-5%"],
+    correct: 1,
+    exp: "According to Module 1, the dispatcher charges the carrier an 8–10% dispatch fee on the gross load value."
+  },
+  {
+    q: "Using the Module 1 income formula: 5 carriers × 2 loads per week × $250 commission = what monthly income?",
+    opts: ["$5,000","$7,500","$10,000","$12,500"],
+    correct: 2,
+    exp: "5 carriers × 2 loads/week × $250 = $2,500/week × 4 weeks = $10,000 per month. This is described as a realistic income for a trained, active dispatcher."
+  },
+  {
+    q: "What time do Pakistani dispatchers typically begin their workday according to Module 1?",
+    opts: ["6:00 AM – 8:00 AM PKT","12:00 PM – 2:00 PM PKT","8:00 PM – 10:00 PM PKT","4:00 AM – 6:00 AM PKT"],
+    correct: 2,
+    exp: "According to Module 1, Pakistani dispatchers open load boards and begin work from 8:00 PM – 10:00 PM PKT, which aligns with US daytime business hours."
+  },
+  {
+    q: "Which load boards are mentioned in Module 1 as tools dispatchers use?",
+    opts: ["Freightos and Flexport","DAT and Truckstop","LoadSmart and Convoy","uShip and Uber Freight"],
+    correct: 1,
+    exp: "Module 1 specifically mentions DAT and Truckstop as the load boards dispatchers use to find available freight loads."
+  },
+  {
+    q: "What is the main reason American brokers and carriers work with dispatchers based in Pakistan?",
+    opts: [
+      "Pakistani dispatchers charge lower fees",
+      "It is a legal requirement to hire international dispatchers",
+      "They do not care where you are as long as you deliver results",
+      "Pakistan has the largest trucking workforce"
+    ],
+    correct: 2,
+    exp: "According to Module 1: trucking is a results-driven industry. Brokers and carriers do not care where you are physically located as long as you deliver results."
+  },
+  {
+    q: "Which entity physically transports the freight?",
+    opts: ["The dispatcher","The broker","The carrier","The shipper"],
+    correct: 2,
+    exp: "The carrier is a trucking company or individual truck owner (owner-operator) that physically transports freight."
+  },
+  {
+    q: "What does FMCSA stand for in the context of freight brokers?",
+    opts: [
+      "Federal Motor Carrier Safety Administration",
+      "Freight Management and Carrier Standards Association",
+      "Federal Management of Commercial Shipping Authority",
+      "Freight Motor Carrier Service Agency"
+    ],
+    correct: 0,
+    exp: "FMCSA stands for Federal Motor Carrier Safety Administration. Freight brokers must be licensed by the FMCSA."
+  },
+  {
+    q: "According to Module 1, what is the recommended dispatching model for beginners?",
+    opts: ["Flat fee model","Hybrid model","Percentage-based model","Retainer model"],
+    correct: 2,
+    exp: "Module 1 specifically recommends: Start with percentage-based dispatching. It requires no upfront commitment from the carrier and directly motivates maximum performance."
+  },
+  {
+    q: "In the flat fee dispatch model, how is the dispatcher paid?",
+    opts: [
+      "A percentage of each load's gross value",
+      "A fixed weekly or monthly fee per truck regardless of loads booked",
+      "A base fee plus a percentage per load",
+      "An hourly rate for hours worked"
+    ],
+    correct: 1,
+    exp: "The flat fee model means a fixed weekly or monthly fee per truck regardless of loads booked. Simpler for carriers to budget."
+  },
+  {
+    q: "What percentage-based dispatch fee range is mentioned for the standard dispatching model?",
+    opts: ["1-4%","5-12%","13-18%","20-25%"],
+    correct: 1,
+    exp: "According to Module 1, the percentage-based model involves charging 5–12% of each load's gross value."
+  },
+  {
+    q: "What is the hybrid dispatching model?",
+    opts: [
+      "Charging only when loads are successfully delivered",
+      "A base monthly fee plus a smaller percentage per load",
+      "Splitting commission 50/50 with the carrier",
+      "Charging a flat fee per mile driven"
+    ],
+    correct: 1,
+    exp: "The hybrid model is a base monthly fee plus a smaller percentage per load. Module 1 describes it as the best of both worlds — balancing stability with performance incentive."
+  },
+  {
+    q: "How long has Tycoon Tours Official been operating in the US trucking industry according to Module 1?",
+    opts: ["1 year","2 years","Over 3 years","Over 5 years"],
+    correct: 2,
+    exp: "Module 1 states: Tycoon Tours Official has operated in the US trucking industry for over 3 years."
+  },
+  {
+    q: "What monthly income range have Tycoon Tours graduates achieved according to Module 1?",
+    opts: ["$500–$1,000","$1,000–$3,000","$2,000–$10,000","$5,000–$20,000"],
+    correct: 2,
+    exp: "Module 1 states that Tycoon Tours has personally trained dispatchers who now earn $2,000–$10,000 per month from Pakistan."
+  },
+  {
+    q: "Which mindset quality does Module 1 say separates successful dispatchers from those who quit?",
+    opts: ["Speed","Persistence","Technical skill","Connections"],
+    correct: 1,
+    exp: "Module 1 states: You will face rejection on cold calls. Loads will fall through. Persistence separates successful dispatchers from those who quit after two weeks."
+  },
+  {
+    q: "What does a shipper refer to in the trucking ecosystem?",
+    opts: [
+      "A company that ships trucks from factories",
+      "Any company or individual that needs to transport goods from one location to another",
+      "A port authority that manages cargo ships",
+      "A driver who ships packages for Amazon"
+    ],
+    correct: 1,
+    exp: "A shipper is any company or individual that needs to transport goods from one location to another. Amazon, food manufacturers, steel companies are examples given in Module 1."
+  },
+  {
+    q: "What do freight brokers do with the difference between what the shipper pays and what they pay the carrier?",
+    opts: [
+      "They donate it to charity",
+      "They share it equally with the dispatcher",
+      "They keep it as their margin",
+      "They refund it to the shipper"
+    ],
+    correct: 2,
+    exp: "Brokers make money by keeping the margin between what the shipper pays and what they pay the carrier. In the example, the broker kept $500 from a $3,500 load."
+  },
+  {
+    q: "According to Module 1, what are the seven core responsibilities of a truck dispatcher?",
+    opts: [
+      "Find loads, match trucks, negotiate rates, handle paperwork, communicate with brokers, ensure delivery, manage carriers",
+      "Drive trucks, plan routes, inspect cargo, file taxes, hire drivers, manage warehouses, set rates",
+      "Cold call shippers, set prices, drive loads, inspect trucks, file insurance, train drivers, manage ports",
+      "Post loads, collect payments, inspect freight, hire staff, manage warehouses, train brokers, set regulations"
+    ],
+    correct: 0,
+    exp: "Module 1 lists exactly 7 responsibilities: Find loads, match with trucks, negotiate rates, handle paperwork, communicate with brokers, ensure smooth pickup and delivery, and manage multiple carriers."
+  },
+  {
+    q: "Why is Pakistan's time zone described as ideal for truck dispatching?",
+    opts: [
+      "Pakistani mornings align with US business hours",
+      "Pakistani evenings and nights align perfectly with US daytime business hours",
+      "Pakistan is in the same time zone as New York",
+      "US trucking only operates at night"
+    ],
+    correct: 1,
+    exp: "Module 1 states: Pakistan evening and night hours align perfectly with US daytime business hours — making truck dispatching an ideal remote career for Pakistanis."
+  },
+  {
+    q: "Which of the following is listed as a reason why truck dispatching is ideal for Pakistanis?",
+    opts: [
+      "Pakistan has the largest trucking fleet in Asia",
+      "Pakistan has a special trade agreement with the USA",
+      "Cost of living is low so modest dollar income creates significant local purchasing power",
+      "Pakistani drivers are preferred by US carriers"
+    ],
+    correct: 2,
+    exp: "Module 1 lists: Cost of living is low — modest dollar income creates significant local purchasing power. This makes even a moderate dollar income highly valuable."
+  },
+  {
+    q: "What tools does Module 1 mention that a dispatcher needs to work remotely?",
+    opts: [
+      "A truck, GPS, and radio",
+      "A warehouse, forklift, and cargo scales",
+      "A laptop and internet connection",
+      "A physical office in the USA and a US phone number"
+    ],
+    correct: 2,
+    exp: "Module 1 states that the dispatcher role can be performed from anywhere in the world using just a laptop and an internet connection."
+  },
+  {
+    q: "What is the dispatcher described as in relation to carriers and brokers?",
+    opts: [
+      "An employee of the carrier",
+      "A government-appointed compliance officer",
+      "A middleman with deep expertise connecting carriers with brokers",
+      "A driver supervisor"
+    ],
+    correct: 2,
+    exp: "Module 1 describes: Think of a dispatcher as a middleman with deep expertise — connecting carriers who have trucks with brokers who have freight."
+  },
+  {
+    q: "According to Module 1, what is the dispatcher's relationship to their work — a job or something else?",
+    opts: [
+      "A part-time hobby",
+      "An employment contract with a carrier",
+      "A business — they are a service provider, not an employee",
+      "A government-regulated profession"
+    ],
+    correct: 2,
+    exp: "Module 1 states: Truck dispatching is a business, not a job. You are not an employee — you are a service provider building relationships, managing accounts, and growing revenue."
+  },
+  {
+    q: "What does Module 1 say about the dispatcher's physical location when working with US brokers and carriers?",
+    opts: [
+      "You must be physically present in the USA",
+      "You must have a US address",
+      "Location does not matter as long as you deliver results",
+      "You must be in the same state as your carriers"
+    ],
+    correct: 2,
+    exp: "Module 1 is clear: You might wonder why would American brokers and carriers work with a dispatcher based in Pakistan? The answer is they do not care where you are physically located as long as you deliver results."
+  },
+  {
+    q: "What is the next module after Module 1 in the Tycoon Tours course?",
+    opts: ["Module 2 — Load Boards","Module 2 — Types of Trucks","Module 2 — Broker Relations","Module 2 — Cold Calling"],
+    correct: 1,
+    exp: "Module 1 ends with: Module 2 is next — Types of Trucks. Know your equipment and you know your business."
+  }
+];
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+var studentName = '';
+var studentEmail = '';
+var studentWA = '';
+var selectedQuestions = [];
+var currentQ = 0;
+var score = 0;
+var answered = false;
+var timerInterval = null;
+var timeLeft = 30;
+
+function shuffle(arr){
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var tmp=a[i];a[i]=a[j];a[j]=tmp;
+  }
+  return a;
+}
+
+function startQuiz(){
+  studentName = document.getElementById('s-name').value.trim();
+  studentEmail = document.getElementById('s-email').value.trim();
+  studentWA = document.getElementById('s-wa').value.trim();
+
+  if(!studentName || !studentEmail || !studentWA){
+    alert('Please fill in all three fields to begin the quiz.');
+    return;
+  }
+
+  // Shuffle and pick 20 from 30
+  selectedQuestions = shuffle(QUESTION_BANK).slice(0, 20);
+
+  // Shuffle options for each question
+  selectedQuestions = selectedQuestions.map(function(q){
+    var opts = q.opts.map(function(o, i){return {text:o, origIdx:i};});
+    opts = shuffle(opts);
+    var newCorrect = opts.findIndex(function(o){return o.origIdx === q.correct;});
+    return {q:q.q, opts:opts.map(function(o){return o.text;}), correct:newCorrect, exp:q.exp};
+  });
+
+  currentQ = 0;
+  score = 0;
+  document.getElementById('student-form').style.display = 'none';
+  document.getElementById('quiz-wrap').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered = false;
+  var q = selectedQuestions[currentQ];
+  var pct = ((currentQ+1)/20)*100;
+
+  document.getElementById('prog-label').textContent = 'Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent = 'Score: '+score;
+  document.getElementById('prog-fill').style.width = pct+'%';
+
+  var letters = ['A','B','C','D'];
+  var optsHTML = q.opts.map(function(opt, i){
+    return '<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';
+  }).join('');
+
+  document.getElementById('question-card').innerHTML =
+    '<div class="q-num">Question '+(currentQ+1)+' of 20</div>'+
+    '<div class="q-text">'+q.q+'</div>'+
+    '<div class="options">'+optsHTML+'</div>'+
+    '<div class="explanation" id="explanation">💡 '+q.exp+'</div>'+
+    '<button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft = 30;
+  clearInterval(timerInterval);
+  updateTimerUI();
+  timerInterval = setInterval(function(){
+    timeLeft--;
+    updateTimerUI();
+    if(timeLeft <= 0){
+      clearInterval(timerInterval);
+      if(!answered) timeOut();
+    }
+  }, 1000);
+}
+
+function updateTimerUI(){
+  var pct = (timeLeft/30)*100;
+  var fill = document.getElementById('timer-fill');
+  var txt = document.getElementById('timer-text');
+  if(fill){
+    fill.style.width = pct+'%';
+    if(timeLeft <= 10) fill.classList.add('warn');
+    else fill.classList.remove('warn');
+  }
+  if(txt) txt.textContent = timeLeft+'s';
+}
+
+function timeOut(){
+  answered = true;
+  clearInterval(timerInterval);
+  var q = selectedQuestions[currentQ];
+  var correctEl = document.getElementById('opt-'+q.correct);
+  if(correctEl){
+    correctEl.classList.add('correct');
+    [0,1,2,3].forEach(function(i){
+      var el=document.getElementById('opt-'+i);
+      if(el)el.classList.add('disabled');
+    });
+  }
+  var exp = document.getElementById('explanation');
+  var btn = document.getElementById('btn-next');
+  if(exp) exp.classList.add('show');
+  if(btn) btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+
+  var q = selectedQuestions[currentQ];
+  var selected = document.getElementById('opt-'+idx);
+  var correct = document.getElementById('opt-'+q.correct);
+
+  [0,1,2,3].forEach(function(i){
+    var el=document.getElementById('opt-'+i);
+    if(el)el.classList.add('disabled');
+  });
+
+  if(idx === q.correct){
+    selected.classList.add('correct');
+    score++;
+    document.getElementById('prog-score').textContent = 'Score: '+score;
+  } else {
+    selected.classList.add('wrong');
+    if(correct) correct.classList.add('correct');
+  }
+
+  var exp = document.getElementById('explanation');
+  var btn = document.getElementById('btn-next');
+  if(exp) exp.classList.add('show');
+  if(btn) btn.classList.add('show');
+}
+
+function nextQuestion(){
+  currentQ++;
+  if(currentQ >= 20){
+    showResults();
+  } else {
+    showQuestion();
+  }
+}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display = 'none';
+
+  var pct = Math.round((score/20)*100);
+  var pass = pct >= 70;
+  var now = new Date();
+
+  // Submit to Google Sheet
+  submitToSheet(score, pct, pass, now);
+
+  var resultHTML = '';
+  if(pass){
+    resultHTML =
+      '<div class="result-icon">🏆</div>'+
+      '<div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div>'+
+      '<div class="result-sub">Excellent work '+studentName+'! You have successfully completed the Module 1 quiz. You are now ready to move on to Module 2.</div>';
+  } else {
+    resultHTML =
+      '<div class="result-icon">📚</div>'+
+      '<div class="result-title" style="color:#cc0000;">Not Quite There Yet</div>'+
+      '<div class="result-sub">Good effort '+studentName+'! You need 70% or above to pass. Review Module 1 and try again — the questions will be different next time.</div>';
+  }
+
+  resultHTML +=
+    '<div class="score-big">'+
+    '<div class="sb-label">Your Score</div>'+
+    '<div class="sb-score">'+score+'/20</div>'+
+    '<div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div>'+
+    '</div>'+
+    '<div class="result-cards">'+
+    '<div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div>'+
+    '<div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div>'+
+    '<div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div>'+
+    '</div>';
+
+  if(pass){
+    resultHTML +=
+      '<div class="verdict-pass">'+
+      '<p>✅ You passed with '+pct+'%! To claim your Module 1 Certificate, WhatsApp us with your name, email, and this score. Certificate fee: $5.</p>'+
+      '</div>'+
+      '<a href="https://wa.me/923114111899?text=I%20passed%20Module%201%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a>'+
+      '<a href="https://tycoontoursofficial.blogspot.com/p/module-2.html" class="btn-next-mod">Module 2 →</a>'+
+      '<br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  } else {
+    resultHTML +=
+      '<div class="verdict-fail">'+
+      '<p>❌ You scored '+pct+'%. You need 70% to pass. Go back to Module 1, review the content carefully, and try again. Each attempt shows different questions.</p>'+
+      '</div>'+
+      '<a href="https://tycoontoursofficial.blogspot.com/p/module-1.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 1</a>'+
+      '<button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button>'+
+      '<br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+
+  document.getElementById('results-wrap').innerHTML = resultHTML;
+  document.getElementById('results-wrap').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function submitToSheet(score, pct, pass, now){
+  try {
+    document.getElementById('gf-name').value = studentName;
+    document.getElementById('gf-email').value = studentEmail;
+    document.getElementById('gf-wa').value = studentWA;
+    document.getElementById('gf-modnum').value = '1';
+    document.getElementById('gf-modtitle').value = 'What Is Truck Dispatching?';
+    document.getElementById('gf-score').value = score;
+    document.getElementById('gf-total').value = '20';
+    document.getElementById('gf-pct').value = pct+'%';
+    document.getElementById('gf-pass').value = pass ? 'Pass' : 'Fail';
+    document.getElementById('gf-date').value = now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value = now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  } catch(e){ console.log('Sheet submission:', e); }
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display = 'none';
+  document.getElementById('results-wrap').innerHTML = '';
+  startQuiz();
+}
+</script>
+</body>
+</html>
