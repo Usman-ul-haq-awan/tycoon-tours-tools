@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 2 Quiz — Types of Trucks | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 2 — Types of Trucks. 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.selected{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){
+.form-grid{grid-template-columns:1fr;}
+.result-cards{grid-template-columns:1fr 1fr;}
+.tt-hero h1{font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 2 of 23</span>
+<h1>Types of <span>Trucks</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. This information is stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 2</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<div class="results-wrap" id="results-wrap"></div>
+
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse"
+  method="POST"
+  target="tt_hidden_frame"
+  style="display:none;">
+  <input type="text" name="entry.162722829" id="gf-name"/>
+  <input type="text" name="entry.295556761" id="gf-email"/>
+  <input type="text" name="entry.777151074" id="gf-wa"/>
+  <input type="text" name="entry.2029299506" id="gf-modnum"/>
+  <input type="text" name="entry.171128487" id="gf-modtitle"/>
+  <input type="text" name="entry.1707671960" id="gf-score"/>
+  <input type="text" name="entry.255573310" id="gf-total"/>
+  <input type="text" name="entry.1021719303" id="gf-pct"/>
+  <input type="text" name="entry.746918137" id="gf-pass"/>
+  <input type="text" name="entry.170755011" id="gf-date"/>
+  <input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {
+    q: "When dispatchers talk about 'types of trucks' what are they almost always referring to?",
+    opts: ["The engine size of the tractor","The type of trailer — because that determines what cargo can be hauled","The color and brand of the cab","The number of axles on the truck"],
+    correct: 1,
+    exp: "Module 2 states: When dispatchers talk about 'types of trucks' they are almost always referring to the type of TRAILER — because that determines what cargo can be hauled and what rates you can charge."
+  },
+  {
+    q: "What is the standard length of a Dry Van trailer?",
+    opts: ["40 feet","48 feet","53 feet","60 feet"],
+    correct: 2,
+    exp: "According to Module 2, the standard Dry Van is a fully enclosed rectangular box trailer with standard size: 53 feet long."
+  },
+  {
+    q: "What is the maximum cargo weight for a standard Dry Van?",
+    opts: ["30,000–35,000 lbs","44,000–45,000 lbs","55,000–60,000 lbs","70,000–75,000 lbs"],
+    correct: 1,
+    exp: "Module 2 states the maximum cargo weight for a Dry Van is 44,000–45,000 lbs."
+  },
+  {
+    q: "Which truck type does Module 2 recommend as the best starting point for new dispatchers?",
+    opts: ["Reefer","Flatbed","Dry Van","Lowboy"],
+    correct: 2,
+    exp: "Module 2 states: Dry Van is where beginners start — most loads, most brokers, most straightforward rules. Perfect starting point."
+  },
+  {
+    q: "What is the key difference between a Reefer and a Dry Van?",
+    opts: [
+      "Reefer is longer than a Dry Van",
+      "Reefer has a refrigeration unit mounted at the front to maintain temperature",
+      "Reefer has open sides while Dry Van is enclosed",
+      "Reefer can only carry liquids"
+    ],
+    correct: 1,
+    exp: "Module 2 explains: Reefer looks like a dry van from the outside but has a refrigeration unit mounted at the front. Maintains temperatures from -20°F (frozen) to 70°F (cool)."
+  },
+  {
+    q: "What temperature range can a Reefer trailer maintain?",
+    opts: ["-20°F to 70°F","-5°F to 50°F","0°F to 100°F","10°F to 80°F"],
+    correct: 0,
+    exp: "According to Module 2, a Reefer maintains temperatures from -20°F (frozen) to 70°F (cool)."
+  },
+  {
+    q: "What is the rate per mile range for a Reefer truck according to Module 2?",
+    opts: ["$1.50–$2.50/mile","$2.00–$3.50/mile","$2.50–$4.00/mile","$4.00–$8.00/mile"],
+    correct: 2,
+    exp: "Module 2 shows the Reefer rate as $2.50–$4.00/mile — higher than Dry Van due to the complexity and temperature requirements."
+  },
+  {
+    q: "Which of these would be correctly loaded on a Flatbed trailer?",
+    opts: ["Fresh produce requiring refrigeration","Steel coils and structural steel","Packaged electronics and clothing","Milk and dairy products"],
+    correct: 1,
+    exp: "Module 2 lists what Flatbed carries: Steel Coils, Lumber, Construction Equipment, Machinery, Structural Steel, Agricultural Equipment. Fresh produce and dairy go on Reefers."
+  },
+  {
+    q: "What is the maximum legal highway height for truck loads in most US states?",
+    opts: ["12 feet","13 feet 6 inches","14 feet","15 feet 2 inches"],
+    correct: 1,
+    exp: "Module 2 states the maximum height is 13 feet 6 inches in most US states — loads taller than this require permits."
+  },
+  {
+    q: "What is the maximum legal gross vehicle weight for trucks in the USA?",
+    opts: ["60,000 lbs","70,000 lbs","80,000 lbs","100,000 lbs"],
+    correct: 2,
+    exp: "According to Module 2's legal weight table: Maximum Gross Vehicle Weight is 80,000 lbs — truck + trailer + cargo combined."
+  },
+  {
+    q: "What is the maximum legal width for trucks in the USA?",
+    opts: ["7 feet","8 feet","8 feet 6 inches","10 feet"],
+    correct: 2,
+    exp: "Module 2 states: Maximum Width is 8 feet 6 inches. Wider loads require permits."
+  },
+  {
+    q: "What makes the Step Deck (Drop Deck) different from a standard Flatbed?",
+    opts: [
+      "It has enclosed sides for weather protection",
+      "It has two deck levels — a higher front and lower rear — allowing taller cargo",
+      "It can carry liquids and gases",
+      "It is shorter than a standard flatbed at 40 feet"
+    ],
+    correct: 1,
+    exp: "Module 2 explains: Step Deck has two deck levels — a higher front section and a lower rear section. This step allows taller cargo to be transported while meeting the maximum legal highway height of 13 feet 6 inches."
+  },
+  {
+    q: "What is the rate per mile range for a Lowboy according to Module 2?",
+    opts: ["$2.00–$3.50/mile","$2.50–$4.00/mile","$2.75–$4.75/mile","$4.00–$8.00+/mile"],
+    correct: 3,
+    exp: "Module 2 shows Lowboy at $4.00–$8.00+/mile — described as the highest paying loads in the industry."
+  },
+  {
+    q: "Why do Lowboy loads require permits and pilot cars?",
+    opts: [
+      "Because they carry hazardous materials",
+      "Because they transport frozen goods",
+      "Because they carry the heaviest and tallest equipment that exceeds legal limits",
+      "Because they travel faster than other trucks"
+    ],
+    correct: 2,
+    exp: "Module 2 states: Lowboy has an extremely low deck height allowing transportation of the heaviest and tallest equipment. Most moves require permits and pilot cars."
+  },
+  {
+    q: "What is a Box Truck also known as?",
+    opts: ["Straight Truck","Power Unit","Drop Deck","Conestoga"],
+    correct: 0,
+    exp: "Module 2 describes: Box Truck (Straight Truck) — a single vehicle where the cab and enclosed cargo area are on the same chassis."
+  },
+  {
+    q: "Which companies are mentioned in Module 2 as extensive users of Box Trucks?",
+    opts: ["DAT and Truckstop","Amazon, FedEx, and UPS","Swift and Werner","FMCSA and DOT"],
+    correct: 1,
+    exp: "Module 2 states: Amazon Relay and FedEx Ground use box trucks extensively. Amazon, FedEx, UPS, and local delivery services use them daily."
+  },
+  {
+    q: "What load boards are mentioned in Module 2 specifically for Auto Carrier dispatching?",
+    opts: ["DAT and Truckstop","Load King and Convoy","uShip and Central Dispatch","Freightos and Flexport"],
+    correct: 2,
+    exp: "Module 2 states: Auto transport is a specialized niche with its own load boards — uShip and Central Dispatch. Different pricing structure from general freight dispatching."
+  },
+  {
+    q: "How many vehicles can an Auto Carrier typically transport at once?",
+    opts: ["3 to 5 cars","5 to 7 cars","8 to 10 cars","12 to 15 cars"],
+    correct: 2,
+    exp: "Module 2 states: Auto Carrier is a specialized trailer designed to transport multiple vehicles simultaneously — typically 8 to 10 cars or trucks."
+  },
+  {
+    q: "What is a Power Only load?",
+    opts: [
+      "A load that requires an electric-powered truck",
+      "The carrier provides only the tractor without a trailer — the trailer is already loaded and waiting",
+      "A load that requires two trucks working together",
+      "A load that is powered by solar energy trucks"
+    ],
+    correct: 1,
+    exp: "Module 2 explains: Power Only means the carrier provides only the tractor — the truck cab — without a trailer. The shipper or broker already has the trailer and just needs a truck to pull it."
+  },
+  {
+    q: "What type of truck is used for Hotshot loads?",
+    opts: [
+      "53-foot dry van trailers",
+      "Medium-duty pickup trucks like Ford F-350 or Ram 3500 pulling smaller flatbed trailers",
+      "Tanker trucks with refrigeration units",
+      "Lowboy trailers with oversized permits"
+    ],
+    correct: 1,
+    exp: "Module 2 states: Hotshot uses medium-duty pickup trucks like Ford F-350 or Ram 3500 pulling smaller flatbed trailers — typically 40 feet or less."
+  },
+  {
+    q: "What is the key advantage of a Conestoga (Rolling Tarp) trailer?",
+    opts: [
+      "It can carry frozen cargo like a Reefer",
+      "It combines the accessibility of a flatbed with weather protection similar to a dry van",
+      "It can transport oversized loads without permits",
+      "It carries more cargo than a standard 53-foot dry van"
+    ],
+    correct: 1,
+    exp: "Module 2 describes Conestoga as having a rolling tarp system that can cover and uncover the flat deck quickly — combining the accessibility of a flatbed with weather protection similar to a dry van. Best of both worlds."
+  },
+  {
+    q: "Which trailer type pays the highest rates per mile according to Module 2?",
+    opts: ["Dry Van","Reefer","Flatbed","Lowboy"],
+    correct: 3,
+    exp: "Module 2 shows Lowboy at $4.00–$8.00+/mile and describes it as: Highest paying loads in the industry."
+  },
+  {
+    q: "What is the main distinguishing feature of a Tanker truck?",
+    opts: [
+      "It has a rolling tarp system",
+      "It has a refrigeration unit mounted at the front",
+      "It has a cylindrical vessel designed to carry liquids or gases",
+      "It has two deck levels for oversized cargo"
+    ],
+    correct: 2,
+    exp: "Module 2 describes: Tanker is a cylindrical vessel designed to carry liquids or gases. Different types exist for different materials — food-grade, chemical, petroleum, and cryogenic tankers."
+  },
+  {
+    q: "What additional certification do many Tanker drivers need according to Module 2?",
+    opts: ["CDL-A only","HAZMAT certification for many tanker loads","Auto carrier license","Flatbed tarping certification"],
+    correct: 1,
+    exp: "Module 2 states: Many tanker loads involve HAZMAT requiring additional driver certifications and strict regulatory compliance."
+  },
+  {
+    q: "According to Module 2, when does Reefer demand spike seasonally?",
+    opts: [
+      "Winter and spring",
+      "Summer (produce season) and holiday food seasons",
+      "Fall and winter only",
+      "Year-round with no seasonal variation"
+    ],
+    correct: 1,
+    exp: "Module 2 states: Reefer demand spikes in summer (produce season) and holiday food seasons."
+  },
+  {
+    q: "According to Module 2, when does Flatbed demand spike seasonally?",
+    opts: ["Winter only","Fall and winter","Spring and summer (construction season)","Year-round with no seasonal variation"],
+    correct: 2,
+    exp: "Module 2 states: Flatbed demand spikes in spring and summer (construction season)."
+  },
+  {
+    q: "What is the rate per mile range for a Dry Van according to Module 2?",
+    opts: ["$1.00–$1.50/mile","$2.00–$3.50/mile","$3.50–$5.00/mile","$5.00–$8.00/mile"],
+    correct: 1,
+    exp: "Module 2 shows the Dry Van rate as $2.00–$3.50/mile — the most common and beginner-friendly trailer type."
+  },
+  {
+    q: "Which truck type is described in Module 2 as a growing niche ideal for building first carrier relationships?",
+    opts: ["Lowboy","Tanker","Hotshot","Auto Carrier"],
+    correct: 2,
+    exp: "Module 2 states about Hotshot: Growing niche. Many small owner-operators start with hotshot equipment. Premium rates for rush deliveries. Great starting point for building your first carrier relationships."
+  },
+  {
+    q: "What does the 'tractor' refer to in American trucking terminology?",
+    opts: [
+      "A farm tractor used to haul farm equipment",
+      "The front part with the engine and driver's compartment — the power unit",
+      "The trailer that carries the cargo",
+      "The refrigeration unit on a Reefer truck"
+    ],
+    correct: 1,
+    exp: "Module 2 clarifies: The Truck (Tractor/Cab) — the front part with the engine and driver's compartment. This is the power unit."
+  },
+  {
+    q: "What warning does Module 2 give about mismatching cargo and trailer type?",
+    opts: [
+      "It is a minor mistake that can be corrected easily",
+      "It only affects the driver, not the dispatcher",
+      "It is a professional failure that costs the carrier money, damages reputation, and could end the dispatching relationship permanently",
+      "It results in a small fine from the FMCSA"
+    ],
+    correct: 2,
+    exp: "Module 2 warns: Booking a refrigerated load for a flatbed truck, or an oversized piece of machinery for a dry van, is not just a mistake — it is a professional failure that costs your carrier money, damages your reputation with brokers, and could end your dispatching relationship permanently."
+  }
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');
+  var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);
+  var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Well done '+studentName+'! You have successfully completed the Module 2 quiz. You are ready for Module 3.</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Not Quite There Yet</div><div class="result-sub">Good effort '+studentName+'! You need 70% to pass. Review Module 2 carefully and try again — the questions will be different next time.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! To claim your Module 2 Certificate, WhatsApp us with your name, email, and this score. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%202%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-3-terms-used-in-usa-trucking.html" class="btn-next-mod">Module 3 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Go back to Module 2, review the truck types carefully, and try again. Each attempt shows different questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-2.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 2</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='2';
+    document.getElementById('gf-modtitle').value='Types of Trucks';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
