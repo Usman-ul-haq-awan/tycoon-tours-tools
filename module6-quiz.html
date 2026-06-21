@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 6 Quiz — Finding Carriers by Cold Calling | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 6 — Finding Carriers by Cold Calling. 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 6 of 23</span>
+<h1>Finding Carriers by <span>Cold Calling</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 6</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 6 describe as the single most effective and fastest method for building a carrier portfolio?",opts:["Email outreach","Social media marketing","Cold calling","FMCSA database search"],correct:2,exp:"Module 6 states: Cold calling is the single most effective and fastest method for building a carrier portfolio. A qualified conversation can happen within the first hour of dialing — no other method comes close for speed."},
+  {q:"What is the email response rate mentioned in Module 6 compared to cold calling?",opts:["Email gets 20–30% response rate","Email gets 2–5% response rate while cold calling generates immediate conversations","Email gets the same response rate as cold calling","Email gets 50% response rate on average"],correct:1,exp:"Module 6 states: Email gets maybe 2–5% response rate. Social media takes time to build. Cold calling can generate a qualified conversation within the first hour of dialing."},
+  {q:"Why does cold calling work particularly well in the trucking industry according to Module 6?",opts:["Truck drivers are more friendly than other professionals","Trucking is a phone-first business — a phone call could mean a load which means money, so calls get answered","US regulations require carriers to answer all business calls","Trucking companies have no email access"],correct:1,exp:"Module 6 states: The trucking industry runs on phone calls. When your phone rings in trucking it gets answered — because a phone call could mean a load, which means money. Cold calls are not seen as intrusive in trucking the way they are in other industries."},
+  {q:"How many prospects should you build in your calling list before making your first call according to Module 6?",opts:["10–20 prospects","50–100 prospects","200–500 prospects","1,000+ prospects"],correct:2,exp:"Module 6 states: Target — Build an initial list of 200–500 carriers before you start calling. This gives you a solid pipeline and prevents the psychological problem of running out of numbers to call."},
+  {q:"Which sources does Module 6 mention for building your cold calling list?",opts:["LinkedIn, Facebook, and Instagram only","FMCSA Database, Carrier411.com, and Load Boards","DAT, Truckstop, and 123Loadboard only","Google Maps and Yellow Pages"],correct:1,exp:"Module 6 lists three sources: FMCSA Database (free, filter by state, equipment type, authority status), Carrier411.com (carrier contact information with filtering), and Load Boards (carriers posting truck availability are warm leads actively seeking loads)."},
+  {q:"What does Module 6 say about newly registered carriers in the FMCSA database?",opts:["They are the hardest to sign because they are inexperienced","New carriers are especially receptive — they have not yet established dispatcher relationships","New carriers always already have dispatchers","New carriers should be avoided until they have 6 months experience"],correct:1,exp:"Module 6 states when describing FMCSA targeting: Filter for active authority, specific states, and recently issued authority — new carriers are especially receptive."},
+  {q:"What are the best Pakistan time hours for making morning peak cold calls according to Module 6?",opts:["6:00 AM – 9:00 AM PKT","8:00 PM – 11:30 PM PKT","12:00 AM – 3:00 AM PKT","4:00 AM – 7:00 AM PKT"],correct:1,exp:"Module 6 states: 8:00 PM – 11:30 PM PKT corresponds to 8:00 AM – 11:30 AM US Central Time — Morning peak hours. Carriers are fresh and receptive. Best for first contact calls."},
+  {q:"What US time should dispatchers avoid calling according to Module 6?",opts:["Early morning 6–8 AM US time","12:00 PM – 1:00 PM US local time — lunch hour","Late afternoon 4–6 PM US time","Early evening 6–8 PM US time"],correct:1,exp:"Module 6 warns: Avoid 12:00 PM – 1:00 PM US local time — lunch hour. Carriers are less available and less receptive during this window."},
+  {q:"What positive engagement rate does Module 6 describe as excellent for cold calling?",opts:["1–2%","5–10%","25–30%","50%+"],correct:1,exp:"Module 6 states: In cold calling a 5–10% positive engagement rate is excellent. If you make 100 calls and 8 carriers express genuine interest — that is a great day."},
+  {q:"What is the slide stat mentioned in Module 6 about cold calling results?",opts:["50 calls, 5 carriers","100 calls, 8 carriers","200 calls, 20 carriers","500 calls, 50 carriers"],correct:1,exp:"Module 6 states in the slider: 100 Calls 8 Carriers — A 5 to 10 percent positive engagement rate is excellent. The math works because each carrier generates ongoing income."},
+  {q:"What should you do immediately after the opening question in the cold calling script according to Module 6?",opts:["Immediately pitch your commission rate","Launch into a full explanation of your services","Pause and listen — let them respond. Never rush past the pause","Ask for their MC number right away"],correct:2,exp:"Module 6 states after the opening script: Then pause and listen — let them respond. Never rush past the pause. The silence is where the conversation begins."},
+  {q:"When a carrier says 'I handle my own loads' what does Module 6 say to respond with?",opts:["Immediately hang up and call the next carrier","Tell them their approach is wrong and they need a dispatcher","Respect that, then ask if they find it difficult to keep their truck loaded while also driving — planting a seed of doubt without attacking their approach","Offer an immediate discount on your commission rate"],correct:2,exp:"Module 6 instructs: 'Understood, and I respect that... Can I ask — are you finding it difficult to keep your truck loaded while you are also driving?' This question plants a seed of doubt about their current approach without attacking them for it."},
+  {q:"When a carrier says 'I work with a dispatcher already' what is the correct Module 6 response?",opts:["Apologize and end the call immediately","Immediately offer a lower commission rate than their current dispatcher","Respect their current relationship, ask if they are satisfied with rates and lane consistency, then ask if they would be open to a quick comparison — framing it as 5 minutes with no pressure","Tell them their current dispatcher is probably not as good as you"],correct:2,exp:"Module 6 instructs: Respect their current relationship while opening the door to comparison. Ask if they are satisfied, then say 'Would you be open to a quick conversation just to compare? If what you have is working perfectly, great — but if there is room to improve, it would be worth 5 minutes.'"},
+  {q:"When a carrier says 'I am not interested' what does Module 6 instruct you to do?",opts:["Argue with them and explain why they are wrong","Immediately hang up","Never argue — instead ask if you can leave your information and ask why dispatching is not a fit right now, treating it as market research","Lower your price immediately to try to change their mind"],correct:2,exp:"Module 6 states: Never argue with a no. Instead gather information about why — this market research makes your future calls stronger and more targeted. Ask if you can leave your information in case their situation changes."},
+  {q:"How long should an effective voicemail be according to Module 6?",opts:["Under 10 seconds","Under 30 seconds","1–2 minutes","3–5 minutes"],correct:1,exp:"Module 6 states: Keep voicemails under 30 seconds. Be clear, confident, and specific. A specific mention of their equipment type or lane shows you did your research."},
+  {q:"What does the voicemail script in Module 6 specifically include to show research?",opts:["The carrier's fleet size and number of drivers","A specific mention of their equipment type or lane","Their insurance renewal date","Their FMCSA safety score"],correct:1,exp:"Module 6 states: A specific mention of their equipment type or lane shows you did your research. This makes the voicemail feel personalized rather than a mass-dial script."},
+  {q:"When a carrier says 'Your fee is too high' what math does Module 6 use to counter this?",opts:["Simply lower your fee to match their request","Explain that fees are non-negotiable","Show the math: extra $0.40/mile on a 2,000 mile week = $800 more revenue, minus 8% fee of $240 = $560 net gain — proving the fee pays for itself","Tell them to find another dispatcher if they cannot afford your services"],correct:2,exp:"Module 6 instructs: 'If I get you $2.50/mile where you were getting $2.10, that extra $0.40 on a 2,000 mile week is $800 more. My 8% fee on $3,000 is $240. You net $560 more than before, plus you save all the time spent finding loads.' Prove the ROI mathematically."},
+  {q:"What does Module 6 offer when a carrier says they have been burned by dispatchers before?",opts:["A full refund guarantee for 6 months","A trial period of two weeks with no long-term commitment — if you do not deliver better loads they walk away with nothing lost","A character reference from other carriers","A government certification proving your legitimacy"],correct:1,exp:"Module 6 instructs: 'Let us work together for two weeks. No long-term commitment. If I do not deliver better loads at better rates than you were getting, you walk away with nothing lost. Would that be fair?' Remove the risk entirely."},
+  {q:"What is the daily call target for a beginner dispatcher in their first two weeks according to Module 6?",opts:["5–10 calls per day","30–50 calls per day","100–150 calls per day","200+ calls per day"],correct:1,exp:"Module 6 shows the call volume table: Beginner (First 2 weeks) = 30–50 calls/day. Developing (Weeks 3–6) = 50–80 calls/day. Experienced (Month 2 onwards) = 80–150 calls/day."},
+  {q:"What is the daily call target for an experienced dispatcher from Month 2 onwards?",opts:["30–50 calls per day","50–80 calls per day","80–150 calls per day","200+ calls per day"],correct:2,exp:"Module 6 shows: Experienced (Month 2 onwards) = 80–150 calls/day. This high volume is what consistently produces signed carriers and growing income."},
+  {q:"What four practice exercises does Module 6 recommend for overcoming cold calling fear?",opts:["Reading books, watching videos, attending seminars, taking written tests","Script Rehearsal, Mirror Practice, Graduated Exposure, and Role Play","Meditating, exercising, breathing techniques, and positive affirmations","Listening to recorded calls, reading scripts, translating scripts, and memorizing objections"],correct:1,exp:"Module 6 lists four exercises: Script Rehearsal (record yourself 10 times), Mirror Practice (practice while maintaining eye contact with yourself), Graduated Exposure (10 calls Day 1, building to 50+ by end of week 1), and Role Play (practice with a fellow student or family member playing carrier)."},
+  {q:"What does the Graduated Exposure exercise in Module 6 specifically prescribe?",opts:["50 calls on day 1 immediately","Day 1: 10 calls, Day 2: 20 calls, building to 50+ by end of week 1","100 calls per day from day one","Start with emails before any calls"],correct:1,exp:"Module 6 states Graduated Exposure: Day 1: 10 calls. Day 2: 20 calls. By end of week 1: 50+ calls per day. The initial anxiety substantially reduces by day 5. Consistency is everything."},
+  {q:"What 5 items does Module 6 say should be on your desk during cold calling sessions?",opts:["Computer, headset, water, script, and CRM open for note-taking — nothing else","Computer, phone, notepad, pen, and coffee","Multiple monitors, printer, fax machine, phone, and scanner","Computer, headset, and load board only"],correct:0,exp:"Module 6 states Clean Desk physical setup: Only your computer, headset, water, and script on your desk. Plus CRM open for note-taking after every call. Remove all clutter. No distractions."},
+  {q:"When should you log call information in your CRM according to Module 6?",opts:["At the end of the day in one batch","At the end of the week","Immediately after every call — not later","Only when a carrier expresses interest"],correct:2,exp:"Module 6 states: CRM Open — Ready for note-taking after every call. Log immediately — not later. After Every Call Log Immediately includes date, time, carrier name, outcome, notes on equipment and lanes, and follow-up action."},
+  {q:"What does Module 6 say about the discomfort of cold calling?",opts:["The discomfort never goes away — you simply learn to live with it","The discomfort is real but temporary — the skills are completely learnable and the results are directly tied to the number of calls you make","Cold calling should feel comfortable from day one","The discomfort means you are not cut out for dispatching"],correct:1,exp:"Module 6 states: The discomfort is real but temporary. The skills are completely learnable. The results are real and directly tied to the number of calls you make."},
+  {q:"When a carrier says 'I only run a specific lane' what does the Module 6 script instruct you to do?",opts:["Tell them you cannot help them and end the call","Ask them for more detail about their lane and then confirm you regularly find loads on that corridor — offering to share current rate data right now","Tell them to check the load board themselves","Ask them to switch to a different lane for better rates"],correct:1,exp:"Module 6 instructs: Ask 'Tell me more about your lane — where exactly are you picking up and where are you delivering?' Then after listening: 'Yes, I regularly find loads on that corridor. In fact I can share current rate data on that lane right now if you have a moment.' Turn their objection into an opportunity."},
+  {q:"What does Module 6 say about why owner-operators on the road prefer phone calls over emails?",opts:["Owner-operators do not know how to use email","Many owner-operators and small fleet owners are on the road all day with limited time for emails or social media — the phone is how they do business","Owner-operators have no smartphones","Email is blocked by trucking company firewalls"],correct:1,exp:"Module 6 states: Many owner-operators and small fleet owners are on the road all day with limited time for emails or social media. The phone is how they do business. Reaching them by phone is reaching them where they live professionally."},
+  {q:"What afternoon Pakistan time window does Module 6 recommend for follow-up calls?",opts:["12:00 AM – 2:00 AM PKT","2:00 AM – 5:30 AM PKT","8:00 AM – 10:00 AM PKT","6:00 PM – 8:00 PM PKT"],correct:1,exp:"Module 6 states: 2:00 AM – 5:30 AM PKT corresponds to 1:00 PM – 4:30 PM US Central Time — Afternoon hours. Good for follow-up calls and catching carriers after lunch."},
+  {q:"What information should be logged after every cold call according to Module 6?",opts:["Only whether it was a yes or no","Date and time, carrier name and contact, outcome, notes on equipment and lanes and concerns, and follow-up action and date","Only the carrier's phone number and name","Only positive calls need to be logged"],correct:1,exp:"Module 6 states log after every call: Date and time — Carrier name and contact — Outcome — Notes on equipment, lanes, concerns — Follow-up action and date. Most carriers do not commit on the first call — your database captures these future opportunities."},
+  {q:"What is the next module after Module 6 according to the lesson?",opts:["Module 7 — Load Board Mastery","Module 7 — Three Recommended Dialers","Module 7 — Email Outreach for Carriers","Module 7 — Rate Negotiation"],correct:1,exp:"Module 6 ends with: Module 7 is next — Three Recommended Dialers. The tools that make your cold calling faster, more professional, and more productive."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know the scripts, the objections, and the call volumes. Now pick up the phone — Module 7 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Cold calling scripts need to be memorized. Review Module 6 and try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 6 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%206%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-7-three-recommended-dialers.html" class="btn-next-mod">Module 7 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the scripts, objection handlers, call volumes, and timing carefully. Try again with fresh questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-6-finding-carriers-by-cold.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 6</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='6';
+    document.getElementById('gf-modtitle').value='Finding Carriers by Cold Calling';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
