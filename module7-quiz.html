@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 7 Quiz — Three Recommended Dialers | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 7 — Three Recommended Dialers. 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 7 of 23</span>
+<h1>Three Recommended <span>Dialers</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 7</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does VoIP stand for and what does it allow dispatchers to do?",opts:["Very Over Internet Protocol — send emails faster","Voice over Internet Protocol — make and receive calls over the internet using a US phone number regardless of physical location in Pakistan","Video over Internet Protocol — conduct video conferences with carriers","Virtual Office Internet Protocol — create a virtual US office"],correct:1,exp:"Module 7 states: VoIP — Voice over Internet Protocol — dialers allow you to make and receive calls over the internet using a US phone number regardless of your physical location in Pakistan."},
+  {q:"Why is using a Pakistani SIM to call American carriers a problem according to Module 7?",opts:["Pakistani SIMs cannot make international calls","Pakistani numbers are immediately suspicious to American carriers — many will not answer and those that do may become skeptical about professionalism","Pakistani SIMs are too expensive for international calls","Pakistani SIMs have poor audio quality only"],correct:1,exp:"Module 7 states: When they see a +92 Pakistani number many will not answer. Those that do answer may immediately become skeptical about the professionalism of the operation. Pakistani numbers are immediately suspicious."},
+  {q:"Which of the three dialers does Module 7 recommend for new dispatchers?",opts:["CallHippo — because of the power dialer","RingCentral — because of the highest call quality","OpenPhone — simplest setup, best for beginners making 30 to 80 calls per day","Any of the three — they are all equally suitable for beginners"],correct:2,exp:"Module 7 states: Start with OpenPhone — simplest setup, best for beginners making 30 to 80 calls per day. Up and running in 30 minutes for $15 per month."},
+  {q:"What is the starting price of OpenPhone per month?",opts:["$5/month","$10/month","$15/month","$25/month"],correct:2,exp:"Module 7 states OpenPhone Starter plan is $15/user/month — 1 number, unlimited US/Canada calls. This is sufficient to begin dispatching professionally."},
+  {q:"What is the starting price of CallHippo per month?",opts:["$10/month","$15/month","$18/month","$30/month"],correct:2,exp:"Module 7 states CallHippo Basic plan starts at $18/user/month for standard calling features. The Bronze plan at $30/month includes the power dialer."},
+  {q:"What is the starting price of RingCentral per month?",opts:["$15/month","$18/month","$20/month","$35/month"],correct:2,exp:"Module 7 states RingCentral Core plan starts at $20/user/month for essential business communications."},
+  {q:"What is the voicemail transcription feature in OpenPhone and why is it useful?",opts:["It automatically calls back missed voicemails","It converts voicemails to text — allowing you to quickly read all voicemails without listening to each one, saving significant time at high call volumes","It automatically deletes voicemails after 24 hours","It translates voicemails from English to Urdu"],correct:1,exp:"Module 7 states: The voicemail transcription feature is particularly useful — you can quickly read all voicemails without listening to each one, saving significant time when managing high call volumes."},
+  {q:"What is OpenPhone's main limitation according to Module 7?",opts:["It does not work in Pakistan","It cannot make calls to US numbers","OpenPhone does not have auto-dialing or power dialer features — you dial each number individually. Perfect for 30–80 calls per day but for 150+ calls you need CallHippo","It is too expensive for new dispatchers"],correct:2,exp:"Module 7 states: Limitation — OpenPhone does not have auto-dialing or power dialer features. You dial each number individually. Perfect for 30–80 calls per day. For 150+ calls you will eventually need CallHippo."},
+  {q:"What is the Voicemail Drop feature in CallHippo?",opts:["A feature that automatically deletes old voicemails","Record your voicemail script once professionally — when a call goes to voicemail click one button and your prerecorded message plays automatically while you move to the next call","A feature that drops the call if voicemail answers","A feature that sends a text message instead of voicemail"],correct:1,exp:"Module 7 states: Game Changer — Voicemail Drop. Record your voicemail script once professionally. When a call goes to voicemail — click one button and your prerecorded message plays automatically. You have moved to the next call before the voicemail finishes. This feature alone can double your effective outreach rate."},
+  {q:"What does Module 7 say about the Power Dialer math with CallHippo?",opts:["Power dialer reduces call quality significantly","Manual dialing: 50 calls per session. With CallHippo power dialer: 100 to 150 calls in the same time — not because you talk faster but because dead time between calls is automated away","Power dialer only works for inbound calls","Power dialer increases calls by 10% maximum"],correct:1,exp:"Module 7 states: Power Dialer Math — Manual dialing: 50 calls per session. With CallHippo power dialer: 100 to 150 calls in the same time. Not because you talk faster — because dead time between calls is automated away."},
+  {q:"Which dialer does Module 7 recommend when you are making 80 to 150+ calls per day?",opts:["OpenPhone","RingCentral","CallHippo — with power dialer and voicemail drop features","Any dialer works equally at this volume"],correct:2,exp:"Module 7 states: Graduate to CallHippo — when you are making 100+ calls per day the power dialer and voicemail drop features double your effective outreach rate. Best For: Growing Dispatchers — 80 to 150+ calls per day."},
+  {q:"What unique feature does RingCentral have that the other two dialers do not according to Module 7?",opts:["Call recording","Power dialer","Auto-attendant — professional call routing with greeting messages","Voicemail transcription"],correct:2,exp:"Module 7 states: Auto-Attendant Power — 'Thank you for calling Tycoon Tours Dispatch — please hold while we connect you to a dispatcher.' This single feature adds enormous professional credibility when brokers and carriers call your company number. Only RingCentral has this among the three."},
+  {q:"When should a dispatcher move to RingCentral according to Module 7?",opts:["From day one — it has the best call quality","After 1 month of dispatching","When you have 5+ carriers and are building a team — not for solo dispatchers starting out","Never — CallHippo is always better than RingCentral"],correct:2,exp:"Module 7 states: Not for Beginners — RingCentral is overkill for a solo dispatcher starting out. Use OpenPhone or CallHippo first. Migrate to RingCentral when you have 5+ carriers and are building a team."},
+  {q:"Which dialer has the best call quality according to the Module 7 comparison table?",opts:["OpenPhone","CallHippo","RingCentral — HD voice quality, described as the best on this list","All three have identical call quality"],correct:2,exp:"Module 7 states in the comparison table: Call Quality — OpenPhone: Excellent, CallHippo: Very Good, RingCentral: Excellent. RingCentral is described specifically as HD voice quality — best on this list."},
+  {q:"Which dialer has the most difficult setup according to the Module 7 comparison table?",opts:["OpenPhone — Very Easy","CallHippo — Easy","RingCentral — Moderate","All three have the same setup difficulty"],correct:2,exp:"Module 7 comparison table shows Setup Difficulty: OpenPhone — Very Easy, CallHippo — Easy, RingCentral — Moderate. RingCentral has the most complex setup of the three."},
+  {q:"What area code tip does Module 7 give for choosing your OpenPhone number?",opts:["Always choose a New York number for maximum credibility","Choose a random area code — it does not matter","Choose an area code from a US state you plan to work heavily — Illinois (312/773) or Texas (214/972) for Midwest-Southeast corridor. Local area codes slightly improve answer rates","Always choose a California number because it is the largest state"],correct:2,exp:"Module 7 states: Area Code Tip — Choose an area code from a US state you plan to work heavily. Illinois (312/773) or Texas (214/972) for Midwest-Southeast corridor. Local area codes slightly improve answer rates."},
+  {q:"How many steps are in the OpenPhone setup guide in Module 7 and how long does it take?",opts:["3 steps, 5 minutes","5 steps, 15 minutes","8 steps, 30 to 60 minutes","12 steps, 2 to 3 hours"],correct:2,exp:"Module 7 provides an 8-step OpenPhone setup guide with a total time of 30 to 60 minutes: Create Account, Select Plan, Enter Payment, Choose Number, Download App, Test Audio, Record Voicemail, Import Contacts."},
+  {q:"What payment methods does Module 7 say work for paying OpenPhone from Pakistan?",opts:["Only US credit cards work","Cash payment via Western Union only","International Visa or Mastercard — HBL, MCB, UBL cards with international payments enabled all work","PayPal only"],correct:2,exp:"Module 7 states: Enter Payment Details — Use an international Visa or Mastercard — HBL, MCB, UBL cards with international payments enabled all work."},
+  {q:"What does Module 7 say about using WiFi versus wired ethernet for call quality?",opts:["WiFi is always better because it is faster","Wired ethernet is preferred — it eliminates wireless interference that causes choppy audio and dropped calls","Both are identical in call quality","WiFi is required for VoIP calls to work"],correct:1,exp:"Module 7 states Technical Tip 1: Use wired ethernet connection instead of WiFi wherever possible — eliminates wireless interference that causes choppy audio and dropped calls."},
+  {q:"What does Module 7 say about background noise during VoIP calls?",opts:["A little background noise is acceptable and professional","Background noise from family members, traffic, or TV is very audible on VoIP calls and significantly reduces carrier and broker perception of your professionalism","Background noise only affects outbound calls, not inbound","Modern dialers automatically filter out all background noise"],correct:1,exp:"Module 7 states Technical Tip 4: Quiet environment is essential — background noise from family members, traffic, or TV is very audible on VoIP calls and significantly reduces carrier and broker perception of your professionalism."},
+  {q:"What professional voicemail greeting does Module 7 recommend recording?",opts:["Hi this is me, leave a message","You have reached [Name] at [Company]. Please leave your name and number and I will call you back within one hour","Sorry I missed your call please try again later","This number is not available please send an email"],correct:1,exp:"Module 7 states Record Voicemail Greeting: 'You have reached [Name] at [Company]. Please leave your name and number and I will call you back within one hour.' This is professional and sets a clear expectation for callback time."},
+  {q:"According to Module 7, what is the uptime guarantee that RingCentral offers?",opts:["95% uptime","99% uptime","99.999% uptime guarantee","100% uptime guarantee"],correct:2,exp:"Module 7 states about RingCentral features: 99.999% uptime guarantee. This makes it highly reliable for professional business operations with multiple carriers and team members."},
+  {q:"Does RingCentral have fax capability according to Module 7?",opts:["No — fax is obsolete and no dialer supports it","Yes — RingCentral has fax capabilities, and fax is still used in the US trucking industry","Only CallHippo supports fax","OpenPhone has fax capability but not RingCentral"],correct:1,exp:"Module 7 lists RingCentral features including: Fax capabilities — still used in US. This is a real differentiator since some carriers and brokers in the US still use fax for documentation."},
+  {q:"What does Module 7 say to do immediately after downloading the OpenPhone app?",opts:["Start calling carriers immediately","Import your carrier contact list first","Log in on both computer and smartphone so you never miss a callback","Pay for the Business plan upgrade"],correct:2,exp:"Module 7 states Step 5 Download the App: Download OpenPhone on your computer and smartphone. Log in on both devices so you never miss a callback. Being reachable on both devices is essential."},
+  {q:"What does Module 7 describe as table stakes for professional dispatching from Pakistan?",opts:["A US LLC business registration","A US phone number — non-negotiable for professional dispatching","A US bank account","A physical office address in the USA"],correct:1,exp:"Module 7 states: A US phone number is non-negotiable — Pakistani numbers are not answered by American carriers. This is table stakes for professional dispatching. A US phone number establishes instant credibility."},
+  {q:"Which CallHippo plan includes the power dialer feature?",opts:["Basic plan at $18/month","Bronze plan at $30/month","Silver plan at $42/month","Platinum plan at $48/month"],correct:1,exp:"Module 7 states CallHippo pricing: Basic $18/month — standard calling. Bronze $30/month — includes power dialer. Silver $42/month — includes predictive dialer. Platinum $48/month — full feature set."},
+  {q:"What is the difference between a Power Dialer and a Predictive Dialer in CallHippo?",opts:["They are the same feature with different names","Power Dialer auto dials list sequentially one by one — Predictive Dialer dials multiple numbers simultaneously for even higher volume","Power Dialer is for outbound calls — Predictive Dialer is for inbound calls","Power Dialer works on mobile — Predictive Dialer works on desktop only"],correct:1,exp:"Module 7 describes CallHippo features: Power Dialer — auto dials list sequentially. Predictive Dialer — dials multiple simultaneously. The predictive dialer is the higher-volume option available on the Silver plan at $42/month."},
+  {q:"What does Module 7 say about closing all browser tabs during calls?",opts:["Browser tabs have no effect on call quality","Close all unnecessary browser tabs and applications — video streaming and downloads consume bandwidth and directly degrade call quality during negotiations","Only video tabs need to be closed","Browser tabs only affect video calls, not voice calls"],correct:1,exp:"Module 7 states Technical Tip 2: Close all unnecessary browser tabs and applications — video streaming and downloads consume bandwidth and directly degrade call quality during negotiations."},
+  {q:"What is the next module after Module 7 according to the lecture?",opts:["Module 8 — Rate Negotiation","Module 8 — Load Board Mastery","Module 8 — Finding Carriers Through Emails","Module 8 — Carrier Service Agreements"],correct:2,exp:"Module 7 ends with: Module 8 is next — Finding Carriers Through Emails. A scalable systematic outreach method that perfectly complements your cold calling."},
+  {q:"According to Module 7 which dialer has CRM integrations described as Extensive?",opts:["OpenPhone","CallHippo","RingCentral","All three have extensive CRM integrations"],correct:2,exp:"Module 7 comparison table shows CRM Integration: OpenPhone — Yes, CallHippo — Yes, RingCentral — Extensive. RingCentral has the most comprehensive CRM integration suite of the three."},
+  {q:"What does Module 7 say is the last step in the OpenPhone setup before you are ready to call carriers?",opts:["Pay for the Business plan upgrade","Record your professional voicemail greeting","Import your first carrier prospect list using the contacts feature — you are now ready to start calling","Set up call forwarding to your Pakistani SIM"],correct:2,exp:"Module 7 Step 8 states: Import Carrier Contacts — Import your first carrier prospect list using the contacts feature. You are now ready to start calling. This is the final setup step before active outreach begins."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Great work '+studentName+'! You know your dialers inside out. Set up OpenPhone today and start calling — Module 8 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the three dialers, their features and prices carefully. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 7 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%207%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-8-finding-carriers-through-emails.html" class="btn-next-mod">Module 8 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the dialer features, prices, and best use cases carefully. Try again with fresh questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-7-three-recommended-dialers.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 7</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='7';
+    document.getElementById('gf-modtitle').value='Three Recommended Dialers';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
