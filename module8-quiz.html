@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 8 Quiz — Finding Carriers Through Emails | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 8 — Finding Carriers Through Emails. 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 8 of 23</span>
+<h1>Finding Carriers Through <span>Emails</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 8</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"How many carriers per day can a well-constructed email campaign reach according to Module 8?",opts:["50 to 100 carriers per day","100 to 200 carriers per day","500 to 1,000 carriers per day with properly automated systems","2,000 to 5,000 carriers per day"],correct:2,exp:"Module 8 states: While a dispatcher making 80 calls per day can speak to perhaps 15 to 20 carriers, a well-constructed email campaign can reach 500 to 1,000 carriers per day with properly automated systems."},
+  {q:"How does Module 8 describe the relationship between cold calling and email outreach?",opts:["Email is better than cold calling and should replace it entirely","Cold calling is better than email and email should only be used as a backup","They are NOT competing strategies — they are complementary. Cold calling for speed. Email for scale. Use both simultaneously","Email is only for established dispatchers with 5+ carriers"],correct:2,exp:"Module 8 states: Email and cold calling are NOT competing strategies — they are complementary. The most effective carrier acquisition systems use both simultaneously. Cold calling for speed. Email for scale."},
+  {q:"What is the maximum word count for a cold outreach email according to Module 8?",opts:["100 words maximum","150 to 250 words maximum","400 to 500 words maximum","No limit — longer emails get more responses"],correct:1,exp:"Module 8 states: Email Length — 150 to 250 words maximum for cold outreach. Carriers are busy. They read emails on their phone between loads. Short, clear, benefit-focused emails get read. Walls of text get deleted."},
+  {q:"How many parts are in the email structure framework taught in Module 8?",opts:["3 parts","4 parts","5 parts","7 parts"],correct:2,exp:"Module 8 teaches a 5-Part Framework: 1) Opening — Establish Relevance, 2) Problem — Identify Their Pain Point, 3) Solution — What You Offer, 4) Social Proof — Brief Credibility, 5) Call to Action — One Clear Ask."},
+  {q:"What is the purpose of the Opening section in Module 8's email framework?",opts:["To immediately pitch your commission rate","To list all your services in detail","1 to 2 sentences to show you know who they are and why you are reaching out to them specifically — establish relevance","To include your company logo and contact information"],correct:2,exp:"Module 8 states: Opening — Establish Relevance. 1 to 2 sentences. Show you know who they are and why you are reaching out to them specifically."},
+  {q:"What does Module 8 say the Call to Action section should contain?",opts:["Multiple requests to maximize the chance of a response","Request for a 30-minute detailed consultation","One clear ask only — ask for a 10-minute call. Never multiple requests in one email","Your full pricing structure and commission rates"],correct:2,exp:"Module 8 states: Call to Action — One Clear Ask. 1 sentence. Ask for a 10 minute call. One ask only — never multiple requests in one email."},
+  {q:"Which subject line does Module 8 rate as BEST?",opts:["'Dispatching Services Available'","'Hello from Tycoon Tours Dispatch'","'Dry Van Dispatcher — Midwest to Southeast Lanes'","'MC [Their MC Number] — Are You Covered on Return Loads from [Their State]?'"],correct:3,exp:"Module 8 rates subject lines: BAD — 'Dispatching Services Available' and 'Hello from Tycoon Tours Dispatch'. GOOD — 'Dry Van Dispatcher — Midwest to Southeast Lanes'. BEST — 'MC [Their MC Number] — Are You Covered on Return Loads from [Their State]?' and 'Are You Getting $2.50+ Per Mile Out of [Their State]?'"},
+  {q:"Why does Module 8 say the best subject lines reference the carrier's MC number or state?",opts:["Because it is required by law to include MC numbers in emails","It shows you know who they are — making the email feel personal and relevant rather than a mass blast","It makes the email longer which increases open rates","MC numbers are required for spam compliance"],correct:1,exp:"Module 8 states: Best subject lines feel personal and relevant. Referencing their MC number or state shows you know who they are. Addressing a specific pain point like return loads shows you understand their business."},
+  {q:"What is Template 1 in Module 8 best suited for?",opts:["Experienced dispatchers targeting large fleets","New authority carriers in their first 90 days","Standard Owner-Operator Outreach — best for beginners","Carriers who have already rejected your cold call"],correct:2,exp:"Module 8 labels Template 1 as: Standard Owner-Operator Outreach — Best For Beginners. Subject line: 'Dry Van Dispatcher — [Their State] Operations'"},
+  {q:"What subject line does Template 2 use in Module 8?",opts:["'Are You Getting $2.50+ Per Mile Out of [Their State]?'","'Congrats on Your New Authority — MC [Their MC Number]'","'Dry Van Dispatcher — [Their State] Operations'","'More Loads, Better Rates for Your Texas Operation'"],correct:1,exp:"Module 8 Template 2 — New Authority Carrier Outreach — uses subject line: 'Congrats on Your New Authority — MC [Their MC Number]'. Module 8 labels this as High Conversion."},
+  {q:"Why does Module 8 say Template 2 targeting new authority carriers has high conversion?",opts:["New carriers have the most loads available","New carriers always pay higher commission rates","The first 90 days with new authority are genuinely difficult — finding consistent loads, establishing broker relationships, and managing paperwork while driving is challenging. New carriers desperately need help","New carriers are easier to sign because they have no preferences yet"],correct:2,exp:"Module 8 states: The first 90 days with a new authority can be challenging. Finding consistent loads, establishing broker relationships, and managing all the paperwork while also driving is genuinely difficult — most new owner-operators underestimate it."},
+  {q:"What rate claim does Template 3 make in its subject line according to Module 8?",opts:["'Are You Getting $1.50+ Per Mile Out of [Their State]?'","'Are You Getting $2.00+ Per Mile Out of [Their State]?'","'Are You Getting $2.50+ Per Mile Out of [Their State]?'","'Are You Getting $3.50+ Per Mile Out of [Their State]?'"],correct:2,exp:"Module 8 Template 3 — Pain Point Focus — uses subject line: 'Are You Getting $2.50+ Per Mile Out of [Their State]?' This is labeled Strong Hook in the module."},
+  {q:"What dollar amount per mile does Module 8 say most carriers are leaving on the table according to Template 3?",opts:["$0.05 to $0.10 per mile","$0.10 to $0.15 per mile","$0.20 to $0.40 per mile","$0.75 to $1.00 per mile"],correct:2,exp:"Module 8 Template 3 states: Most of the carriers I talk to are leaving $0.20 to $0.40 per mile on the table because they do not have time to negotiate aggressively with brokers while also managing everything else."},
+  {q:"What email tool does Module 8 recommend for beginners on a budget?",opts:["Lemlist at $59/month","Instantly.ai at $37/month","GMass at $25/month — affordable Gmail-based mass email tool","Mailchimp at $50/month"],correct:2,exp:"Module 8 states: GMass — From $25/month — Affordable Gmail-based mass email tool. Sends personalized emails directly from your Gmail account. Maintains good deliverability because it uses your actual Gmail inbox. Best for: Beginners on budget."},
+  {q:"What is the starting price for Instantly.ai according to Module 8?",opts:["$15/month","$25/month","$37/month","$59/month"],correct:2,exp:"Module 8 states: Instantly.ai — From $37/month — Newer tool gaining popularity among dispatchers. Excellent deliverability, unlimited email sending accounts, strong analytics. Growing favorite in the dispatching community."},
+  {q:"What is the starting price for Lemlist according to Module 8?",opts:["$25/month","$37/month","$59/month","$99/month"],correct:2,exp:"Module 8 states: Lemlist — From $59/month — Excellent for personalized cold email campaigns. Insert personalized variables automatically — name, MC number, state, equipment type. Has reply detection and follow-up automation. Best for: Personalization at scale."},
+  {q:"When is a regular Gmail account sufficient for email outreach according to Module 8?",opts:["Never — you always need a paid tool","Only for sending to personal contacts","For under 50 emails per day your regular Gmail is perfectly adequate. No tool needed","Only when sending to carriers you already know"],correct:2,exp:"Module 8 states: Gmail Direct — Free — For under 50 emails per day your regular Gmail is perfectly adequate. No tool needed. Manual but effective for building initial carrier relationships one by one. Best for: Getting started free."},
+  {q:"What is email domain warming according to Module 8 and why is it important?",opts:["Warming up your laptop before sending emails","Gradually increasing sending volume over 2 to 3 weeks from a new domain — starting with 20 emails per day increasing to 50 then 100 then 200. Sudden high volume from a new domain triggers spam filters","Sending emails only during warm weather months","Waiting 6 months before using a new email domain"],correct:1,exp:"Module 8 states: Warm Up Your Email Domain — If using a new business email domain gradually increase sending volume over 2 to 3 weeks. Start with 20 emails per day, increase to 50, then 100, then 200. Sudden high volume from a new domain triggers spam filters."},
+  {q:"What type of email format does Module 8 recommend for better inbox delivery?",opts:["HTML with images and colors — it looks more professional","Plain text emails — they look like personal messages and land in the inbox more reliably","PDF attachments with your company branding","Video emails using tools like Loom"],correct:1,exp:"Module 8 states: Use Plain Text — Not HTML — Heavily formatted emails with images and colorful HTML look like marketing blasts. Plain text emails look like personal messages — they land in the inbox more reliably and get better open rates."},
+  {q:"What critical fact does Module 8 state about the percentage of sales that happen after the fifth contact?",opts:["20% of sales happen after the fifth contact","50% of sales happen after the fifth contact","80% of sales happen after the fifth contact","95% of sales happen after the fifth contact"],correct:2,exp:"Module 8 states: Critical Fact — Studies consistently show 80% of sales happen after the fifth contact. Most email responses do not come from the first email. Your follow-up sequence is where carriers are actually won."},
+  {q:"What is the Day 3 follow-up message strategy in Module 8's sequence?",opts:["Send the same email again with a different subject line","A 2 to 3 sentence reference to the initial email from a different angle — 'I wanted to make sure this did not get buried — are you currently satisfied with your load situation?'","Send a detailed proposal with commission rates","Call them instead of emailing on Day 3"],correct:1,exp:"Module 8 states Day 3 First Follow-Up: 2 to 3 sentence reference to your initial email from a different angle. 'I wanted to make sure this did not get buried — are you currently satisfied with your load situation?'"},
+  {q:"What strategy does Module 8 recommend for the Day 7 follow-up?",opts:["Send a more aggressive sales pitch","Threaten to stop contacting them","Add value — share something of genuine value such as a current rate report for their lane or a tip about a high-demand corridor. Give before you ask again","Ask them directly if they want to sign a dispatch agreement"],correct:2,exp:"Module 8 states Day 7 Second Follow-Up — Add Value: Share something of genuine value — a current rate report for their lane, a tip about a high-demand corridor. Give before you ask again."},
+  {q:"What is the Day 14 follow-up called in Module 8 and what does it say?",opts:["The Hard Close — demanding a yes or no answer","The Break-Up Email — 'I understand if the timing is not right. I will not reach out again unless you would like me to.' This often generates responses from busy interested carriers","The Discount Email — offering a reduced commission rate","The Final Warning — threatening to work with their competitors"],correct:1,exp:"Module 8 states Day 14 Third Follow-Up — Break-Up Email: 'I understand if the timing is not right. I will not reach out again unless you would like me to.' This often generates responses from carriers who were interested but busy."},
+  {q:"Why does Module 8 recommend an optional Day 30+ re-engagement email?",opts:["Because carriers forget emails after 30 days","Because carrier circumstances change — a carrier happy with their dispatcher in week 1 may be unhappy in week 4. A gentle re-engagement captures these changed situations","To maintain a legal record of contact","To comply with CAN-SPAM regulations"],correct:1,exp:"Module 8 states: Optional Re-Engagement — Carrier circumstances change. A carrier who was happy with their dispatcher in week one may be unhappy in week four. A gentle re-engagement after 30 days captures these changed situations."},
+  {q:"What does Module 8 say to do immediately when a carrier responds positively to your email?",opts:["Send them a full dispatch agreement to sign by email","Continue the conversation by email until they are ready to commit","Move them to a phone call as quickly as possible — email is good for initial outreach but relationships close on phone calls","Ask them to visit your website to learn more"],correct:2,exp:"Module 8 states: When a carrier responds positively to your email, move them to a phone call as quickly as possible. Email is good for initial outreach but relationships close on phone calls."},
+  {q:"What reply template does Module 8 provide for when a carrier responds positively?",opts:["'Great to hear from you. Let me email you our full service agreement.'","'Thank you for getting back to me. I would love to learn more about your operation and share exactly how we can help. Would [specific day and time] work for a 10-minute call?'","'Please visit our website for more information about our services.'","'Excellent! Please send me your MC number and insurance documents to get started.'"],correct:1,exp:"Module 8 states: Reply Template when carrier responds positively — 'Thank you for getting back to me. I would love to learn more about your operation and share exactly how we can help. Would [specific day and time] work for a 10-minute call?'"},
+  {q:"What spam trigger words does Module 8 say to avoid in cold emails?",opts:["Professional terms like 'dispatch', 'carrier', and 'broker'","Words like 'free', 'guarantee', 'earn money', 'limited time', 'act now', 'no risk' — these activate spam filters","Technical trucking terms like 'deadhead' and 'RPM'","State names and MC numbers"],correct:1,exp:"Module 8 states: Avoid Spam Trigger Words — Words like 'free,' 'guarantee,' 'earn money,' 'limited time,' 'act now,' 'no risk' activate spam filters. Write naturally and professionally — avoid all sales language in cold outreach."},
+  {q:"What does CAN-SPAM compliance require according to Module 8?",opts:["Sending emails only to carriers you have met in person","Limiting emails to 10 per day maximum","Including your business name, physical address, and an unsubscribe mechanism — this is legally required and improves deliverability","Getting written permission from every carrier before emailing them"],correct:2,exp:"Module 8 states: Follow CAN-SPAM Compliance — Include your business name, physical address — your LLC registered address works — and an unsubscribe mechanism. This is legally required and improves deliverability significantly."},
+  {q:"What are the five sources of carrier email addresses listed in Module 8?",opts:["Google, Facebook, LinkedIn, Instagram, and TikTok","FMCSA Database, Carrier411, Load Board Carrier Profiles, LinkedIn, and Google Search","DAT, Truckstop, 123Loadboard, uShip, and Central Dispatch","OpenPhone, CallHippo, RingCentral, GMass, and Lemlist"],correct:1,exp:"Module 8 lists five sources: FMCSA Database (free), Carrier411 (supplementary carrier data), Load Board Carrier Profiles (capture emails from carrier profiles), LinkedIn (profiles and messages), and Google Search (carrier websites and business listings)."},
+  {q:"What does Module 8 say about the Social Proof section of the email framework?",opts:["It should be 3 to 4 paragraphs detailing your entire career","1 sentence with a specific result — average rates achieved, number of carriers worked with, or relevant experience","The social proof section is optional and can be skipped","Social proof should include customer testimonials only"],correct:1,exp:"Module 8 states: Social Proof — Brief Credibility. 1 sentence. A specific result — average rates you achieve, number of carriers you work with, relevant experience."},
+  {q:"What does Module 8 say the Problem section of the email should do?",opts:["List all the problems with the current dispatching industry","Explain why the carrier's current approach is wrong","1 to 2 sentences naming a specific challenge they likely face — deadhead, rate negotiation, load finding while driving","Ask the carrier to identify their own problems"],correct:2,exp:"Module 8 states: Problem — Identify Their Pain Point. 1 to 2 sentences. Name a specific challenge they likely face — deadhead, rate negotiation, load finding while driving."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent work '+studentName+'! You know your email templates, follow-up sequences, and tools. Start your campaign — Module 9 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the templates, 5-part framework, and follow-up sequence carefully. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 8 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%208%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-9-fmcsa-and-safer-web.html" class="btn-next-mod">Module 9 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the 5-part framework, 3 templates, follow-up sequence, and email tools. Try again with fresh questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-8-finding-carriers-through-emails.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 8</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='8';
+    document.getElementById('gf-modtitle').value='Finding Carriers Through Emails';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
