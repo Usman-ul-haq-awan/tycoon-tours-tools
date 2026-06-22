@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 9 Quiz — FMCSA and Safer Web | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 9 — FMCSA and Safer Web. 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 9 of 23</span>
+<h1>FMCSA and <span>Safer Web</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 9</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 9 describe the FMCSA database as for truck dispatchers?",opts:["An expensive paid service requiring a government subscription","The most powerful free tool available to any truck dispatcher anywhere in the world","A database only accessible to US-based dispatchers","A tool only useful for verifying insurance"],correct:1,exp:"Module 9 states: The FMCSA database is the most powerful free tool available to any truck dispatcher anywhere in the world. Hundreds of thousands of records. Completely free. Maintained by the US federal government."},
+  {q:"What is the FMCSA's primary mission according to Module 9?",opts:["To collect taxes from trucking companies","To license freight brokers in the United States","To reduce crashes, injuries, and fatalities involving large trucks and buses","To set fuel prices for commercial vehicles"],correct:2,exp:"Module 9 states: The Federal Motor Carrier Safety Administration is a US government agency responsible for regulating commercial motor vehicles. Its mission is to reduce crashes, injuries, and fatalities involving large trucks and buses."},
+  {q:"Why does Module 9 say FMCSA registration makes the database so comprehensive?",opts:["Because the government pays carriers to register","Because registration is mandatory — no carrier can legally operate in interstate commerce without FMCSA registration","Because all carriers voluntarily register for tax benefits","Because load boards require FMCSA registration for posting loads"],correct:1,exp:"Module 9 states: This mandatory registration requirement is what makes the FMCSA database so comprehensive and valuable for dispatchers. Every legitimate carrier is in this database."},
+  {q:"What are the two unique identification numbers every registered carrier has according to Module 9?",opts:["EIN and SSN","VIN and DOT Number","MC Number and DOT Number","CSA Number and FMCSA Number"],correct:2,exp:"Module 9 states every registered carrier has: MC Number — their unique operating authority identifier, and DOT Number — their safety identification number."},
+  {q:"What is the URL for the FMCSA Licensing and Insurance portal used to build carrier prospect lists?",opts:["safer.fmcsa.dot.gov","fmcsa.dot.gov/search","li.fmcsa.dot.gov","ai.fmcsa.dot.gov"],correct:0,exp:"Module 9 states: FMCSA Licensing and Insurance — li.fmcsa.dot.gov — Search for carriers with active authority, filter by operation type, and access contact information. Your primary source for building carrier prospect lists."},
+  {q:"What is the URL for Safer Web according to Module 9?",opts:["li.fmcsa.dot.gov","safer.fmcsa.dot.gov","ai.fmcsa.dot.gov","fmcsa.gov/carriers"],correct:1,exp:"Module 9 states: Safer Web — safer.fmcsa.dot.gov — Search by MC number, DOT number, or company name for detailed carrier profiles including contact info, equipment type, insurance status, and safety scores."},
+  {q:"What is the FMCSA CSA Safety Measurement System URL and what is it used for?",opts:["li.fmcsa.dot.gov — for building carrier lists","safer.fmcsa.dot.gov — for company snapshots","ai.fmcsa.dot.gov — for detailed carrier safety performance data across seven BASIC categories","fmcsa.dot.gov/insurance — for insurance verification"],correct:2,exp:"Module 9 states: CSA Safety Measurement System — ai.fmcsa.dot.gov — Detailed carrier safety performance data across seven BASIC categories. Use this to verify carriers have acceptable safety records before committing to work with them."},
+  {q:"What search type should you select in the FMCSA L&I portal according to Module 9 Step 2?",opts:["All registered carriers regardless of status","Active and Authorized for Property — to filter for carriers currently licensed to haul freight","Broker-only registrations","Passenger carriers only"],correct:1,exp:"Module 9 states Step 2: Select Search Type — Choose 'Active and Authorized for Property' to filter for carriers currently licensed to haul freight. This eliminates inactive authorities, broker-only registrations, and passenger carriers."},
+  {q:"What format does Module 9 say to export FMCSA search results in?",opts:["PDF format","Word document","CSV spreadsheet file — open in Excel or Google Sheets for further filtering","XML data file"],correct:2,exp:"Module 9 states Step 5: Export Results as CSV — Download your search results as a CSV spreadsheet file. Open in Excel or Google Sheets for further filtering and organization."},
+  {q:"What carrier size range does Module 9 recommend filtering for after exporting FMCSA results?",opts:["1 to 50 power units","1 to 5 power units — owner-operators and small fleets","10 to 50 power units — medium fleets only","50+ power units — large fleets only"],correct:1,exp:"Module 9 states Step 6 Clean Your Data: Filter for carriers with 1 to 5 power units — owner-operators and small fleets. Remove records without phone numbers or email addresses. What remains is your targeted prospect list."},
+  {q:"What makes newly registered carriers the warmest leads according to Module 9?",opts:["They have the newest and most expensive equipment","They are extremely hungry for loads, very receptive to dispatcher outreach, making important decisions about how to operate, and not yet locked into existing dispatcher relationships","New carriers pay higher commission rates","New carriers are required by FMCSA to work with a dispatcher"],correct:1,exp:"Module 9 states: New carriers are extremely hungry for loads, very receptive to dispatcher outreach, making important decisions about how to operate, and not yet locked into existing dispatcher relationships."},
+  {q:"What authority grant date range does Module 9 recommend filtering for to find warm leads?",opts:["Carriers who received authority within the last 7 days","Carriers who received authority within the last 30 to 90 days","Carriers who received authority within the last 6 months","Carriers who received authority within the last 2 years"],correct:1,exp:"Module 9 states: Filter by authority grant date. Search for carriers who received authority within the last 30 to 90 days. These are your warmest leads — a carrier who just got their MC number 3 weeks ago is the definition of a warm prospect."},
+  {q:"What does 1 power unit mean on a carrier's FMCSA company snapshot according to Module 9?",opts:["The carrier has 1 warehouse","The carrier is a solo owner-operator with 1 truck","The carrier has 1 driver only","The carrier has 1 active load"],correct:1,exp:"Module 9 states: Power Units — How many trucks they have. 1 power unit = solo owner-operator. 5 power units = small fleet with 5 trucks. Filter for 1 to 10 power units for your target market."},
+  {q:"What are the three possible safety ratings for an audited carrier according to Module 9?",opts:["Good, Fair, Poor","Pass, Conditional, Fail","Satisfactory, Conditional, or Unsatisfactory","Active, Pending, Revoked"],correct:2,exp:"Module 9 states: Safety Rating — If audited: Satisfactory, Conditional, or Unsatisfactory. Most small carriers show 'Not Rated' — they have not yet been audited. Conditional or Unsatisfactory ratings are red flags."},
+  {q:"What does a 'Not Rated' safety status mean for a carrier according to Module 9?",opts:["The carrier has failed their safety audit","The carrier has a perfect safety record","The carrier has not yet been audited — most small carriers show this status","The carrier is not authorized to haul freight"],correct:2,exp:"Module 9 states: Most small carriers show 'Not Rated' — they have not yet been audited. This is normal for smaller and newer carriers."},
+  {q:"What are the four items in Module 9's carrier verification checklist before signing?",opts:["MC number, DOT number, EIN, and business address","Active Operating Authority, Valid Insurance, Acceptable Safety Record, and Equipment Matches What They Told You","Insurance, payment terms, lane preferences, and truck age","Cold call script, email template, CRM entry, and follow-up date"],correct:1,exp:"Module 9 lists four verification items: Active Operating Authority (ACTIVE status), Valid Insurance (current cargo and liability), Acceptable Safety Record (no Conditional or Unsatisfactory rating), and Equipment Matches What They Told You (verify truck count and type)."},
+  {q:"What are the standard minimum insurance coverage amounts brokers require according to Module 9?",opts:["$100K liability and $50K cargo","$500K liability and $50K cargo","$1M liability and $100K cargo","$2M liability and $500K cargo"],correct:2,exp:"Module 9 states: Verify the insurance is active and the coverage amounts meet standard broker minimums — typically $1M liability and $100K cargo."},
+  {q:"What does Module 9 say to do when a carrier shows 1 power unit on FMCSA but claims to have 5 trucks?",opts:["Trust what the carrier told you and proceed","The FMCSA data must be wrong — always trust the carrier","The carrier needs clarification — verify before signing not after","Report the carrier to FMCSA for false information"],correct:2,exp:"Module 9 states: A carrier claiming 5 trucks but showing 1 power unit needs clarification. Verify before signing — not after."},
+  {q:"How many steps are in Module 9's systematic process for building a FMCSA-based carrier database?",opts:["5 steps","7 steps","9 steps","12 steps"],correct:2,exp:"Module 9 provides a 9-step systematic process: Choose target states, Export active for-hire carriers, Filter for 1 to 10 power units, Sort by authority grant date, Remove records without contact information, Import into CRM, Enrich records via Safer Web, Begin outreach, Refresh list monthly."},
+  {q:"How often does Module 9 say you should refresh your FMCSA carrier list?",opts:["Once per year","Every 6 months","Every month — new carriers register every week and your pipeline must stay fresh","Only when you need new carriers"],correct:2,exp:"Module 9 states Step 9: Refresh your list monthly — new carriers register every week and your pipeline must stay fresh."},
+  {q:"What does Module 9 say is the solution when FMCSA phone numbers are outdated?",opts:["Skip that carrier and move on","Send an email instead of calling","Search the carrier name on Google or LinkedIn for current contact information","Report the outdated record to FMCSA"],correct:2,exp:"Module 9 states in the limitations table: Phone Number Accuracy — Numbers are sometimes outdated. How to Overcome: Search carrier name on Google or LinkedIn for current contact information."},
+  {q:"What does Module 9 recommend to overcome FMCSA's email completeness limitation?",opts:["Only work with carriers who have email addresses on file","Skip email outreach entirely and only cold call","Supplement with Carrier411 and direct Google searches for missing emails","Pay for a premium FMCSA data subscription"],correct:2,exp:"Module 9 states: Email Completeness — FMCSA does not always have email addresses on file. How to Overcome: Supplement with Carrier411 and direct Google searches for missing emails."},
+  {q:"What does Module 9 say distinguishes expert dispatchers from beginners when using FMCSA?",opts:["Experts have paid premium FMCSA access that beginners cannot afford","The difference is not access — everyone has the same FMCSA. It is how systematically and intelligently you extract and use the data","Experts use different FMCSA portals that are hidden from beginners","Experts get preferential treatment from FMCSA because of their LLC registration"],correct:1,exp:"Module 9 states: The difference between beginners and experts is not access — everyone has the same FMCSA. It is how systematically and intelligently you extract and use this data."},
+  {q:"What three search methods does Safer Web allow for looking up individual carriers?",opts:["Name, address, and truck type","MC number, DOT number, or company name","State, equipment type, and authority date","Phone number, email, or zip code"],correct:1,exp:"Module 9 states: Safer Web — safer.fmcsa.dot.gov — Search by MC number, DOT number, or company name for detailed carrier profiles including contact info, equipment type, insurance status, and safety scores."},
+  {q:"What is the FMCSA Company Snapshot used for according to Module 9?",opts:["Posting loads to carriers","A comprehensive overview of any carrier — number of trucks, drivers, authority status, insurance details, and safety rating. Use before signing any dispatch agreement","Tracking your own dispatch business performance","Filing compliance reports with the government"],correct:1,exp:"Module 9 states: FMCSA Company Snapshot — safer.fmcsa.dot.gov/CompanySnapshot — Comprehensive overview of any carrier — number of trucks, number of drivers, authority status, insurance details, and safety rating. Use this before signing any dispatch agreement."},
+  {q:"What equipment detail limitation does Module 9 identify in FMCSA data?",opts:["FMCSA never shows equipment type at all","FMCSA equipment classification is somewhat broad — not always specific. Always confirm equipment specifics in your initial conversation with the carrier","FMCSA only shows equipment age not type","FMCSA equipment data is always 100% accurate and specific"],correct:1,exp:"Module 9 states: Equipment Detail — FMCSA equipment classification is somewhat broad — not always specific. How to Overcome: Always confirm equipment specifics in your initial conversation with the carrier."},
+  {q:"What opening question does Module 9 recommend when calling a carrier whose contact name is unknown?",opts:["'Is this the owner of the trucking company?'","'Could I speak with the owner or dispatcher please?'","'Am I speaking with the MC number holder?'","'Are you the driver or the dispatcher?'"],correct:1,exp:"Module 9 states in the limitations table about Contact Name: When calling start with 'Could I speak with the owner or dispatcher please?' This handles the common situation where records have company name but not the specific person's name."},
+  {q:"Which FMCSA portal does Module 9 recommend for individual carrier verification when FMCSA export data is incomplete?",opts:["li.fmcsa.dot.gov — the L&I portal","ai.fmcsa.dot.gov — the CSA system","safer.fmcsa.dot.gov — Safer Web for more complete contact details","fmcsa.dot.gov/registration — the registration portal"],correct:1,exp:"Module 9 states Step 7: Supplement with Safer Web — For carriers with minimal information in the export look them up individually on Safer Web to access more complete contact details and verify their company information."},
+  {q:"What does Module 9 say about carriers with Conditional or Unsatisfactory CSA ratings?",opts:["These carriers pay higher commission rates to compensate for their rating","They are great targets because brokers charge them more","Carriers with Conditional or Unsatisfactory ratings will struggle to get loads from quality brokers — making them very difficult to dispatch profitably. Avoid these carriers","CSA ratings do not affect load availability"],correct:2,exp:"Module 9 states: Carriers with Conditional or Unsatisfactory ratings will struggle to get loads from quality brokers — making them very difficult to dispatch profitably. Avoid these carriers."},
+  {q:"What is the next module after Module 9 according to the lecture?",opts:["Module 10 — Cold Calling Advanced Techniques","Module 10 — Five Free Websites to Find Carriers","Module 10 — Load Board Mastery","Module 10 — Carrier Service Agreements"],correct:1,exp:"Module 9 ends with: Module 10 is next — Five Free Websites to Find Carriers. Expand your carrier acquisition toolkit beyond FMCSA with five powerful platforms your competitors do not know about."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know how to use the most powerful free carrier database in the world. Module 10 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the FMCSA portals, verification checklist, and 9-step process. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 9 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%209%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-10-five-free-websites-to-find.html" class="btn-next-mod">Module 10 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the 4 FMCSA portals, 9-step database process, and 4-item verification checklist. Try again with fresh questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-9-fmcsa-and-safer-web.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 9</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='9';
+    document.getElementById('gf-modtitle').value='FMCSA and Safer Web';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
