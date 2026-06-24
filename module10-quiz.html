@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 10 Quiz — Five Free Websites to Find Carriers | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 10 — Five Free Websites to Find Carriers. 20 questions from the Tycoon Tours Dispatching Academy quiz. Pass with 70% to claim your certificate."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 10 of 23</span>
+<h1>Five Free Websites to <span>Find Carriers</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 10</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top">
+<span class="prog-label" id="prog-label">Question 1 of 20</span>
+<span class="prog-score" id="prog-score">Score: 0</span>
+</div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar">
+<span class="timer-icon">⏱️</span>
+<div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div>
+<span class="timer-text" id="timer-text">30s</span>
+</div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What are the five free websites to find carriers taught in Module 10?",opts:["DAT, Truckstop, 123Loadboard, uShip, and Central Dispatch","123Loadboard, Trulos, Direct Freight, Getloaded, and Carrier411","FMCSA, Safer Web, Carrier411, DAT, and Truckstop","OpenPhone, CallHippo, RingCentral, GMass, and Lemlist"],correct:1,exp:"Module 10 lists exactly five free websites: 123Loadboard, Trulos, Direct Freight, Getloaded, and Carrier411. These are described as platforms your competitors do not know about."},
+  {q:"What is the URL for 123Loadboard according to Module 10?",opts:["www.loadboard123.com","www.123loads.com","www.123loadboard.com","www.oneTwoThreeloadboard.com"],correct:2,exp:"Module 10 states: 123Loadboard — www.123loadboard.com — a load board that also functions as a carrier-finding platform with a carrier search feature."},
+  {q:"What is the URL for Trulos according to Module 10?",opts:["www.truloads.com","www.trulos.com","www.trulosfreight.com","www.trulo.com"],correct:1,exp:"Module 10 states: Trulos — www.trulos.com — a free freight matching platform designed specifically to help carriers find loads and allow dispatchers and brokers to find carriers."},
+  {q:"What is the URL for Direct Freight according to Module 10?",opts:["www.directfreightservices.com","www.direct-freight.com","www.directfreight.com","www.freightdirect.com"],correct:2,exp:"Module 10 states: Direct Freight — www.directfreight.com — a load board and freight matching platform offering a free basic membership that gives access to limited searches and carrier contact features."},
+  {q:"What is the URL for Carrier411 according to Module 10?",opts:["www.carrier411.org","www.carrier411.com","www.411carriers.com","www.carriercheck.com"],correct:1,exp:"Module 10 states: Carrier411 — www.carrier411.com — a carrier safety and information database that aggregates carrier data from FMCSA and other sources in a searchable user-friendly format."},
+  {q:"How does Module 10 describe 123Loadboard's primary purpose and carrier-finding feature?",opts:["It is only a load posting board with no carrier search","A load board that also functions as a carrier-finding platform — carriers post available trucks specifying location, equipment type, and lane preferences","It is exclusively for flatbed carriers","It only works for large fleets with 10+ trucks"],correct:1,exp:"Module 10 states: 123Loadboard is a load board that also functions as a carrier-finding platform. Carriers post their available trucks specifying their location, equipment type, and the lanes they want to run."},
+  {q:"What does Module 10 say about truck postings on 123Loadboard — are they cold or warm leads?",opts:["They are cold leads — same as FMCSA data","They are warm leads — carriers with empty trucks who need a load RIGHT NOW. Contact them immediately","They are paid leads that require a subscription upgrade","They are outdated leads posted weeks in advance"],correct:1,exp:"Module 10 states: Warm Lead Advantage — When you see a truck posting you have a warm lead — a carrier with an empty truck who needs a load RIGHT NOW. Contact them immediately. They are not cold prospects — they are actively seeking freight."},
+  {q:"What does Module 10's pro tip say about which truck postings on 123Loadboard to prioritize?",opts:["Prioritize carriers in major cities like Chicago and Dallas","Check truck postings in backhaul regions and remote industrial areas — carriers in these positions are especially motivated to work with a dispatcher","Only contact carriers with new equipment under 3 years old","Prioritize carriers who have posted multiple loads before"],correct:1,exp:"Module 10 states: Pro Tip — Check truck postings in backhaul regions and remote industrial areas. Carriers in these positions are especially motivated to work with a dispatcher who can find them consistent freight out of challenging areas."},
+  {q:"What unique reverse strategy does Trulos offer according to Module 10?",opts:["Trulos allows carriers to call you automatically","Trulos allows you to post load opportunities and have carriers contact YOU — reversing the outreach dynamic entirely","Trulos sends automated emails to carriers on your behalf","Trulos connects you directly with broker companies"],correct:1,exp:"Module 10 states: Reverse Strategy — Trulos allows you to post load opportunities and have carriers contact YOU — reversing the outreach dynamic entirely. Post a load from a specific location and attract carriers in that area who are looking for freight."},
+  {q:"What does Module 10 say about Trulos requiring a credit card?",opts:["Trulos requires a credit card for all features","Trulos requires a credit card only for the Find Trucks feature","Trulos requires no credit card — genuinely free at zero cost","Trulos requires a credit card for verification but does not charge"],correct:2,exp:"Module 10 states: Genuinely Free — Trulos requires no credit card. For a new dispatcher building their initial carrier pipeline without a large budget Trulos provides real value at absolutely zero cost."},
+  {q:"Module 10 says Trulos is best for which type of dispatcher?",opts:["Experienced dispatchers managing 10+ carriers","Dispatchers specializing in flatbed only","New dispatchers — zero budget carrier acquisition","Dispatchers targeting large fleet operators"],correct:2,exp:"Module 10 states: Best For: New dispatchers — zero budget carrier acquisition. Trulos is specifically highlighted as the best platform for dispatchers starting out with no budget."},
+  {q:"What competitive advantage does Direct Freight give over DAT and Truckstop according to Module 10?",opts:["Direct Freight has more carriers than DAT","Direct Freight is cheaper than DAT","When carriers post on DAT or Truckstop they receive dozens of calls simultaneously. Carriers on Direct Freight face less competition — your outreach has a better chance of being heard","Direct Freight has better search filters than DAT"],correct:2,exp:"Module 10 states: Less Competition Advantage — When carriers post on DAT or Truckstop they receive dozens of calls simultaneously. Carriers who post on Direct Freight are on a less trafficked platform — meaning fewer dispatchers competing to contact them."},
+  {q:"Direct Freight is described as best for what purpose in Module 10?",opts:["Finding the highest paying loads","Less competitive outreach — better response rates","Verifying carrier insurance","Building large carrier databases quickly"],correct:1,exp:"Module 10 states: Best For Direct Freight: Less competitive outreach — better response rates. The reduced competition on the platform means your calls and emails get more attention."},
+  {q:"What type of carriers does Module 10 say Getloaded is a gold mine for finding?",opts:["New carriers who just received their authority","Large fleet operators with 20+ trucks","Experienced veteran owner-operators who have been in business 15 to 20 years","International carriers looking for US loads"],correct:2,exp:"Module 10 states: Experienced Carrier Gold Mine — The trucking industry is full of experienced owner-operators who have been in the business 15 to 20 years. Many continue to use Getloaded out of habit. These experienced carriers are often highly desirable clients — they know their lanes, have broker relationships, and are operationally efficient."},
+  {q:"What profile warning does Module 10 give about Getloaded?",opts:["Do not use your real company name on Getloaded","Complete your dispatcher profile professionally — some carriers will look up your company information before responding. A complete professional profile converts better","Never post your phone number on Getloaded","Avoid Getloaded entirely as it is outdated"],correct:1,exp:"Module 10 states: Profile Matters — Complete your dispatcher profile professionally on Getloaded. Some carriers will look up your company information before responding to your contact. A complete professional profile converts better."},
+  {q:"How is Carrier411 fundamentally different from the other four websites in Module 10?",opts:["Carrier411 costs money while the others are free","Carrier411 only works for flatbed carriers","Carrier411 is specifically a carrier safety and information database — not a load board or freight matching platform like the other four","Carrier411 is only available to US-based dispatchers"],correct:2,exp:"Module 10 states: Carrier411 is unique in the dispatcher toolkit. While the other four websites are primarily load boards or freight matching platforms Carrier411 is specifically a carrier safety and information database."},
+  {q:"What contact data advantage does Carrier411 have over direct FMCSA exports?",opts:["Carrier411 has more carriers than FMCSA","Carrier411 contact information is often more complete and current than FMCSA exports — excellent for filling missing phone numbers and emails","Carrier411 automatically calls carriers on your behalf","Carrier411 has real-time GPS tracking of carrier locations"],correct:1,exp:"Module 10 states: Contact Data Advantage — The contact information on Carrier411 is often more complete and current than what appears directly in FMCSA exports — making it an excellent supplementary source for filling in missing phone numbers and emails from your FMCSA list."},
+  {q:"What verification step does Module 10 recommend using Carrier411 for before signing a carrier?",opts:["Check if the carrier has ever worked with another dispatcher","Verify the carrier has a Facebook business page","Run the carrier MC number through Carrier411 to confirm insurance is current, authority is active, and safety record is acceptable — takes 2 minutes","Check how many loads they have posted in the past 30 days"],correct:2,exp:"Module 10 states: Verification Power — Before signing any dispatch service agreement run the carrier MC number through Carrier411 to confirm their insurance is current, authority is active, and safety record is acceptable. This takes 2 minutes and protects you from committing to a carrier who cannot legally haul loads."},
+  {q:"What does Module 10 say to do on Monday and Tuesday in the weekly carrier prospecting routine?",opts:["Check truck postings on 123Loadboard and Trulos","FMCSA Deep Pull — export new carriers from target states registered in the past 30 days, import into CRM, and begin cold calling immediately","Search Direct Freight and Getloaded for truck postings","Use Carrier411 to fill in missing contact information"],correct:1,exp:"Module 10 states: Mon + Tue — FMCSA Deep Pull. Export new carriers from your target states registered in the past 30 days. Import into CRM. Begin cold calling this fresh list immediately."},
+  {q:"What does Module 10 say to do on Wednesday in the weekly routine?",opts:["FMCSA deep pull and CRM import","Check Direct Freight and Getloaded for truck postings","123Loadboard + Trulos — check truck postings on both platforms, contact every carrier with a matching truck posting in target lanes. These are warm leads — prioritize over cold prospects","Use Carrier411 for enrichment and verification"],correct:2,exp:"Module 10 states: Wednesday — 123Loadboard + Trulos. Check truck postings on both platforms. Contact every carrier with a matching truck posting in your target lanes. These are warm leads — prioritize them over cold prospects."},
+  {q:"What does Module 10 say to do on Thursday in the weekly routine?",opts:["FMCSA deep pull","123Loadboard and Trulos warm lead outreach","Direct Freight + Getloaded — search both platforms for truck postings, contact relevant carriers, add non-urgent leads to CRM for systematic email follow-up","Carrier411 enrichment for missing contact data"],correct:2,exp:"Module 10 states: Thursday — Direct Freight + Getloaded. Search both platforms for truck postings. Contact relevant carriers. Add non-urgent leads to your CRM for systematic email follow-up."},
+  {q:"What does Module 10 say to do on Friday in the weekly routine?",opts:["Take Friday off — trucking slows down on Fridays","FMCSA deep pull for the following week","Carrier411 Enrichment — use Carrier411 to fill in missing contact information for carriers identified through other methods but not fully reachable yet","Post loads on all five platforms simultaneously"],correct:2,exp:"Module 10 states: Friday — Carrier411 Enrichment. Use Carrier411 to fill in missing contact information for carriers identified through other methods but not fully reachable yet."},
+  {q:"What does Module 10 say to do All Week in addition to the daily tasks?",opts:["Only focus on the daily task — do not mix activities","Monitor social media for carrier posts","Cold call all new prospects from Monday and Tuesday pull and follow up systematically with all carriers contacted in previous weeks using the CRM schedule","Send mass emails to all 500 prospects daily"],correct:2,exp:"Module 10 states: All Week — Follow Up and Call. Cold call all new prospects from Monday and Tuesday pull. Follow up systematically with all carriers contacted in previous weeks using your CRM schedule."},
+  {q:"What does Module 10 say these five free websites collectively give you when combined with FMCSA, cold calling, and email?",opts:["A replacement for paid load boards like DAT","Access to thousands of carrier prospects at zero cost — forming a comprehensive carrier acquisition engine that never runs dry","A government-certified carrier database","Automatic load matching without any manual work"],correct:1,exp:"Module 10 states: These five free websites collectively give you access to thousands of carrier prospects at zero cost. When combined with FMCSA, cold calling, and email outreach they form a comprehensive carrier acquisition engine."},
+  {q:"Why does Module 10 describe Getloaded as a legacy platform?",opts:["Because it was shut down and is no longer operating","Because it only serves legacy carriers over 50 years old","Because it is one of the older freight matching platforms operating since the early days of internet-based trucking — considered older compared to modern DAT and Truckstop","Because it uses outdated technology that does not work on mobile"],correct:2,exp:"Module 10 states: Getloaded is one of the older freight matching platforms — operating since the early days of internet-based trucking. While considered a legacy platform compared to modern DAT and Truckstop systems it maintains an active user base of carriers and dispatchers who have used it for years."},
+  {q:"What features does 123Loadboard's truck posting search include according to Module 10?",opts:["Only location filtering — no other details","Truck posting search, location filtering, equipment type filter, lane preferences, and a free basic tier","Only paid features — no free search available","Only nationwide search with no state filtering"],correct:1,exp:"Module 10 lists 123Loadboard features: Truck posting search, location filtering, equipment type filter, lane preferences, and free basic tier."},
+  {q:"What features does Trulos's Find Trucks feature allow you to search by according to Module 10?",opts:["Only by state — no other filters","Equipment type, origin state and city, destination lane preferences, and date of availability","Only by truck age and equipment value","Only by carrier MC number"],correct:1,exp:"Module 10 states: Trulos has a Find Trucks feature where you can search for available trucks by equipment type, origin state and city, destination lane preferences, and date of availability."},
+  {q:"What does Module 10 say experienced owner-operators found on Getloaded are like as clients?",opts:["Difficult because they are set in their ways and resistant to change","Often highly desirable — they know their lanes, have broker relationships, and are operationally efficient","Inexperienced and requiring a lot of hand-holding","Expensive because they demand higher commission rates"],correct:1,exp:"Module 10 states: These experienced carriers are often highly desirable clients — they know their lanes, have broker relationships, and are operationally efficient."},
+  {q:"What does Module 10 say about carriers posting truck availability being warm versus cold leads?",opts:["All carriers are cold leads regardless of where you find them","Truck posting carriers are semi-warm — they need some persuasion","Carriers posting truck availability are warm leads not cold prospects — they are actively looking for loads right now","All leads from free websites are low quality compared to FMCSA"],correct:2,exp:"Module 10 states in the key takeaways: Truck postings are warm leads — a carrier posting truck availability is actively seeking freight right now. Contact them immediately before another dispatcher does."},
+  {q:"What is the next module after Module 10 according to the lecture?",opts:["Module 11 — Email Outreach Advanced Techniques","Module 11 — Load Board Mastery","Module 11 — Finding Carriers Through Social Media — Facebook groups, LinkedIn, TikTok, and Instagram","Module 11 — Carrier Service Agreements"],correct:2,exp:"Module 10 ends with: Module 11 is next — Finding Carriers Through Social Media. Facebook groups, LinkedIn, TikTok, and Instagram — the growing channel most dispatchers completely ignore."},
+  {q:"What data does Carrier411 provide for each carrier according to Module 10?",opts:["Only the carrier name and MC number","Basic company information, MC and DOT numbers, insurance status, safety scores, phone and email contact information, and authority grant date","Only safety scores and no contact information","Only insurance information and authority status"],correct:1,exp:"Module 10 states: For each carrier Carrier411 provides basic company information, MC and DOT numbers, insurance status, safety scores, phone and email contact information, and authority grant date."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know all five free carrier websites and the weekly routine. Start using them today — Module 11 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the five websites, their URLs, best uses, and weekly routine. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 10 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2010%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-11-finding-carriers-through.html" class="btn-next-mod">Module 11 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Memorize all 5 website URLs, their unique advantages, and the weekly routine schedule. Try again with fresh questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-10-five-free-websites-to-find.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 10</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='10';
+    document.getElementById('gf-modtitle').value='Five Free Websites to Find Carriers';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
