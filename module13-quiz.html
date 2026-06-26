@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 13 Quiz — Dealing With Carriers | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 13 — Dealing With Carriers. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 13 of 23</span>
+<h1>Dealing With <span>Carriers</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 13</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 13 say is the difference between finding a carrier and keeping one?",opts:["Finding a carrier is harder — it takes months of cold calling","Finding a carrier is the beginning — keeping a carrier and building deep trust is what builds a sustainable high-income dispatching operation","Both are equally difficult and require the same effort","Keeping a carrier is easy once you find them — just send loads weekly"],correct:1,exp:"Module 13 states: Finding a carrier is the beginning. Keeping a carrier — and building the kind of relationship where they trust you completely and recommend you to other carriers — is what builds a sustainable high-income dispatching operation."},
+  {q:"What does Module 13 say about the ROI of retention versus acquisition?",opts:["Acquisition is always more profitable than retention because you earn the onboarding fee","The ROI on retention is far superior to acquisition — a carrier retained for years generates far more total commission than constantly replacing churned carriers","Both retention and acquisition have identical ROI","Acquisition is cheaper because new carriers accept lower dispatch fees"],correct:1,exp:"Module 13 states: ROI Reality — The ROI on retention is far superior to acquisition. A carrier who stays with you for 2 years generates far more total commission than the effort required to find and sign them — compared to constantly replacing churned carriers."},
+  {q:"When must you have a signed Dispatch Service Agreement according to Module 13?",opts:["Within 30 days of the first load","Before you book a single load for any carrier — no exceptions","Only for carriers earning over $10,000/month","After the first 3 loads to test the relationship first"],correct:1,exp:"Module 13 states: Before you book a single load for any carrier you must have a signed Dispatch Service Agreement. This is a legal contract between your dispatch company and the carrier that establishes the terms of your working relationship."},
+  {q:"What is the typical dispatch fee percentage stated in Module 13's DSA section?",opts:["5%","8%","10%","12%"],correct:1,exp:"Module 13 states: Dispatch Fee — The percentage of gross load revenue you charge. Clearly state the percentage — typically 8% — and confirm it applies to the gross rate before any deductions."},
+  {q:"What does the Services Provided section of a DSA specify according to Module 13?",opts:["Only the dispatch fee and payment terms","Exactly what you do — load finding, broker negotiation, paperwork handling, check calls — be specific not vague","Only the termination conditions","The carrier's equipment type and lane preferences"],correct:1,exp:"Module 13 states: Services Provided — Specify exactly what you do — load finding, broker negotiation, paperwork handling, check calls. Be specific not vague."},
+  {q:"What are the standard payment terms in a DSA according to Module 13?",opts:["Monthly invoicing with 30-day payment window","Weekly invoicing with payment required within 7 days","Payment only after the broker pays the carrier","Bi-weekly invoicing with 14-day payment window"],correct:1,exp:"Module 13 states: Payment Terms — How and when the carrier pays your fee. Most dispatchers invoice weekly and require payment within 7 days."},
+  {q:"Can a dispatcher commit a carrier to a load without their approval according to Module 13?",opts:["Yes — dispatchers have full authority to book any load on the carrier's behalf","No — the carrier has the right to approve or reject any load before commitment. Dispatchers cannot obligate a carrier without their approval","Only for loads under 500 miles","Only if the rate is above the carrier's minimum RPM"],correct:1,exp:"Module 13 states: Load Approval — Confirm that the carrier has the right to approve or reject any load before commitment. Dispatchers cannot obligate a carrier to a load without their approval."},
+  {q:"What is the standard termination notice period in most DSAs according to Module 13?",opts:["7 days written notice","14 days written notice","30 days written notice — though many agreements allow immediate termination for cause","60 days written notice"],correct:2,exp:"Module 13 states: Termination — How either party can end the agreement. Standard is 30 days written notice though many agreements allow immediate termination for cause."},
+  {q:"What warning does Module 13 give about operating without a signed DSA?",opts:["You may face a small fine from the FMCSA","Disputes without contracts are resolved entirely against you — get a lawyer-reviewed DSA template before you sign your first carrier","You can still operate but must charge a lower fee","The broker will not work with you without your carrier's DSA on file"],correct:1,exp:"Module 13 states: Never operate without signed agreements. Disputes without contracts are resolved entirely against you. Get a lawyer-reviewed DSA template before you sign your first carrier."},
+  {q:"What information does Module 13 say to collect during carrier onboarding?",opts:["Only MC number and insurance certificate","MC and DOT numbers, insurance details, equipment specifics, driver contacts, preferred lanes, home base, days available, rate expectations, and ELD system used","Only the W9 form and voided check","Only MC number, DOT number, and preferred lanes"],correct:1,exp:"Module 13 states: Collect Carrier Information — MC and DOT numbers, insurance details, equipment specifics, driver contacts, preferred lanes, home base, days available, rate expectations, and ELD system used."},
+  {q:"Which system does Module 13 say to use to verify a carrier's active authority during onboarding?",opts:["DAT Load Board carrier profile","FMCSA — check for active authority","Carrier411 alone is sufficient","The carrier's own copy of their operating authority"],correct:1,exp:"Module 13 states: Verify Carrier Information — Check FMCSA for active authority, verify current insurance through Carrier411, review CSA scores for serious violations, confirm equipment matches FMCSA registration."},
+  {q:"What is the pre-approval advantage described in Module 13?",opts:["Getting rate confirmation pre-approved speeds up broker payment","Getting your carrier pre-approved with multiple brokers before their truck is available ensures you can book quickly when the right load appears — never wait until the carrier is available","Pre-approval allows you to post higher rates on load boards","Pre-approved carriers receive priority status on DAT"],correct:1,exp:"Module 13 states: Pre-Approval Advantage — Getting your carrier pre-approved with multiple brokers before their truck is available ensures you can book quickly when the right load appears. Never wait until the carrier is available to start broker setup."},
+  {q:"What response time standard does Module 13 set for carrier messages during active hours?",opts:["Within 4 hours","Within 2 hours","Within 1 hour — carriers on the road need timely information","Within 30 minutes at all times"],correct:2,exp:"Module 13 states: Response Time — Respond to carrier messages within 1 hour during active hours. Carriers on the road need timely information — an unanswered question about a load could mean a missed opportunity."},
+  {q:"What does Module 13 say about transparency on rates with carriers?",opts:["Never reveal the full broker rate — only share the net rate after your commission","Always tell the carrier exactly what rate you negotiated — never hide the broker rate or your commission. Transparency builds trust — deception destroys it permanently","Only share the rate after the carrier has accepted the load","Share rates only if the carrier specifically asks"],correct:1,exp:"Module 13 states: Transparency on Rates — Always tell the carrier exactly what rate you negotiated. Never hide the broker rate or your commission. Transparency builds trust — deception destroys it permanently."},
+  {q:"What does Module 13 say about proactive communication with carriers between loads?",opts:["Wait for the carrier to ask about their next load before searching","Do not wait for the carrier to ask — reach out proactively. For example: Your delivery is Thursday — I am already working on your next load from Atlanta","Only contact the carrier when you have a confirmed load ready to book","Send a weekly summary email every Monday morning"],correct:1,exp:"Module 13 states: Proactive Updates — Do not wait for the carrier to ask about their next load. Reach out proactively. 'Your delivery is Thursday — I am already working on your next load from Atlanta.'"},
+  {q:"What is TONU and what compensation range does Module 13 give for it?",opts:["TONU stands for Truck Only Needs Unloading — compensation is $50 to $100","TONU stands for Truck Ordered Not Used — typically $150 to $300 from the broker","TONU stands for Time On Non-Urgent loads — flat $200 fee","TONU stands for Truck On New Unit — no standard compensation"],correct:1,exp:"Module 13 states: TONU — Truck Ordered Not Used. Contact the broker and demand TONU compensation — typically $150 to $300."},
+  {q:"What is Step 1 of Module 13's TONU handling process?",opts:["Immediately find a replacement load for the carrier","Document the situation immediately — cancellation time, carrier position, and costs incurred","Call the broker and demand compensation before documenting anything","Notify the carrier and apologize for the cancellation"],correct:1,exp:"Module 13 states TONU Step 1: Document the situation immediately — cancellation time, carrier position, and costs incurred."},
+  {q:"When does detention pay begin according to Module 13's process?",opts:["Immediately when the driver arrives at the facility","After the free time window expires — notify detention in writing via email with timestamp","Only after 4 hours of waiting at the facility","Detention is negotiated at time of booking — not after arrival"],correct:1,exp:"Module 13 states: After the free time window expires, contact the broker formally. Notify detention in writing via email with timestamp."},
+  {q:"What does Module 13 say a dispatcher must do when a carrier cancels a load?",opts:["Charge the carrier a cancellation penalty immediately","Notify the broker immediately and professionally — never leave brokers guessing. Apologize professionally and offer solutions","Say nothing and let the carrier contact the broker directly","Wait to see if the carrier changes their mind before calling the broker"],correct:1,exp:"Module 13 states: Load Cancellations by Carrier — Notify the broker immediately and professionally — never leave brokers guessing. Apologize professionally and offer solutions — another carrier if available. Proactive communication preserves broker relationships even in difficult situations."},
+  {q:"What does Module 13 say is the foundation of long-term carrier loyalty?",opts:["Offering the lowest dispatch fee in the market","Sending birthday messages and personal gifts to carriers","Consistently finding good loads at good rates — performance is everything. Carriers stay with dispatchers who keep them loaded","Allowing carriers to set their own rate minimums at all times"],correct:2,exp:"Module 13 states: Consistently Find Good Loads — Performance is everything. Carriers stay with dispatchers who keep them loaded at good rates. This is the foundation — everything else builds on it."},
+  {q:"What does Module 13 say about knowing carrier preferences deeply?",opts:["Only track lane preferences — the rest is unnecessary detail","Memorize each carrier's preferred lanes, home base, days off, and equipment quirks — reference this knowledge in every interaction to show you truly know their business","Ask carriers to update their preferences monthly via a form","Carrier preferences change too often to memorize — just ask each time"],correct:1,exp:"Module 13 states: Know Their Preferences Deeply — Memorize each carrier's preferred lanes, home base, days off and equipment quirks. Reference this knowledge in every interaction — it shows you truly know their business."},
+  {q:"What does Module 13 say about recognizing carrier milestones?",opts:["Milestone recognition is unprofessional in a business relationship","Congratulate carriers on new equipment purchases, authority anniversaries, and income milestones — small personal recognitions build significant loyalty over time","Only recognize milestones after a carrier has been with you for 5 years","Milestone bonuses of $50 should be given for each year of loyalty"],correct:1,exp:"Module 13 states: Recognize Milestones — Congratulate carriers on new equipment purchases, authority anniversaries, and income milestones. Small personal recognitions build significant loyalty over time."},
+  {q:"What does Module 13 say you should do when a carrier purchases a second truck?",opts:["Refer them to a larger dispatch company that can handle multiple units","Be the first to offer to expand your dispatching relationship to cover the new unit — carrier growth is your growth","Charge a setup fee for adding the second unit to your service","Wait for the carrier to ask you to dispatch the second unit"],correct:1,exp:"Module 13 states: Grow With Them — When a carrier purchases a second truck, be the first to offer to expand your dispatching relationship to cover the new unit. Carrier growth is your growth."},
+  {q:"What does Module 13 identify as the most common source of carrier-dispatcher conflict?",opts:["Disagreements over which load board to use","Misaligned expectations — set expectations correctly from day one on income, load volume, rate fluctuation, and payment timeline","Late invoice payments from carriers","Disputes over the dispatch fee percentage"],correct:1,exp:"Module 13 states: The most common source of carrier-dispatcher conflict is misaligned expectations. Set expectations correctly from day one on these four areas: Income Expectations, Load Volume, Rate Fluctuation, and Payment Timeline."},
+  {q:"What does Module 13 say about explaining rate fluctuation to carriers?",opts:["Tell carriers rates are always stable so they stay confident","Explain that spot rates fluctuate with market conditions — a carrier who was not prepared for rate swings will blame the dispatcher when rates drop","Promise a minimum rate per mile to protect the carrier relationship","Only discuss rate fluctuation after rates have already dropped"],correct:1,exp:"Module 13 states: Rate Fluctuation — Explain that spot rates fluctuate with market conditions. A carrier who was not prepared for rate swings will blame the dispatcher when rates drop."},
+  {q:"What is the complete payment timeline a dispatcher should walk through with a new carrier according to Module 13?",opts:["Simply explain that brokers pay within 30 days","Walk through delivery, POD, invoice, broker payment terms, and factoring — so the carrier understands the full timeline before expecting funds","Only explain that payment takes 2 to 4 weeks","Tell the carrier payment timing depends on the broker and varies each load"],correct:1,exp:"Module 13 states: Payment Timeline — Walk through the complete payment process — delivery, POD, invoice, broker payment terms, factoring — so the carrier understands the full timeline before expecting funds."},
+  {q:"What is the next module after Module 13 according to the lecture?",opts:["Module 14 — Rate Negotiation Masterclass","Module 14 — Dealing With Brokers","Module 14 — Invoice and Collections","Module 14 — Building Your Dispatch Business"],correct:1,exp:"Module 13 ends with: Module 14 is next — Dealing With Brokers. Learn how to build the broker relationships that give your carriers access to the best freight on the market."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval=null,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin the quiz.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  selectedQuestions=selectedQuestions.map(function(q){
+    var opts=q.opts.map(function(o,i){return{text:o,origIdx:i};});
+    opts=shuffle(opts);
+    var newCorrect=opts.findIndex(function(o){return o.origIdx===q.correct;});
+    return{q:q.q,opts:opts.map(function(o){return o.text;}),correct:newCorrect,exp:q.exp};
+  });
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  var q=selectedQuestions[currentQ];
+  var pct=((currentQ+1)/20)*100;
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  var letters=['A','B','C','D'];
+  var optsHTML=q.opts.map(function(opt,i){return'<div class="option" onclick="selectAnswer('+i+')" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+opt+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+optsHTML+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">'+(currentQ===19?'See My Results →':'Next Question →')+'</button>';
+  startTimer();
+}
+
+function startTimer(){
+  timeLeft=30;clearInterval(timerInterval);updateTimerUI();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerUI();if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeOut();}},1000);
+}
+
+function updateTimerUI(){
+  var pct=(timeLeft/30)*100;
+  var fill=document.getElementById('timer-fill');var txt=document.getElementById('timer-text');
+  if(fill){fill.style.width=pct+'%';if(timeLeft<=10)fill.classList.add('warn');else fill.classList.remove('warn');}
+  if(txt)txt.textContent=timeLeft+'s';
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know your DSA essentials, carrier onboarding, communication standards, and loyalty-building strategies. Module 14 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the DSA key clauses, onboarding checklist, dispute handling, and carrier retention strategies. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 13 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2013%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="http://www.tycoondispatchacademy.online/p/module-14-dealing-with-brokers.html" class="btn-next-mod">Module 14 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the DSA clauses, onboarding steps, communication standards, dispute handling, and loyalty strategies. Try again with fresh questions.</p></div><a href="http://www.tycoondispatchacademy.online/p/module-13-dealing-with-carriers.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 13</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='13';
+    document.getElementById('gf-modtitle').value='Dealing With Carriers';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
