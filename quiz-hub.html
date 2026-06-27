@@ -352,6 +352,12 @@ function showErr(msg){
 function renderDashboard(){
   document.getElementById('login-card').style.display='none';
   document.getElementById('dashboard').style.display='block';
+  // Save student to localStorage so quizzes auto-fill
+localStorage.setItem('tt_student', JSON.stringify({
+  name: currentStudent.name,
+  email: currentStudent.email,
+  wa: currentStudent.wa
+}));
   document.getElementById('dash-name').textContent = currentStudent.name !== 'Student' && currentStudent.name !== 'New Student' ? currentStudent.name.split(' ')[0] : 'there';
 
   // Build module pass map — best pass per module
