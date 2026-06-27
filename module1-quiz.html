@@ -461,7 +461,16 @@ function startQuiz(){
     alert('Please fill in all three fields to begin the quiz.');
     return;
   }
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+if (!emailRegex.test(studentEmail)) {
+    alert("Enter a valid email.");
+    return;
+}
+
+// continue with quiz
+selectedQuestions = shuffle(QUESTION_BANK).slice(0,20);
+  
   // Shuffle and pick 20 from 30
   selectedQuestions = shuffle(QUESTION_BANK).slice(0, 20);
 
