@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 19 Quiz — Notice of Assignment | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 19 — Notice of Assignment. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 19 of 23</span>
+<h1>Notice <span>of Assignment</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 19</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 19 say the NOA is the document that ensures?",opts:["The carrier's truck registration is renewed annually before loads are booked","Your factoring carrier's cash flow mechanism works correctly — without proper NOA management payment goes to the wrong party, creating financial conflicts that damage everyone","The broker pays the dispatcher's commission before releasing payment to the carrier","The carrier's insurance remains active throughout the duration of every load"],correct:1,exp:"Module 19 states: The NOA is the document that ensures your factoring carrier's cash flow mechanism works correctly. Without proper NOA management payment goes to the wrong party — creating financial conflicts that damage everyone."},
+  {q:"What happens when a carrier uses a factoring company according to Module 19?",opts:["The carrier pays the factoring company a monthly fee in exchange for guaranteed load volume","The carrier effectively sells their invoices to the factoring company — the factoring company gives the carrier an advance of typically 95 to 97% of the invoice value and then collects the full payment from the broker when it comes due","The factoring company becomes the carrier's legal employer and handles all payroll and tax filings","The carrier assigns the factoring company authority to negotiate load rates on their behalf"],correct:1,exp:"Module 19 states: When a carrier uses a factoring company they effectively sell their invoices to that factoring company. The factoring company gives the carrier an advance — typically 95 to 97% of the invoice value — and then collects the full payment from the broker when it comes due."},
+  {q:"What specific problem does the NOA solve according to Module 19?",opts:["It prevents brokers from underpaying carriers by locking in agreed rates before the load is run","The broker has agreed to pay the carrier but now the payment needs to go to the factoring company — the NOA formally notifies every broker of this payment routing requirement","It ensures the dispatcher receives their commission before the carrier or factoring company is paid","It prevents carriers from working with multiple factoring companies simultaneously"],correct:1,exp:"Module 19 states: The Problem the NOA Solves — The broker has agreed to pay the carrier — but now the payment needs to go to the factoring company. The NOA formally notifies every broker of this payment routing requirement."},
+  {q:"What three things does an NOA formally notify brokers of according to Module 19?",opts:["The carrier's rate preferences, their preferred payment method, and their lane restrictions","The carrier has assigned their accounts receivable to a specific factoring company — all payments must be sent directly to the factoring company — the factoring company's bank name, account number, and routing number are provided","The carrier's FMCSA authority number, their insurance company, and their dispatch service agreement details","The carrier's load capacity, the types of freight they haul, and the lanes where they operate"],correct:1,exp:"Module 19 states the NOA formally notifies brokers that: the carrier has assigned their accounts receivable to a specific factoring company — all payments must be sent directly to the factoring company — and the factoring company's payment details including bank name, account number, and routing number are provided."},
+  {q:"What is the legal effect of a broker receiving a valid NOA according to Module 19?",opts:["The broker is legally required to increase the carrier's payment by 3% to cover factoring fees","Once a broker receives and acknowledges a valid NOA they are legally obligated to send payment to the factoring company — sending payment to the carrier after receiving a valid NOA is a breach of the assignment agreement","The broker is legally protected from any cargo claims for loads hauled by that carrier","The broker can legally withhold payment for up to 45 days without being in breach of the carrier agreement"],correct:1,exp:"Module 19 states: Legal Effect — Once a broker receives and acknowledges a valid NOA they are legally obligated to send payment to the factoring company. Sending payment to the carrier after receiving a valid NOA is a breach of the assignment agreement."},
+  {q:"What does the Carrier Information section of an NOA contain according to Module 19?",opts:["The carrier's load capacity, equipment type, preferred lanes, and dispatch fee percentage","Carrier's legal business name, MC and DOT numbers, carrier's registered address — must match FMCSA registration exactly","The carrier's bank account details for direct deposit of commission payments","The carrier's insurance policy numbers and coverage amounts for all active policies"],correct:1,exp:"Module 19 states: Carrier Information — Carrier's legal business name — MC and DOT numbers — carrier's registered address. Must match FMCSA registration exactly."},
+  {q:"What does the Payment Instructions section of an NOA contain according to Module 19?",opts:["The broker's preferred payment schedule and the carrier's invoicing email address","Factoring company's bank name, routing number, account number, and payment reference instructions including carrier name and load number","The carrier's Quick Pay preference and the factoring fee percentage deducted from each payment","The dispatcher's commission payment instructions and the wire transfer details for weekly settlement"],correct:1,exp:"Module 19 states: Payment Instructions — Factoring company's bank name — routing number — account number — payment reference instructions including carrier name and load number."},
+  {q:"What does the Assignment Statement in an NOA contain according to Module 19?",opts:["The carrier's agreement to pay the dispatcher's commission before accepting payment from the factoring company","Clear legal language stating that the carrier has assigned their accounts receivable and that all payments must be directed to the factoring company","The carrier's declaration that they will not work with competing factoring companies during the assignment period","A statement from FMCSA confirming the carrier's authority is active and in good standing"],correct:1,exp:"Module 19 states: Assignment Statement — Clear legal language stating that the carrier has assigned their accounts receivable and that all payments must be directed to the factoring company."},
+  {q:"What does the Effective Date and Signature section of an NOA include according to Module 19?",opts:["The date the carrier first hauled a load for the broker and the broker's authorized signature","When the assignment becomes effective — signed by an authorized representative of the carrier and often countersigned by the factoring company","The date the carrier's FMCSA authority was issued and the signature of the FMCSA compliance officer","The dispatcher's signature confirming they have reviewed and approved the assignment terms"],correct:1,exp:"Module 19 states: Effective Date and Signature — When the assignment becomes effective. Signed by an authorized representative of the carrier and often countersigned by the factoring company."},
+  {q:"What does the Contact Information section of an NOA specify according to Module 19?",opts:["The dispatcher's phone and email for all load booking and rate negotiation inquiries","Who to contact at the factoring company for payment inquiries, invoice verification, and disputes","The carrier's emergency contact for after-hours check calls and breakdown situations","The broker's compliance team contact for insurance certificate updates and authority changes"],correct:1,exp:"Module 19 states: Contact Information — Who to contact at the factoring company for payment inquiries invoice verification and disputes."},
+  {q:"What happens in Scenario 1 — NOA Not Submitted Before First Load — according to Module 19?",opts:["The broker holds payment until the NOA is submitted — no financial harm occurs but setup is delayed","Carrier runs a load, broker pays carrier directly with no NOA on file, factoring company has already advanced funds expecting to collect from the broker, carrier has double payment, factoring company demands repayment, carrier faces financial and legal pressure, dispatcher-carrier relationship is damaged","The broker flags the carrier's account and refuses to assign future loads until the NOA is provided","FMCSA issues a compliance warning to the carrier for operating without proper payment documentation"],correct:1,exp:"Module 19 states Scenario 1: Carrier runs a load. Broker pays carrier directly — no NOA on file. Factoring company has already advanced funds to the carrier expecting to collect from the broker. Carrier has double payment. Factoring company demands repayment. Carrier faces financial and legal pressure. Dispatcher-carrier relationship damaged."},
+  {q:"What happens in Scenario 2 — NOA Submitted But Broker Ignores It — according to Module 19?",opts:["The factoring company cancels the carrier's factoring contract and demands immediate repayment of all advances","Despite valid NOA on file broker accidentally sends payment to the carrier, factoring company contacts broker demanding payment be redirected, broker and factoring company engage in dispute resolution, loads may be paused, carrier cash flow disrupted","The dispatcher is held personally liable for the misdirected payment by the factoring company","FMCSA suspends the broker's operating license for violating the assignment agreement"],correct:1,exp:"Module 19 states Scenario 2: Despite valid NOA on file broker accidentally sends payment to the carrier. Factoring company contacts broker demanding payment be redirected. Broker and factoring company engage in dispute resolution. Loads may be paused. Carrier cash flow disrupted."},
+  {q:"What happens in Scenario 3 — Carrier Changes Factoring Without Notifying Brokers — according to Module 19?",opts:["The new factoring company automatically contacts all brokers to update payment records within 48 hours","Old factoring company's NOA still on file, new factoring company's NOA not submitted, broker pays old factoring company, new factoring company advances funds expecting to collect, financial conflict between two factoring companies with carrier caught in the middle — entirely preventable","The carrier is blacklisted by all major brokers for operating with multiple factoring companies simultaneously","The dispatcher loses their commission for that load as a penalty for failing to notify brokers of the change"],correct:1,exp:"Module 19 states Scenario 3: Old factoring company's NOA still on file. New factoring company's NOA not submitted. Broker pays old factoring company. New factoring company advances funds expecting to collect. Financial conflict between two factoring companies — carrier caught in the middle. This is entirely preventable."},
+  {q:"What does Module 19 say about all three NOA error scenarios?",opts:["All three scenarios carry identical financial penalties under federal freight regulations","All three scenarios are preventable through professional systematic NOA management — which is exactly what a good dispatcher provides","All three scenarios require the dispatcher to personally guarantee repayment to the factoring company","All three scenarios result in automatic suspension of the carrier's FMCSA operating authority"],correct:1,exp:"Module 19 states: All Three Scenarios Are Preventable — Through professional systematic NOA management — which is exactly what a good dispatcher provides — none of these situations ever occur."},
+  {q:"What does Module 19 say a dispatcher should do when they discover a carrier uses factoring during carrier setup?",opts:["Wait until the carrier requests it before obtaining the NOA to avoid unnecessary paperwork","Obtain the NOA from the factoring company immediately — do not proceed with broker setup until you have the NOA in hand","Ask the carrier to handle NOA submission directly with each broker to avoid dispatcher liability","Submit the carrier packet to brokers first and follow up with the NOA within 30 days"],correct:1,exp:"Module 19 states: Identify Factoring During Carrier Setup — When you discover a carrier uses factoring obtain their NOA from the factoring company immediately. Do not proceed with broker setup until you have the NOA in hand."},
+  {q:"What does Module 19 say about including the NOA with broker carrier packets?",opts:["Submit the NOA only to brokers who specifically request it during the carrier setup process","Submit the NOA alongside every broker carrier packet submission — never submit a carrier packet for a factoring carrier without the NOA","Submit the NOA after the first load is completed successfully to ensure the broker relationship is established first","Submit the NOA only to brokers who use ACH payment — brokers paying by check do not require it"],correct:1,exp:"Module 19 states: Include NOA With Every Broker Carrier Packet — Submit the NOA alongside every broker carrier packet submission. Never submit a carrier packet for a factoring carrier without the NOA."},
+  {q:"What does Module 19 say about written acknowledgment of the NOA from brokers?",opts:["Written acknowledgment is optional — a verbal confirmation from the broker's load agent is sufficient","Request written acknowledgment of the NOA from each broker — keep all acknowledgments on file permanently — this is your proof of proper notification","Written acknowledgment is only required from brokers who process more than $10,000 per month in payments","Written acknowledgment must be submitted to FMCSA within 30 days of the NOA being sent"],correct:1,exp:"Module 19 states: Request Written Acknowledgment — Request a written acknowledgment of the NOA from each broker. Keep all acknowledgments on file permanently. This is your proof of proper notification."},
+  {q:"What does Module 19 say to add to your carrier-broker setup tracker for NOA management?",opts:["A column showing the broker's payment history and average days to pay","An NOA column with NOA submitted date, acknowledgment date, factoring company name on file, and any issues or discrepancies","A column showing the carrier's preferred factoring fee percentage and their invoicing email","A separate tracker exclusively for factoring carriers separate from the main broker setup matrix"],correct:1,exp:"Module 19 states: Track NOA Status in Your Spreadsheet — Add an NOA column to your carrier-broker setup tracker — NOA submitted date — acknowledgment date — factoring company name on file — any issues or discrepancies."},
+  {q:"What does Module 19 say about verifying payment routing after first loads?",opts:["Payment routing verification is the factoring company's responsibility — dispatchers should not interfere","After first several loads with a new broker confirm with the factoring company that payment is being received correctly — ask directly: Are you receiving payments from this broker for our carrier?","Check the broker's payment portal after each load to verify the payment destination","Verify payment routing only if the factoring company contacts you with a complaint"],correct:1,exp:"Module 19 states: Verify Payment Routing After First Loads — After first several loads with a new broker confirm with the factoring company that payment is being received correctly. Ask directly — 'Are you receiving payments from [Broker Name] for our carrier?'"},
+  {q:"What does Module 19's NOA submission email to the broker specify must be requested?",opts:["A copy of the broker's carrier agreement confirming the factoring company as an approved payee","Acknowledgment of receipt and confirmation that broker records reflect the new payment routing to the factoring company","The broker's remittance email address for the factoring company to send invoices directly","A written guarantee that the broker will not send payment to the carrier under any circumstances"],correct:1,exp:"Module 19 states the NOA Submission Email should request: 'Please acknowledge receipt and confirm your records reflect this payment routing.'"},
+  {q:"What does Module 19 say is the first step when a carrier changes factoring companies?",opts:["Notify the broker first before contacting either factoring company","Obtain the new NOA from the new factoring company immediately","Cancel all pending loads until the new factoring setup is fully confirmed by all parties","Contact FMCSA to update the carrier's payment routing on their authority registration"],correct:1,exp:"Module 19 states the first step when a carrier changes factoring companies is: Obtain the new NOA from the new factoring company immediately."},
+  {q:"What does Module 19 say about timing when notifying brokers after a carrier changes factoring companies?",opts:["Notify brokers within 30 days of the change — allow time for the old factoring company to collect any outstanding payments first","Notify every broker immediately — before any new loads are run","Notify brokers only after the new factoring company confirms receipt of its first payment","Send notification to brokers and old factoring company simultaneously 7 days after the switch"],correct:1,exp:"Module 19 states Step 2 when changing factoring: Notify every broker immediately — before any new loads are run."},
+  {q:"What does Module 19 call the period when a carrier transitions between factoring companies?",opts:["The grace period — brokers give 30 days to update payment routing without penalty","The high-risk period — when payment errors are most likely to occur — managing this transition carefully protects carrier cash flow and professional reputation","The blackout period — no loads should be booked during factoring company transitions","The compliance window — FMCSA requires all payment routing changes to be filed within 14 days"],correct:1,exp:"Module 19 states: High-Risk Period — The transition between factoring companies is when payment errors are most likely to occur. Managing this transition carefully protects your carrier's cash flow and your professional reputation."},
+  {q:"What advance percentage does Module 19 say factoring companies typically give carriers?",opts:["80 to 85% of the invoice value with the remainder paid after broker payment is collected","95 to 97% of the invoice value — with the factoring company then collecting the full payment from the broker when it comes due","100% of the invoice value immediately — the factoring company earns its fee through interest on late broker payments","90% of the invoice value with a 10% reserve held until all disputes are resolved"],correct:1,exp:"Module 19 states: The factoring company gives the carrier an advance — typically 95 to 97% of the invoice value — and then collects the full payment from the broker when it comes due."},
+  {q:"What does Module 19 say a dispatcher who does not understand the NOA will cause?",opts:["Minor administrative delays that can be resolved with a single phone call to the broker","Mistakes that result in double-payment situations, broker disputes, factoring company violations, and damaged carrier relationships","Temporary cash flow issues that the factoring company will automatically resolve within 30 days","Commission calculation errors that require the carrier to renegotiate their dispatch service agreement"],correct:1,exp:"Module 19 states: A dispatcher who does not understand the NOA will make mistakes that result in double-payment situations broker disputes factoring company violations and damaged carrier relationships. Master this document."},
+  {q:"What does Module 19 say is Step 4 when a carrier changes factoring companies?",opts:["Submit the new NOA to FMCSA for official registration of the payment routing change","Confirm old factoring company is aware the assignment has ended","Request the broker to hold all pending payments until the new factoring company confirms readiness","Contact all shippers directly to update payment records with the new factoring company details"],correct:1,exp:"Module 19 states Step 4 when changing factoring companies: Confirm old factoring company is aware the assignment has ended."},
+  {q:"What does Module 19 say the NOA's Factoring Company Information section contains?",opts:["The factoring company's credit score rating and their volume of carriers currently under contract","Factoring company's legal name and address, and contact information for their accounts receivable team","The factoring company's fee schedule and the advance percentage offered to the carrier","The factoring company's FMCSA authority number and their broker operating license details"],correct:1,exp:"Module 19 states: Factoring Company Information — Factoring company's legal name and address — contact information for their accounts receivable team."},
+  {q:"According to Module 19, what is the NOA universally called in the trucking industry?",opts:["FAC — standing for Factoring Assignment Certificate","NOA — Notice of Assignment","PAR — Payment Assignment Record","FNO — Factoring Notification Order"],correct:1,exp:"Module 19 states: The Notice of Assignment — universally called NOA in the trucking industry — is a document that becomes essential the moment any of your carriers uses a factoring company."},
+  {q:"What does Module 19 say about the majority of professional carriers and factoring?",opts:["The majority of professional carriers avoid factoring because the fees reduce their profit margins","The majority of professional carriers use factoring for cash flow management — making the NOA a document you will encounter constantly","The majority of professional carriers only use factoring during slow freight seasons","The majority of professional carriers switch factoring companies every 6 to 12 months"],correct:1,exp:"Module 19 states: Given that the majority of professional carriers use factoring for cash flow management the NOA is a document you will encounter constantly."},
+  {q:"What does Module 19 identify as the next module and its topic?",opts:["Module 20 — Rate Confirmation — covering how to read and verify rate cons before accepting loads","Module 20 — W9 Form — the tax identification document every broker and carrier needs from you and how to complete it correctly","Module 20 — Dispatch Service Agreement — covering how to structure your contract with new carriers","Module 20 — Load Board Mastery — covering advanced strategies for finding premium freight"],correct:1,exp:"Module 19 states: Module 20 is next — W9 Form. The tax identification document every broker and carrier needs from you — and how to complete it correctly."},
+  {q:"What does Module 19 say the Factoring Company Information section's contact details are used for?",opts:["To allow the dispatcher to negotiate the factoring fee on the carrier's behalf","For payment inquiries, invoice verification, and disputes","To allow the broker to contact the factoring company and cancel the assignment if needed","For FMCSA to verify the factoring company's operating authority"],correct:1,exp:"Module 19 states: Contact Information — Who to contact at the factoring company for payment inquiries invoice verification and disputes."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all fields to begin.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  document.getElementById('prog-score').textContent='Score: 0';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var letters=['A','B','C','D'];
+  var pct=Math.round(((currentQ)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-fill').style.width=Math.max(pct,5)+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').className='timer-fill';
+  document.getElementById('timer-text').textContent='30s';
+  var html='<div class="q-num">Question '+(currentQ+1)+' of 20</div>';
+  html+='<div class="q-text">'+q.q+'</div><div class="options">';
+  q.opts.forEach(function(o,i){html+='<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';});
+  html+='</div><div class="explanation" id="explanation">💡 '+q.exp+'</div>';
+  html+='<button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  document.getElementById('question-card').innerHTML=html;
+  startTimer();
+}
+
+function startTimer(){
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    document.getElementById('timer-text').textContent=timeLeft+'s';
+    document.getElementById('timer-fill').style.width=(timeLeft/30*100)+'%';
+    if(timeLeft<=10)document.getElementById('timer-fill').classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know what an NOA is, how factoring works with the 95-97% advance, all 6 NOA sections, the 3 error scenarios and why they are preventable, the 5-step dispatcher NOA management process, the 4-step factoring company change procedure, and why the transition period is the highest-risk moment. Module 20 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review what an NOA is, how factoring advances work, all 6 NOA document sections, the 3 error scenarios, the 5 dispatcher responsibilities, and the 4-step process for managing factoring company changes. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 19 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2019%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-20-w9-form.html" class="btn-next-mod">Module 20 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review what an NOA is, how factoring works, all 6 NOA sections, the 3 error scenarios, the 5 dispatcher responsibilities, and the 4-step factoring change process. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-19-notice-of-assignment.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 19</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='19';
+    document.getElementById('gf-modtitle').value='Notice of Assignment';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
