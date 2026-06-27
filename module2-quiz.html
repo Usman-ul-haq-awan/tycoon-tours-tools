@@ -509,6 +509,22 @@ function retryQuiz(){
   document.getElementById('results-wrap').innerHTML='';
   startQuiz();
 }
+ (function(){
+  var saved = localStorage.getItem('tt_student');
+  if(saved){
+    try {
+      var s = JSON.parse(saved);
+      if(s.name && s.email && s.wa){
+        studentName = s.name;
+        studentEmail = s.email;
+        studentWA = s.wa;
+        document.querySelector('.student-form').style.display = 'none';
+        document.querySelector('.quiz-wrap').style.display = 'block';
+        startQuiz();
+      }
+    } catch(e){}
+  }
+})(); 
 </script>
 </body>
 </html>
