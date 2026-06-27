@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 16 Quiz — Dealing and Setup With Carriers | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 16 — Dealing and Setup With Carriers. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 16 of 23</span>
+<h1>Dealing and Setup <span>With Carriers</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 16</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"How does Module 16 define a fully set-up carrier?",opts:["A carrier who has verbally agreed to your dispatch fee and signed their name on a text message","A carrier whose loads you can book immediately with any broker — whose insurance is on file with every relevant party — whose paperwork is organized — and whose payment system is configured so commissions flow without friction","A carrier who has driven at least 10 loads before you begin formal setup","A carrier who has been verified on FMCSA and paid their first invoice"],correct:1,exp:"Module 16 states: A fully set-up carrier is a carrier whose loads you can book immediately with any broker — whose insurance is on file with every relevant party — whose paperwork is organized — and whose payment system is configured so commissions flow to you without friction."},
+  {q:"What does Module 16 say carrier setup truly is — beyond just paperwork?",opts:["A government-mandated registration process required by FMCSA for all dispatch companies","The foundation of a professional productive dispatch relationship — every step serves a specific purpose in making your operation run smoothly","A one-time administrative task that takes about 15 minutes per carrier","An optional process only needed for carriers hauling hazmat loads"],correct:1,exp:"Module 16 states: Carrier setup is not administrative paperwork — it is the foundation of a professional productive dispatch relationship. Every step serves a specific purpose in making your operation run smoothly."},
+  {q:"What critical warning does Module 16 give about new dispatchers who rush or skip carrier setup?",opts:["They may face a small FMCSA fine for operating without complete files","Rushing or skipping setup is a critical mistake — proper setup protects you legally, ensures smooth broker relationships, facilitates quick payment, and establishes professional credibility","They will earn lower commission rates because brokers distrust unverified carriers","They will lose their load board subscription if carrier files are incomplete"],correct:1,exp:"Module 16 states: Many new dispatchers rush or skip carrier setup. This is a critical mistake. Proper setup protects you legally, ensures smooth broker relationships, facilitates quick payment, and establishes professional credibility."},
+  {q:"Which website does Module 16 say to use for verifying a carrier's active operating authority?",opts:["carrier411.com","dat.com/carrier-search","safer.fmcsa.dot.gov — look up their MC or DOT number and confirm authority status shows ACTIVE","fmcsa.dot.gov/broker-verify"],correct:2,exp:"Module 16 states: Active Operating Authority — Go to safer.fmcsa.dot.gov and look up the carrier MC or DOT number. Confirm authority status shows ACTIVE. Inactive, revoked, or pending authority means they cannot legally haul interstate loads."},
+  {q:"What are the minimum insurance requirements Module 16 specifies for carrier verification?",opts:["$250,000 liability for general freight and $50,000 cargo insurance","$750,000 liability for general freight, $1M for hazmat, and minimum $100,000 cargo insurance","$1M liability for all freight types and $500,000 cargo insurance","$500,000 liability for general freight and $250,000 cargo insurance"],correct:1,exp:"Module 16 states: Insurance Verification — Confirm active liability insurance — minimum $750,000 for general freight, $1M for hazmat — and active cargo insurance minimum $100,000."},
+  {q:"Which website does Module 16 specify for checking a carrier's CSA safety score?",opts:["safer.fmcsa.dot.gov","carrier411.com/csa-scores","ai.fmcsa.dot.gov","dat.com/safety-ratings"],correct:2,exp:"Module 16 states: CSA Safety Score Review — Access ai.fmcsa.dot.gov. Carriers with multiple BASIC category percentiles above 65 to 70 percent will struggle getting loads from quality brokers."},
+  {q:"What CSA percentile threshold does Module 16 say causes carriers to struggle getting loads from quality brokers?",opts:["Above 50 percent in any single BASIC category","Above 80 percent in the vehicle maintenance category only","Multiple BASIC category percentiles above 65 to 70 percent","Any percentile above 40 percent in the unsafe driving category"],correct:2,exp:"Module 16 states: Carriers with multiple BASIC category percentiles above 65 to 70 percent will struggle getting loads from quality brokers. Avoid carriers with serious safety compliance issues."},
+  {q:"What equipment verification step does Module 16 specifically recommend?",opts:["Ask for a copy of the carrier's truck loan agreement to verify ownership","Ask for photos of truck and trailer — confirm equipment matches what they told you and what appears on FMCSA registration","Call the carrier's previous dispatcher to verify equipment condition","Check the carrier's DAT profile for equipment listing"],correct:1,exp:"Module 16 states: Equipment Verification — Ask for photos of truck and trailer. Confirm equipment matches what they told you and what appears on FMCSA registration. A carrier claiming a 2023 dry van but showing a 2005 reefer needs clarification before proceeding."},
+  {q:"What is Document 01 in Module 16's seven-document carrier file?",opts:["The W9 form providing the carrier's EIN and legal business name","The MC Authority Letter — official FMCSA letter granting operating authority","The signed Dispatch Service Agreement establishing the working relationship","The Certificate of Insurance naming all relevant brokers as certificate holders"],correct:1,exp:"Module 16 states: Doc 01 — MC Authority Letter — Official FMCSA letter granting operating authority. If the carrier does not have it they can access and print it from the FMCSA portal."},
+  {q:"What does Module 16 say about collecting both a general COI and broker-specific COIs?",opts:["Only the general COI is needed — brokers never require their own certificate","Collect a general COI and understand the process for getting broker-specific COIs quickly when needed","Each broker requires a new COI mailed in hard copy — budget 5 to 7 days per broker","Broker-specific COIs are only required for loads over $50,000 in cargo value"],correct:1,exp:"Module 16 states: Doc 02 — Certificate of Insurance (COI) — Carrier instructs their insurance agent to issue a COI. Collect both a general COI and understand the process for getting broker-specific COIs quickly when needed."},
+  {q:"What is the purpose of the W9 form in a carrier's document file according to Module 16?",opts:["It authorizes the dispatcher to negotiate on the carrier's behalf with all brokers","It provides legal business name, address, and EIN — required by any company that pays them more than $600 in a calendar year","It replaces the need for a signed dispatch service agreement in most US states","It is the carrier's federal operating license required to haul interstate freight"],correct:1,exp:"Module 16 states: Doc 03 — W9 Form — Carrier's W9 provides legal business name, address, and EIN. Required by any company that pays them more than $600 in a calendar year."},
+  {q:"When a carrier uses a factoring company, what bank details does Module 16 say to collect instead of the carrier's own bank info?",opts:["Both the carrier's bank details and the factoring company's bank details — brokers need both","The factoring company's bank details — since broker payment goes directly to the factoring company","The carrier's personal bank account details for emergency backup payments","The factoring company's broker contact email only — no bank details needed"],correct:1,exp:"Module 16 states: Doc 04 — Voided Check or Bank Info — For ACH payment from brokers or from your company to the carrier. If they use factoring, collect the factoring company's bank details instead."},
+  {q:"What driver information does Module 16 say to collect and why is the ELD system provider important?",opts:["Only the driver's name and phone number — ELD data is confidential and cannot be shared","Driver name, CDL number, cell phone, emergency contact, and ELD system provider — so you know how to check their HOS status before booking time-sensitive loads","Driver's home address and social security number for background check purposes","Driver's preferred load type and lane only — personal information is not needed"],correct:1,exp:"Module 16 states: Doc 05 — Driver Information — Driver name and CDL number, cell phone, emergency contact, and ELD system provider — so you know how to check their HOS status before booking time-sensitive loads."},
+  {q:"What does Module 16 recommend creating to standardize equipment information collection?",opts:["A voice recording of the carrier describing their equipment","A standard Equipment Information Form capturing truck year, make, model, VIN, trailer specs, load capacity, license plates, and any limitations or special features","A photograph album stored in Google Drive labeled by carrier name","A brief text message summary of equipment sent via WhatsApp"],correct:1,exp:"Module 16 states: Doc 06 — Equipment Information Form — Truck year, make, model, and VIN. Trailer specs. Load capacity. License plate numbers. Any equipment limitations or special features. Create a standard form for this."},
+  {q:"What does Module 16 say about the Dispatch Service Agreement — specifically regarding keeping copies?",opts:["The broker keeps the original — the dispatcher only needs a scanned copy","Both parties must sign and copies must be kept on file permanently","The DSA only needs to be kept for 1 year after the carrier relationship ends","The carrier keeps the only copy — dispatchers operate on verbal agreements"],correct:1,exp:"Module 16 states: Doc 07 — Signed Dispatch Service Agreement — Legal contract establishing working relationship, commission rate, services provided, payment terms, and termination conditions. Both parties must sign. Keep copies on file permanently."},
+  {q:"What problem does Module 16 describe happening when a carrier needs a load booked immediately but broker pre-approval has not been completed?",opts:["The broker will blacklist the dispatcher permanently for being unprepared","You may need 30 to 60 minutes of setup with each new broker — in a time-sensitive situation this delay can cost your carrier a load entirely","The carrier will face an FMCSA fine for operating without broker approval","The load board will suspend your account for attempting to book without carrier setup"],correct:1,exp:"Module 16 states: Without Pre-Approval — When a carrier needs a load booked immediately and you have not completed broker setup, you may need 30 to 60 minutes of setup with each new broker before they assign a load. In a time-sensitive situation this delay can cost your carrier a load entirely."},
+  {q:"Which broker portal does Module 16 list for TQL — Total Quality Logistics?",opts:["tql.com/carriers","portal.tql.com — online carrier setup with document upload capability","carriers.tql.net","setup.totalqualitylogistics.com"],correct:1,exp:"Module 16 states: TQL — Total Quality Logistics — portal.tql.com — Online carrier setup with document upload capability."},
+  {q:"What does Module 16 recommend creating to track broker pre-approval status for each carrier?",opts:["A wall calendar with broker setup dates written in red marker","A spreadsheet tracking every broker the carrier is set up with — broker name, contact, setup date, documents submitted, approval status, and primary contact","A separate email folder for each broker with setup confirmation emails","A handwritten notepad kept at the dispatcher's desk"],correct:1,exp:"Module 16 states: Build a Carrier Setup Tracker — Create a spreadsheet tracking every broker your carrier is set up with — broker name, contact, setup date, documents submitted, approval status, and primary contact. When a broker asks 'are you set up with us?' you have an immediate accurate answer."},
+  {q:"What are the three primary communication channels Module 16 recommends for carrier management?",opts:["Email only — all communication must be in writing for legal protection","Phone calls for urgent matters, WhatsApp or text for regular updates and document sharing, and email for formal communication and document transmission","Social media direct messages, video calls, and in-person meetings","Load board messaging systems, FMCSA portal notifications, and fax"],correct:1,exp:"Module 16 states: Primary Communication Channels — Phone calls for urgent matters, load offers, and pickup/delivery issues. WhatsApp or text for regular updates and document sharing. Email for formal communication and document transmission."},
+  {q:"What are the five check-call touchpoints in Module 16's driver contact protocol?",opts:["Monday morning, Wednesday midpoint, Friday delivery, Saturday POD confirmation, and Sunday planning call","Evening before pickup, after pickup, midpoint of journey, morning of delivery, and after delivery","Before loading, after loading, at state border crossings, at fuel stops, and after delivery","At booking confirmation, at departure, at halfway point, at destination, and at invoice submission"],correct:1,exp:"Module 16 states Check-Call Protocol — Evening before pickup (confirm readiness and review load details), after pickup (confirm successful loading and BOL receipt), midpoint of journey (confirm on-time progress), morning of delivery (confirm ETA and facility requirements), and after delivery (confirm completed delivery and POD obtained)."},
+  {q:"What does Module 16 say to confirm specifically at the 'after pickup' check-call?",opts:["The broker's final rate confirmation and any accessorial charges","Successful loading, document receipt especially the Bill of Lading","The carrier's fuel level and estimated miles to destination","The driver's hours of service remaining for the load"],correct:1,exp:"Module 16 states: After pickup — confirm successful loading and document receipt, especially BOL. The Bill of Lading is the critical legal document confirming the carrier has taken possession of the freight."},
+  {q:"What four lane analysis factors does Module 16 say to document in a carrier's CRM profile?",opts:["Load board preferences, broker credit scores, preferred truck stops, and fuel card provider","Primary lane, return lane, seasonal performance, and rate benchmarking from 30-day DAT averages","Driver home state, preferred delivery hours, maximum miles per day, and load weight preferences","Equipment age, insurance renewal date, CDL expiry, and DOT inspection history"],correct:1,exp:"Module 16 states: Lane Analysis — Primary lane (home base, preferred outbound routes), return lane (load availability and rate environment back home), seasonal performance (how the lane performs in different seasons), and rate benchmarking (30-day DAT averages to establish performance benchmarks)."},
+  {q:"Why does Module 16 highlight seasonal performance as part of lane analysis?",opts:["Seasonal performance determines which broker to use in each quarter","Reefer carriers on Florida produce routes, for example, perform very differently in winter versus summer — understanding this prevents booking loads at below-seasonal rates","Seasonal performance affects only flatbed carriers hauling construction materials","Summer loads always pay more in every lane — seasonal analysis simply confirms this rule"],correct:1,exp:"Module 16 states: Seasonal Performance — How does their preferred lane perform in different seasons? Reefer carriers on Florida produce routes perform very differently in winter versus summer."},
+  {q:"What first-load preparation steps does Module 16 specify before the carrier is available?",opts:["Only confirm the broker setup is complete — the rest can be done once a load is found","Confirm all broker setups complete, have carrier documents organized and accessible, know lane preferences intimately, have DAT rate analytics open, and identify 3 to 5 ideal load candidates before the carrier is available","Call 10 brokers at random and ask what loads they have available","Post the carrier's truck as available on DAT and wait for brokers to call"],correct:1,exp:"Module 16 states: First Load Preparation — Confirm all broker setups complete. Have carrier documents organized and accessible. Know their lane preferences intimately. Have DAT rate analytics open. Identify 3 to 5 ideal load candidates before the carrier is available."},
+  {q:"What does Module 16 say the ideal post-first-load follow-up message communicates to the carrier?",opts:["A formal invoice for the dispatch commission earned on the first load","That you are active, attentive, and already planning ahead — demonstrating you delivered on time and are working on the next load out of the destination with a positive rate outlook","A list of rules and expectations for the ongoing dispatch relationship","A request for a 5-star review on the dispatcher's Google Business page"],correct:1,exp:"Module 16 states: After First Load — Follow up personally. 'Great first load together. You delivered on time and I am already working on your next load out of [destination]. Rate for this week looks strong — I think we can do better on your next run.' This demonstrates you are active, attentive, and already planning ahead."},
+  {q:"According to Module 16, what does rate benchmarking during lane analysis involve?",opts:["Asking the carrier what rate they expect and using that as the benchmark","Pulling 30-day average rates from DAT for primary lanes — establishing the performance benchmark you should consistently meet or exceed for this carrier","Comparing rates across three load boards and averaging the results","Using last year's rates as the benchmark and adjusting upward by 5%"],correct:1,exp:"Module 16 states: Rate Benchmarking — Pull 30-day average rates from DAT for primary lanes. This establishes the performance benchmark you should consistently meet or exceed for this carrier."},
+  {q:"What does Module 16 say the return lane analysis focuses on?",opts:["Finding loads that allow the carrier to deliver to a new city and expand their territory","Load availability and rate environment for loads coming back to the carrier's home area — poor return lanes mean more deadhead and lower effective income","The broker's posted rate for loads going back toward the carrier's origin state","The number of brokers who have loads available on the return route"],correct:1,exp:"Module 16 states: Return Lane — What is load availability and rate environment for loads coming back to their home area? Poor return lanes mean more deadhead and lower effective income."},
+  {q:"What is the consequence of a carrier having inactive, revoked, or pending authority according to Module 16?",opts:["They can still haul intrastate loads but not cross state lines","They cannot legally haul interstate loads — their authority must show ACTIVE before proceeding with setup","They must pay a $500 reinstatement fee to FMCSA before booking any loads","They can haul loads if the broker provides a temporary authority waiver"],correct:1,exp:"Module 16 states: Inactive, revoked, or pending authority means they cannot legally haul interstate loads. Only ACTIVE authority status on FMCSA is acceptable."},
+  {q:"What is the Coyote Logistics carrier portal URL listed in Module 16?",opts:["carriers.coyotelogistics.com","coyote.com/setup","carrier.coyote.com — online portal with document upload and approval tracking","setup.coyote.com/carriers"],correct:2,exp:"Module 16 states: Coyote Logistics — carrier.coyote.com — Online portal with document upload and approval tracking."},
+  {q:"According to Module 16, when should check calls begin for a carrier's load?",opts:["Only when the carrier calls to report a problem during transit","The evening before pickup — to confirm readiness and review all load details before the day begins","After the carrier has confirmed pickup and is already en route","On the morning of delivery only — earlier check calls are not necessary for loads under 500 miles"],correct:1,exp:"Module 16 states: Check-Call Protocol begins the evening before pickup — confirm readiness and review all load details. This ensures both dispatcher and driver are aligned before the load day begins."},
+  {q:"What does Module 16 say about carrier setup being skipped or rushed by new dispatchers?",opts:["It is acceptable to skip setup for carriers who come highly recommended by other dispatchers","It is a critical mistake — proper setup protects you legally, ensures smooth broker relationships, facilitates quick payment, and establishes professional credibility","Skipping setup is only a problem if the carrier has CSA safety violations","New dispatchers should skip setup for the first three carriers to focus on booking loads quickly"],correct:1,exp:"Module 16 states: Many new dispatchers rush or skip carrier setup. This is a critical mistake. Proper setup protects you legally, ensures smooth broker relationships, facilitates quick payment, and establishes professional credibility."}
+];
+
+var studentName='', studentEmail='', studentWA='';
+var selectedQuestions=[], currentQ=0, score=0, answered=false;
+var timerInterval, timeLeft=30;
+var letters=['A','B','C','D'];
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin.');return;}
+  var shuffled=shuffle(QUESTION_BANK);
+  selectedQuestions=shuffled.slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var pct=Math.round(((currentQ+1)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').classList.remove('warn');
+  document.getElementById('timer-text').textContent='30s';
+  var opts=q.opts.map(function(o,i){return '<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+opts+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    var tw=document.getElementById('timer-fill');
+    var tt=document.getElementById('timer-text');
+    if(tw)tw.style.width=Math.round((timeLeft/30)*100)+'%';
+    if(tt)tt.textContent=timeLeft+'s';
+    if(timeLeft<=10&&tw)tw.classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know pre-setup verification, all 7 carrier documents, broker pre-approval portals, check-call protocol, lane analysis, and first load strategy. Module 17 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the verification steps, the 7 documents, broker portal URLs, check-call touchpoints, lane analysis factors, and first-load preparation. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 16 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2016%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-17-dealing-and-setup-with-brokers.html" class="btn-next-mod">Module 17 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review verification steps, all 7 documents, broker portal URLs, check-call protocol, lane analysis, and first-load strategy. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-16-dealing-and-setup-with.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 16</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='16';
+    document.getElementById('gf-modtitle').value='Dealing and Setup With Carriers';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
