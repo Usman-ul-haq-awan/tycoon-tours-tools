@@ -510,6 +510,17 @@ function retryQuiz(){
   startQuiz();
 }
 
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var n = p.get('name'), e = p.get('email'), w = p.get('wa');
+  if(n && e && w){
+    studentName = n; studentEmail = e; studentWA = w;
+    document.getElementById('student-form').style.display = 'none';
+    document.getElementById('quiz-wrap').style.display = 'block';
+    startQuiz();
+  }
+})();
+  
 </script>
 </body>
 </html>
