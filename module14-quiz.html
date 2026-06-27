@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 14 Quiz — Dealing With Brokers | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 14 — Dealing With Brokers. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 14 of 23</span>
+<h1>Dealing With <span>Brokers</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 14</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"According to Module 14, what does a dispatcher's ability to build professional broker relationships directly determine?",opts:["How many carriers they can sign per month","The quality of loads they access, the rates they negotiate, and the reliability of payment they receive","Whether they qualify for a FMCSA license","How quickly they can post loads on DAT"],correct:1,exp:"Module 14 states: Your ability to build professional productive relationships with brokers directly determines the quality of loads you can access, the rates you can negotiate, and the reliability of payment you receive."},
+  {q:"What is the goal Module 14 describes for what a broker should think when they see your number calling?",opts:["This dispatcher always accepts our first offer — easy to work with","This is a professional dispatcher — I want to work with them","This dispatcher has the lowest-priced carriers","This dispatcher only calls for high-value loads"],correct:1,exp:"Module 14 states: Your Goal — When a broker sees your number calling they should think: 'This is a professional dispatcher — I want to work with them.' That reputation is earned through consistent professionalism and is your most valuable business asset."},
+  {q:"How does Module 14 describe a freight broker's core business model?",opts:["A relationship business where they represent only 5–10 trusted carriers","A volume and margin business — hundreds of loads daily, profit from the spread between shipper payment and carrier payment","A government-regulated service that charges fixed rates per mile","A subscription service where carriers pay monthly to access their loads"],correct:1,exp:"Module 14 states: A freight broker runs a volume business — hundreds of loads to move every day. Their profit comes from the margin between what shippers pay them and what they pay carriers."},
+  {q:"According to Module 14, what type of dispatchers do brokers remember and prefer?",opts:["Dispatchers who call the most often throughout the day","Professional, brief, reliable dispatchers — and they avoid those who waste their time or cause problems","Dispatchers who always accept the broker's posted rate without negotiating","Dispatchers who send the most emails per week"],correct:1,exp:"Module 14 states: Brokers deal with hundreds of calls daily. They remember professional brief reliable dispatchers — and avoid those who waste their time or cause problems."},
+  {q:"What advantage does Module 14 say preferred dispatcher status gives your carriers?",opts:["A 10% automatic rate premium on every load","Access to the best freight before it hits the public load board","Priority status for expedited payment from brokers","Waived carrier setup fees at major brokerages"],correct:1,exp:"Module 14 states: The best freight goes to preferred dispatchers before it hits the public load board. That status is earned through consistent reliable performance."},
+  {q:"Which of these is listed in Module 14 as a way to find brokers?",opts:["Cold calling shippers directly and asking them to introduce their broker contacts","Load boards, FMCSA Broker Directory, Google Search, TIA Directory, and direct shipper approach","Purchasing a broker contact list from third-party data vendors","Searching Facebook groups for broker profiles"],correct:1,exp:"Module 14 lists five broker-finding methods: Load Boards, FMCSA Broker Directory, Google Search, TIA Directory, and the Direct Shipper Approach."},
+  {q:"What does Module 14 say about the Direct Shipper Approach for finding freight?",opts:["It is the easiest strategy and recommended for all new dispatchers","Large manufacturers sometimes broker their own freight — building direct shipper relationships yields higher rates and more stable freight, but it is an advanced strategy for experienced dispatchers","It is illegal unless you have a broker's license","Direct shippers always pay 30 days late, making them unreliable"],correct:1,exp:"Module 14 states: Large manufacturers sometimes broker their own freight through logistics departments. Building direct shipper relationships yields higher rates and more stable freight — advanced strategy for experienced dispatchers."},
+  {q:"What DAT credit score does Module 14 say warrants caution when vetting a broker?",opts:["Below 90","Below 80","Below 70","Below 60"],correct:2,exp:"Module 14 states: DAT Credit Score — Check their payment history score on DAT — 85 or above is reliable, below 70 warrants caution."},
+  {q:"What warning does Module 14 give about hauling for unverified brokers?",opts:["You may be fined by FMCSA for working with unverified brokers","Never haul a load for an unverified broker — verification protects you and your carrier from fraud, payment delays, and legal complications","Unverified brokers pay slower but are generally safe to work with","You can haul for unverified brokers if the load rate is 20% above market"],correct:1,exp:"Module 14 states: Never haul a load for an unverified broker. Verification protects you and your carrier from fraud, payment delays, and legal complications."},
+  {q:"What is a Notice of Assignment (NOA) and when is it required according to Module 14?",opts:["A document required by FMCSA when a carrier changes their MC number","Required if the carrier uses a factoring company — it directs broker payment to the factoring company instead of the carrier","A form needed only when the carrier hauls hazardous materials","An optional document that speeds up broker payment processing"],correct:1,exp:"Module 14 states: Notice of Assignment if Factoring — NOA required if the carrier uses a factoring company — directs payment to the factoring company."},
+  {q:"What is the Proactive Setup Strategy described in Module 14?",opts:["Set up your carrier with only the top 5 brokers who post the most loads","Target the top 20 to 30 brokers in your primary lanes and complete carrier setup with all of them before you need loads","Wait until a specific load is found, then begin setup with that broker","Set up with every available broker on DAT regardless of lane specialty"],correct:1,exp:"Module 14 states: Proactive Setup Strategy — Target the top 20 to 30 brokers in your primary lanes and complete carrier setup with all of them before you need loads. This ensures you can book immediately when the right load appears."},
+  {q:"Which major brokerages does Module 14 list as having online carrier portals?",opts:["Amazon Freight, UPS Freight, FedEx Freight, and USPS","Coyote Logistics, Echo Global Logistics, TQL, CH Robinson, Transfix, and hundreds of regional brokers","DAT, Truckstop, 123Loadboard, and Direct Freight","FMCSA, DOT, TIA, and Carrier411"],correct:1,exp:"Module 14 states: Major Brokers with Online Carrier Portals — Coyote Logistics, Echo Global Logistics, Total Quality Logistics TQL, CH Robinson, Transfix, and hundreds of regional brokers all have online carrier setup portals."},
+  {q:"What should you say immediately after the broker shares a rate that is below market, according to Module 14's first call script?",opts:["Accept the rate to build the relationship first, then negotiate on the next load","Reference current market data, state your target rate, mention the carrier's compliance and experience, and ask if there is flexibility to come up","Tell the broker you will call back after checking with your carrier","Ask the broker to post the load again at a higher rate"],correct:1,exp:"Module 14's script states: '[Broker name] based on current market data for this lane we are looking at [target rate]. Is there any flexibility to come up to [amount]? My carrier is compliant, experienced on this lane, and can confirm pickup immediately.'"},
+  {q:"What data does Module 14 say you must check before every broker call?",opts:["The broker's Carrier411 payment score","DAT rate analytics — know the lane average, high, and low before calling","The carrier's CSA safety score","The load board posting time to assess urgency"],correct:1,exp:"Module 14 states: Know the Market First — Always check DAT rate analytics before calling a broker. Know the lane average, high, and low. This data is your leverage — never negotiate without it."},
+  {q:"What does Module 14 say about using silence during rate negotiation?",opts:["Fill silence with additional justifications to keep the broker engaged","After making a counter-offer, stop talking — let the broker respond. Inexperienced negotiators fill silence by reducing their ask — resist this urge completely","Silence signals disinterest — always follow up a counter-offer immediately with another reason","Silence is only effective when negotiating loads over $5,000"],correct:1,exp:"Module 14 states: Use Silence — After making a counter-offer be quiet. Let the broker respond. Inexperienced negotiators fill silence by reducing their ask — resist this urge completely."},
+  {q:"What is the Batch Negotiations strategy described in Module 14?",opts:["Calling five brokers simultaneously and accepting whoever responds first","Leveraging multiple available carriers as negotiating power — 'I have two dry vans available this week — if we get to $2.55 on this load I can also fill that Tuesday load'","Batch-submitting rate confirmations through an automated system","Grouping all broker calls into a single morning block for efficiency"],correct:1,exp:"Module 14 states: Batch Negotiations — 'I have two dry vans available out of Chicago this week — if we can get to $2.55 on this load I can also fill that Tuesday load you mentioned.' Multiple carriers means more leverage."},
+  {q:"What does Module 14 say about a dispatcher who always accepts the broker's first offer?",opts:["They build stronger relationships because brokers appreciate easy partners","They get taken advantage of consistently — if the rate is below market and the broker will not move, politely decline and find a better load","They earn preferred status faster because brokers trust agreeable dispatchers","They protect their carrier from deadhead because they always cover loads quickly"],correct:1,exp:"Module 14 states: Be Willing to Walk — A dispatcher who always accepts the broker's first offer gets taken advantage of consistently. If the rate is below market and the broker will not move — politely decline and find a better load."},
+  {q:"What does Module 14 say about notifying brokers when your carrier is running late?",opts:["Notify the broker only after the delivery window has passed so you have confirmed information","Notify the broker immediately — early communication allows problem-solving, while late notification creates chaos and blame","Send the broker a message 15 minutes before the delivery appointment","Notify only if the delay is more than 2 hours"],correct:1,exp:"Module 14 states: Communicate Problems Early — If your carrier is running late notify the broker immediately — not when the delivery window has already passed. Early communication allows problem-solving while late notification creates chaos and blame."},
+  {q:"What example of expressing appreciation to a broker does Module 14 provide?",opts:["Sending a gift card after every 10 loads booked","Saying: 'Sarah that Chicago load last week was excellent — exactly the right timing for my carrier. I will look for your loads first when I have equipment in that area'","Tagging the broker on social media after every successful delivery","Offering to reduce your dispatch fee as a thank-you gesture"],correct:1,exp:"Module 14 states: Express Appreciation and Give Credit — 'Sarah that Chicago load last week was excellent — exactly the right timing for my carrier. I will look for your loads first when I have equipment in that area.' Brokers remember appreciation."},
+  {q:"What does Module 14 identify as your most valuable business asset as a dispatcher?",opts:["Your load board subscription and access to DAT rate analytics","Your professional reputation — when brokers see your number they think: this is a professional dispatcher I want to work with","The number of carriers on your roster","Your negotiation scripts and rate counter-offer templates"],correct:1,exp:"Module 14 states: That reputation — earned through consistent professionalism — is your most valuable business asset. When a broker sees your number calling they should think: 'This is a professional dispatcher — I want to work with them.'"},
+  {q:"What is the purpose of the TIA Directory according to Module 14?",opts:["It is a free tool to post loads and find carriers simultaneously","Transportation Intermediaries Association maintains member directories of licensed brokers committed to industry standards","It provides daily rate averages for every freight lane in the USA","It is a government database replacing the FMCSA broker license system"],correct:1,exp:"Module 14 states: TIA Directory — Transportation Intermediaries Association maintains member directories of licensed brokers committed to industry standards."},
+  {q:"What does Module 14 say about justifying your rate counter-offer during negotiations?",opts:["Never justify your rate — strong silence is the only effective negotiation tool","Reference specific factors like return load availability, deadhead distance, or tight delivery windows — brokers respond better to justified rates than naked demands","Always justify with the carrier's fuel cost only","Justify only if the broker asks — otherwise stay silent and wait"],correct:1,exp:"Module 14 states: Justify Your Rate — Reference specific factors — return load availability on the back end, deadhead distance, tight delivery window. Brokers respond better to justified rates than naked demands."},
+  {q:"According to Module 14, what document must a broker have active before you work with them?",opts:["A TIA membership certificate","An active broker license — MC number with Property Broker designation, verified on FMCSA","A DAT credit score above 90","A signed carrier agreement with at least 50 active carriers"],correct:1,exp:"Module 14 states: FMCSA License — Confirm they have an active broker license — MC number with Property Broker designation."},
+  {q:"What does Module 14 say about building personal connection with brokers over time?",opts:["Keep all broker interactions strictly professional — personal connection creates conflicts of interest","Over time brokers are people not just load sources — remember details, ask how they are doing. The relationship becomes more than transactional — and that is where loyalty lives","Personal connection should be limited to one call per quarter to maintain boundaries","Only build personal connections with brokers who give you more than 10 loads per month"],correct:1,exp:"Module 14 states: Build Personal Connection — Over time brokers are people not just load sources. Remember details about conversations, ask how they are doing. The relationship becomes more than transactional — and that is where loyalty lives."},
+  {q:"What does Module 14 say is the floor you must establish before calling a broker to negotiate?",opts:["The current DAT lane average rate","The minimum rate your carrier can accept given fuel costs, deadhead, and income targets — never go below the floor even under pressure","The broker's posted rate on the load board","The rate your carrier earned on the last similar load"],correct:1,exp:"Module 14 states: Know Your Floor — Before calling, establish the minimum rate your carrier can accept given fuel costs, deadhead, and income targets. Never go below the floor — not even under pressure."},
+  {q:"Which of these is listed in Module 14 as a broker verification check before hauling a first load?",opts:["Checking the broker's LinkedIn profile for years in business","Reviewing Carrier411 for payment complaints from other carriers and dispatchers","Calling the broker's shipper directly to verify the relationship","Confirming the broker has a physical office address on Google Maps"],correct:1,exp:"Module 14 states: Carrier411 — Review any broker reviews or payment complaints from other carriers and dispatchers. This is one of four verification checks listed alongside FMCSA license, DAT credit score, and TIA member status."},
+  {q:"What does Module 14 say the carrier setup process typically requires from the carrier's insurance agent?",opts:["A copy of the carrier's commercial driver's license","A Certificate of Insurance naming the broker as certificate holder — sent directly from the carrier's insurance agent","A letter confirming the carrier has no pending DOT violations","A completed Form I-9 for each driver on the carrier's roster"],correct:1,exp:"Module 14 states: Certificate of Insurance — COI naming the broker as certificate holder — sent directly from carrier's insurance agent."},
+  {q:"What is the closing script Module 14 provides once the broker and dispatcher are close on rate?",opts:["'Let me check with my carrier and call you back tomorrow morning.'","'If we can get to [rate] I can get you a confirmation call from my carrier within the hour. Does that work?'","'I will accept your rate this time if you promise to call me first next week.'","'Can you send me the rate confirmation in writing before I commit my carrier?'"],correct:1,exp:"Module 14's closing script states: 'If we can get to [rate] I can get you a confirmation call from my carrier within the hour. Does that work?'"},
+  {q:"What does Module 14 say about the best freight when you achieve preferred dispatcher status?",opts:["Preferred dispatchers get a 15% rate premium automatically applied by broker systems","Brokers call you before posting loads publicly — giving your carriers access to the best freight before anyone else sees it","Preferred status guarantees same-day payment from all major brokers","Preferred status means brokers waive the carrier setup packet requirements"],correct:1,exp:"Module 14 states: Become a Preferred Carrier Source — When brokers know you have reliable carriers who deliver on time they call you before posting loads publicly — giving your carriers access to the best freight before anyone else sees it."},
+  {q:"What does Module 14 identify as the key difference between transactional and strategic broker relationships?",opts:["Transactional relationships involve load boards while strategic relationships involve direct shippers","Transactional relationships are the baseline — strategic relationships are where premium loads come from, built through reliability, communication, and personal connection","Transactional relationships are for new dispatchers and strategic relationships are for dispatchers with 5+ years of experience","There is no meaningful difference — all broker relationships follow the same pattern over time"],correct:1,exp:"Module 14 states: Transactional relationships are the baseline. Strategic relationships are where premium loads come from — built through consistent reliability, early problem communication, genuine appreciation, and personal connection over time."}
+];
+
+var studentName='', studentEmail='', studentWA='';
+var selectedQuestions=[], currentQ=0, score=0, answered=false;
+var timerInterval, timeLeft=30;
+var letters=['A','B','C','D'];
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin.');return;}
+  var shuffled=shuffle(QUESTION_BANK);
+  selectedQuestions=shuffled.slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var pct=Math.round(((currentQ+1)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').classList.remove('warn');
+  document.getElementById('timer-text').textContent='30s';
+  var opts=q.opts.map(function(o,i){return '<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+opts+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    var tw=document.getElementById('timer-fill');
+    var tt=document.getElementById('timer-text');
+    if(tw)tw.style.width=Math.round((timeLeft/30)*100)+'%';
+    if(tt)tt.textContent=timeLeft+'s';
+    if(timeLeft<=10&&tw)tw.classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know your broker verification, carrier setup, rate negotiation principles, and relationship-building strategies. Module 15 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review broker verification, the proactive setup strategy, negotiation principles, and how to earn preferred dispatcher status. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 14 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2014%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-15-payment-gateways-in-usa.html" class="btn-next-mod">Module 15 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review broker verification steps, carrier setup requirements, negotiation principles, and preferred dispatcher strategies. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-14-dealing-with-brokers.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 14</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='14';
+    document.getElementById('gf-modtitle').value='Dealing With Brokers';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
