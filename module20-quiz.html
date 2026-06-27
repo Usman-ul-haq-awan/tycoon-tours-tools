@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 20 Quiz — W9 Form | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 20 — The W9 Form. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 20 of 23</span>
+<h1>The <span>W9 Form</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 20</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What is the official IRS title of the W9 Form according to Module 20?",opts:["Certificate of Tax Withholding and Exemption Status","Request for Taxpayer Identification Number and Certification","Declaration of Business Entity and Federal Tax Classification","Annual Report of Contractor Payments and Identification"],correct:1,exp:"Module 20 states: The W9 Form — officially titled 'Request for Taxpayer Identification Number and Certification' — is an IRS document used to collect the tax identification information of US-based business entities and individuals."},
+  {q:"What is the $600 threshold in the W9 context described by Module 20?",opts:["The minimum dispatch commission that must be declared on a W9","The IRS payment threshold above which a paying party must file a Form 1099 at year-end and therefore needs the payee's W9","The minimum broker payment that triggers a backup withholding audit","The annual fee charged by the IRS for EIN maintenance"],correct:1,exp:"Module 20 states: When a broker pays your carrier or your dispatch company for services rendered, the IRS requires that payer to report those payments on a Form 1099 at year-end if the total exceeds $600. The W9 provides the tax ID information needed to complete that 1099."},
+  {q:"Where does Module 20 say the W9 form is submitted?",opts:["Directly to the IRS along with the paying company's quarterly tax filing","To the state revenue authority where the LLC is registered","Directly to the paying party — the broker or carrier who is paying you — NOT to the IRS","To the FMCSA as part of carrier setup documentation"],correct:2,exp:"Module 20 states: The W9 is NOT submitted to the IRS. It is provided directly to the paying party — the broker or carrier who is paying you. They use it to complete their own IRS 1099 forms."},
+  {q:"What is the exact backup withholding percentage the IRS requires when a W9 is not provided, according to Module 20?",opts:["15% of all payments","20% of all payments","24% of ALL payments — sent directly to the IRS instead of to you","30% of all payments for foreign-owned entities"],correct:2,exp:"Module 20 states: If you fail to provide a W9 when requested, the paying party is required by IRS regulations to withhold 24% of ALL payments as 'backup withholding' — sending this directly to the IRS instead of to you."},
+  {q:"Why does a broker need the carrier's W9 according to Module 20?",opts:["To verify the carrier's FMCSA operating authority is still active","The broker pays the carrier — if they pay more than $600 in a year they must file a Form 1099-NEC with the IRS, and the W9 provides the exact legal business name, address, entity type, and EIN needed to complete it","To set up the carrier in their load board system for future load matching","To authorize the carrier to pick up freight at shipper facilities"],correct:1,exp:"Module 20 states: The broker pays the carrier. If they pay more than $600 in a year they must file a Form 1099-NEC with the IRS. To complete the 1099 they need the exact legal business name, address, entity type, and EIN. The W9 provides all of this in one standardized document."},
+  {q:"Why does a carrier need the dispatcher's W9 according to Module 20?",opts:["To confirm the dispatcher's authority to negotiate loads on the carrier's behalf","The carrier pays the dispatcher's company commission — if they pay more than $600 annually they need the dispatcher's W9 to complete their required 1099 filings","To verify the dispatcher's LLC is registered in a US state","To add the dispatcher as an authorized user on the carrier's fuel card account"],correct:1,exp:"Module 20 states: Your carrier pays your dispatch company for commissions. If they pay you more than $600 annually — which happens almost immediately — they need your W9 to complete their required 1099 filings."},
+  {q:"What must be entered on Line 1 of the W9 form according to Module 20?",opts:["The DBA name the dispatcher uses when calling brokers","The exact legal name of the entity as it appears on the tax return — for an LLC enter the exact registered name, not a shortened version","The name of the primary driver or carrier contact","The registered agent's name and state of registration"],correct:1,exp:"Module 20 states: Line 1 — Name — Enter the legal name of the entity exactly as it appears on your tax return. For your LLC enter the exact registered name. Example: 'Tycoon Tours Official Dispatch LLC' — not a shortened version."},
+  {q:"What goes on Line 2 of the W9 and when should it be left blank according to Module 20?",opts:["The LLC's registered agent address — leave blank if using a virtual mailbox","The DBA name if the entity has a Doing Business As name different from Line 1 — leave blank if no separate DBA exists","The secondary contact person's name — leave blank if operating as a sole dispatcher","The state of LLC formation — leave blank if a federal LLC"],correct:1,exp:"Module 20 states: Line 2 — Business Name / DBA — If your entity has a Doing Business As name different from Line 1, enter it here. Most dispatchers operate under their LLC name — leave Line 2 blank if no separate DBA exists."},
+  {q:"Which federal tax classification does Module 20 say most Pakistani dispatchers with a standard single-member US LLC should select on Line 3?",opts:["C Corporation — the default classification for all foreign-owned US entities","Partnership — because Pakistani dispatchers are technically foreign partners in a US entity","Individual/Sole Proprietor or Single-Member LLC — correct for most Pakistani dispatchers with a standard single-member US LLC that has not elected corporate status","S Corporation — recommended for all international LLC owners to reduce self-employment tax"],correct:2,exp:"Module 20 states: For most Pakistani dispatchers with a single-member US LLC, select 'Individual/Sole Proprietor or Single-Member LLC' on Line 3. This is correct for a single-member LLC that has not elected S-Corp or C-Corp status."},
+  {q:"What does Module 20 say about Line 4 — Exemptions — for small LLCs and sole proprietors?",opts:["Small LLCs should enter exemption code 1 to avoid unnecessary IRS scrutiny","Leave blank for most dispatchers — exempt payees are primarily large corporations, and small LLCs and sole proprietors are NOT exempt","Enter exemption code 5 if operating as a foreign-owned single-member LLC","Enter the state exemption code for the state where the LLC is registered"],correct:1,exp:"Module 20 states: Line 4 — Exemptions — Leave blank for most dispatchers. Exempt payees are primarily large corporations. Small LLCs and sole proprietors are NOT exempt."},
+  {q:"What address does Module 20 say to enter on Lines 5–6 of the W9?",opts:["The dispatcher's home address in Pakistan","The primary broker's mailing address used for correspondence","The US business address on file with the IRS for the EIN — typically the registered agent's address if the LLC is registered in a US state without a physical address","The address of the US virtual mailbox used for receiving checks"],correct:2,exp:"Module 20 states: Lines 5-6 — Business Address — Enter your US business address — the address on file with the IRS for your EIN. Typically your registered agent's address if your LLC is registered in a US state where you have no physical address."},
+  {q:"What is the EIN format described in Module 20 for Part I of the W9?",opts:["A 10-digit number formatted as XXX-XX-XXXXX assigned by the state of LLC formation","A 9-digit tax ID assigned to the LLC by the IRS, formatted as XX-XXXXXXX","A 12-digit number beginning with the state code where the LLC was formed","A 7-digit reference code assigned during the online LLC registration process"],correct:1,exp:"Module 20 states: Part I — EIN — Enter your EIN — Employer Identification Number. The 9-digit tax ID assigned to your LLC by the IRS, formatted as XX-XXXXXXX. This is the most critical field."},
+  {q:"What does signing Part II of the W9 certify according to Module 20, and what happens if the signature is missing?",opts:["It certifies the dispatcher's authority to represent the carrier — a missing signature delays setup by one week","By signing, you certify the information is accurate and you are not subject to backup withholding — a W9 without a signature is invalid","It certifies the EIN matches the IRS database — a missing signature triggers an automatic audit","It certifies the dispatcher's LLC is tax-exempt — a missing signature defaults the entity to C-Corp status"],correct:1,exp:"Module 20 states: Part II — Certification Signature — Sign and date the form. By signing you certify the information is accurate and you are not subject to backup withholding. A W9 without a signature is invalid."},
+  {q:"When should a dispatcher select 'C Corporation' on Line 3 of the W9 according to Module 20?",opts:["Always — C Corporation is the default and safest classification for all US LLCs","Only if the LLC has formally elected C-Corp tax status with the IRS via a specific election filing — this is rare for new dispatchers","When the LLC has two or more members regardless of corporate election status","When the dispatcher earns more than $100,000 annually and wants to reduce self-employment tax"],correct:1,exp:"Module 20 states: C Corporation — Only if your LLC has formally elected C-Corp tax status with the IRS. This is rare for new dispatchers and requires a specific election filing."},
+  {q:"When is the 'Partnership' classification on Line 3 applicable according to Module 20?",opts:["When a Pakistani dispatcher partners with a US-based marketing agency","Only if the LLC has two or more members and has not elected corporate status — for single-owner dispatch operations this does not apply","When two dispatchers share one LLC but file taxes separately","When the LLC has a silent investor partner regardless of ownership percentage"],correct:1,exp:"Module 20 states: Partnership — Only if your LLC has two or more members and has not elected corporate status. For single-owner dispatch operations this does not apply."},
+  {q:"Why can non-US residents not apply for an EIN online according to Module 20?",opts:["The IRS online EIN system is only available in English and does not support international addresses","The IRS online system requires a US Social Security Number — non-US residents do not have one","Non-US residents must pay a $500 fee that can only be processed through a US bank account","The IRS online portal is geo-blocked for Pakistani IP addresses"],correct:1,exp:"Module 20 states: Non-US residents cannot apply for an EIN online — the IRS online system requires a US Social Security Number."},
+  {q:"What is the processing time for Option A — IRS International Fax/Mail for obtaining an EIN per Module 20?",opts:["24 to 48 hours","3 to 5 business days","2 to 4 weeks","6 to 8 weeks"],correct:2,exp:"Module 20 states: Option A — IRS International Fax/Mail — Processing: 2 to 4 weeks. Complete IRS Form SS-4 and fax or mail to the IRS international EIN issuance line. Slowest option but reliable."},
+  {q:"What is Option B for obtaining an EIN according to Module 20 and what is its processing time?",opts:["Apply through a US registered agent — processing 3 to 5 business days","Phone application — call the IRS Business and Specialty Tax Line International, Monday–Friday 6 AM to 11 PM Eastern — EIN assigned immediately over the phone","Apply through the US Embassy in Pakistan — processing 1 to 2 weeks","Submit a notarized Form SS-4 via certified mail — processing 5 to 7 business days"],correct:1,exp:"Module 20 states: Option B — Phone Application — Processing: Immediate. Call the IRS Business and Specialty Tax Line International — Monday through Friday 6 AM to 11 PM Eastern. EIN assigned immediately over the phone. Long hold times are common — call early morning Eastern time."},
+  {q:"What is the most common carrier W9 error that causes IRS backup withholding notices according to Module 20?",opts:["Missing EIN — left blank by carriers who do not yet have one","Name on Line 1 does not match IRS records — the most common cause of IRS backup withholding notices","Wrong signature date — signed in the wrong date format","Address on Lines 5–6 does not match the carrier's FMCSA registration address"],correct:1,exp:"Module 20 states: Name on Line 1 does not match IRS records — most common cause of IRS backup withholding notices. This is the single most frequent W9 error that triggers IRS problems."},
+  {q:"What does Module 20 say about submitting a carrier's W9 that you know contains errors?",opts:["Submit it anyway and request a corrected version within 30 days","Never submit a W9 you know contains errors — inform the carrier immediately and request a corrected W9 before submission to any broker","Submit it with a cover note explaining the error to the broker's compliance team","Correct the error yourself in the document before submitting to avoid delays"],correct:1,exp:"Module 20 states: If you identify errors in a carrier's W9, inform the carrier immediately and request a corrected W9 before submission to any broker. Never submit a W9 you know contains errors."},
+  {q:"How long does Module 20 say W9 forms must be kept on file?",opts:["1 year after the carrier relationship ends","3 years — the standard IRS personal tax audit lookback period","A minimum of 7 years — the IRS standard audit lookback period","Indefinitely — W9 forms never expire and should be kept permanently"],correct:2,exp:"Module 20 states: Retention — Keep W9 forms on file for a minimum of 7 years — the IRS standard audit lookback period."},
+  {q:"When must a W9 be updated according to Module 20?",opts:["Every January 1st regardless of whether any information has changed","Whenever a carrier changes their legal business name, EIN, address, or entity structure","Only when the IRS sends a backup withholding notice","Every time a carrier signs a new dispatch service agreement"],correct:1,exp:"Module 20 states: Update W9 forms whenever a carrier changes their legal business name, EIN, address, or entity structure."},
+  {q:"What secure method does Module 20 recommend for sending W9 forms?",opts:["Regular email attachment — acceptable because W9 forms are public documents","Encrypted digital storage with restricted access and secure document sharing tools like DocuSign when sending — not unencrypted email when possible","Fax only — electronic transmission of W9 forms is not permitted","Mailing a physical copy via certified mail with return receipt requested"],correct:1,exp:"Module 20 states: W9 forms contain sensitive tax identification information. Store in encrypted digital storage with restricted access. Use secure document sharing tools like DocuSign when sending — not unencrypted email when possible."},
+  {q:"Which IRS form does Module 20 say non-US residents must complete to apply for an EIN via fax or mail?",opts:["IRS Form W-7","IRS Form SS-4","IRS Form 1099-NEC","IRS Form W-8BEN"],correct:1,exp:"Module 20 states: Option A — IRS International Fax/Mail — Complete IRS Form SS-4 and fax or mail to the IRS international EIN issuance line."},
+  {q:"What does Module 20 say about using an old or cancelled EIN on a carrier's W9?",opts:["It is acceptable because EINs are permanently linked to the entity regardless of cancellation","EINs are permanent but some carriers incorrectly use a former entity's EIN — this is listed as a common W9 error that causes payment problems","A cancelled EIN automatically reactivates when re-used on a W9 form","Old EINs are only a problem if the carrier has been out of business for more than 3 years"],correct:1,exp:"Module 20 states: Old or cancelled EIN used — EINs are permanent but some carriers incorrectly use a former entity's EIN. This is listed as one of the five common W9 errors to watch for during carrier onboarding."},
+  {q:"What does Module 20 say is the W9 error of checking 'C Corporation' for a standard single-member LLC?",opts:["This is actually correct — all US LLCs are classified as C Corporations by default","Wrong entity type selected — checking C Corporation for a standard single-member LLC is a very common mistake","This only causes a problem if the LLC has elected S-Corp status","This error has no tax consequences — only the EIN matters for 1099 reporting"],correct:1,exp:"Module 20 states: Wrong entity type selected — checking 'C Corporation' for a standard single-member LLC is a very common mistake. The correct selection for most single-member LLCs is 'Individual/Sole Proprietor or Single-Member LLC.'"},
+  {q:"What does Module 20 say about an LLC that has 'formally elected S-Corp tax status' and the W9 classification?",opts:["It should still select Individual/Sole Proprietor — S-Corp election does not change the W9 classification","It should select S Corporation on Line 3 — this requires a specific election filing and is more common for established operations with higher income levels","It should select Partnership because S-Corps are treated as pass-through entities","S-Corp status is not recognized on W9 forms — always select the underlying entity type"],correct:1,exp:"Module 20 states: S Corporation — Only if your LLC has formally elected S-Corp tax status. Also requires a specific election filing. More common for established operations with higher income levels."},
+  {q:"What is the plain-language explanation Module 20 gives for why the W9 exists?",opts:["It is a government registration form confirming the business is legally authorized to receive payments in the USA","When a broker pays a carrier or a dispatch company, the IRS requires that payer to report payments over $600 on a Form 1099 — the W9 provides the tax ID information needed to complete that 1099","It is a credit check authorization allowing brokers to verify the financial standing of carriers and dispatchers","It is a consent form authorizing the IRS to release tax records to freight brokers upon request"],correct:1,exp:"Module 20 states: In Plain Language — When a broker pays your carrier or your dispatch company for services rendered, the IRS requires that payer to report those payments on a Form 1099 at year-end if the total exceeds $600. The W9 provides the tax ID information needed to complete that 1099."},
+  {q:"What does Module 20 say about the W9 form's availability and cost?",opts:["Available only through a licensed CPA or tax attorney for $25 per form","Available free at irs.gov — it is a single-page document","Available through the FMCSA portal as part of carrier setup for $10 per submission","Available through load board platforms for a nominal fee charged per carrier setup"],correct:1,exp:"Module 20 states: The W9 Form is a single-page document available free at irs.gov. Here is exactly how to complete each field."},
+  {q:"What W9 error does Module 20 say can cause payment processing issues AND 1099 reporting problems?",opts:["Using a PO Box instead of a physical street address on Lines 5–6","Name on the W9 does not match FMCSA registration — can cause payment processing issues and 1099 reporting problems","Signing the form in blue ink instead of black ink","Listing the driver's name instead of the carrier's LLC name on Line 1"],correct:1,exp:"Module 20 states: Name does not match FMCSA registration — can cause payment processing issues and 1099 reporting problems. This is listed as the fifth common W9 error to check during carrier onboarding."},
+  {q:"What does Module 20 say about when the $600 threshold is crossed for commission payments from carriers?",opts:["It usually takes 6 to 12 months of dispatching before crossing the $600 threshold","It happens almost immediately — which means carriers need the dispatcher's W9 very early in the relationship","The threshold only applies to carriers earning over $100,000 in gross revenue annually","Dispatchers are exempt from the $600 threshold because they are considered contractors, not payees"],correct:1,exp:"Module 20 states: Your carrier pays your dispatch company for commissions. If they pay you more than $600 annually — which happens almost immediately — they need your W9 to complete their required 1099 filings."}
+];
+
+var studentName='', studentEmail='', studentWA='';
+var selectedQuestions=[], currentQ=0, score=0, answered=false;
+var timerInterval, timeLeft=30;
+var letters=['A','B','C','D'];
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin.');return;}
+  var shuffled=shuffle(QUESTION_BANK);
+  selectedQuestions=shuffled.slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var pct=Math.round(((currentQ+1)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').classList.remove('warn');
+  document.getElementById('timer-text').textContent='30s';
+  var opts=q.opts.map(function(o,i){return '<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+opts+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    var tw=document.getElementById('timer-fill');
+    var tt=document.getElementById('timer-text');
+    if(tw)tw.style.width=Math.round((timeLeft/30)*100)+'%';
+    if(tt)tt.textContent=timeLeft+'s';
+    if(timeLeft<=10&&tw)tw.classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know the W9 purpose, all form fields, correct entity classification, EIN acquisition options, common errors, and secure storage requirements. Module 21 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the 24% backup withholding rule, all W9 fields line by line, Single-Member LLC classification, EIN options for non-US residents, 5 common errors, and 7-year retention rule. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 20 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2020%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-21-rate-confirmation.html" class="btn-next-mod">Module 21 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the W9 form fields, 24% backup withholding, entity classification, EIN acquisition, 5 common errors, DocuSign security, and 7-year retention. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-20-w9-form.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 20</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='20';
+    document.getElementById('gf-modtitle').value='W9 Form';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
