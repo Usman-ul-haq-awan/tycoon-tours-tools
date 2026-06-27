@@ -457,7 +457,13 @@ function startQuiz(){
   studentEmail = document.getElementById('s-email').value.trim();
   studentWA = document.getElementById('s-wa').value.trim();
 
-  if(!studentName || !studentEmail || !studentWA){
+  const emailRegex =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(!emailRegex.test(studentEmail)){
+ alert("Enter a valid email.");
+ return;
+}{
     alert('Please fill in all three fields to begin the quiz.');
     return;
   }
