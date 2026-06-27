@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 18 Quiz — Certificate of Insurance | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 18 — Certificate of Insurance. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 18 of 23</span>
+<h1>Certificate <span>of Insurance</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 18</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 18 say you will do with COIs every single day as a dispatcher?",opts:["Sign them on behalf of the carrier and store them in a physical filing cabinet","Request COIs from insurance agents, send them to brokers, update them when policies renew, and troubleshoot when they cause setup delays","Negotiate the coverage amounts with brokers to reduce carrier insurance costs","File them with FMCSA as required by federal law for each new load"],correct:1,exp:"Module 18 states: As a dispatcher you will request COIs from insurance agents send them to brokers update them when policies renew and troubleshoot when they cause setup delays."},
+  {q:"What exactly is a COI according to Module 18?",opts:["The actual insurance policy document that legally binds the insurance company to pay claims","A one-page summary document issued by an insurance company that proves a specific insurance policy exists and is currently active — NOT the policy itself","A government-issued license that authorizes a carrier to haul freight across state lines","A contract between the dispatcher and broker that confirms the carrier's insurance meets minimum requirements"],correct:1,exp:"Module 18 states: A COI is a document issued by an insurance company that summarizes the key details of an insurance policy. It is NOT the insurance policy itself — it is a one-page summary document that proves a specific insurance policy exists and is currently active."},
+  {q:"What is the dispatcher's role in COI management according to Module 18?",opts:["To purchase insurance directly from the insurance company on the carrier's behalf","To serve as the administrative conduit — collecting COIs from carriers' insurance agents, customizing them for specific broker requirements, and ensuring every broker has a current valid COI on file","To verify the insurance company's financial stability before accepting any COI","To negotiate insurance premiums with carriers' insurance agents to reduce operating costs"],correct:1,exp:"Module 18 states: As a dispatcher you serve as the administrative conduit for COI management. You collect COIs from your carriers' insurance agents customize them for specific broker requirements and ensure every broker has a current valid COI on file for every carrier."},
+  {q:"What are the FMCSA minimum and broker-required levels for Commercial Auto Liability insurance according to Module 18?",opts:["FMCSA min: $500K — Brokers require: $750K — Hazmat: $2M","FMCSA min: $750K — Brokers require: $1M — Hazmat: $5M","FMCSA min: $1M — Brokers require: $1.5M — Hazmat: $5M","FMCSA min: $250K — Brokers require: $500K — Hazmat: $1M"],correct:1,exp:"Module 18 states: Commercial Auto Liability — FMCSA min: $750K — Brokers require: $1M — Hazmat: $5M. Primary liability coverage for commercial trucking. Covers bodily injury and property damage caused by the truck while in operation."},
+  {q:"What does Motor Truck Cargo Insurance cover according to Module 18?",opts:["Damage to the truck itself caused by accidents or weather events","The value of freight being transported if it is lost, damaged, or stolen during transit","Bodily injury to the truck driver in case of an accident","Property damage caused by the truck to third-party vehicles or structures"],correct:1,exp:"Module 18 states: Motor Truck Cargo Insurance — Covers the value of freight being transported if it is lost damaged or stolen during transit. The coverage that pays when cargo is damaged in an accident or stolen from the trailer."},
+  {q:"What is the standard minimum for Motor Truck Cargo Insurance and what does Module 18 say about high-value loads?",opts:["Standard minimum: $50K — High-value loads: $100K+","Standard minimum: $100K — High-value loads: $250K+","Standard minimum: $250K — High-value loads: $500K+","Standard minimum: $500K — all loads regardless of value"],correct:1,exp:"Module 18 states: Motor Truck Cargo Insurance — Standard minimum: $100K — High-value loads: $250K+."},
+  {q:"What does General Liability Insurance cover and what does Module 18 say about whether brokers require it?",opts:["It covers cargo damage during transit — all brokers require it as a baseline","Covers bodily injury and property damage during business operations but NOT from vehicle operation — some brokers require this, others do not — ask each broker specifically","It covers the truck during non-operating hours when parked at a terminal — required universally","It is identical to Commercial Auto Liability — they can be substituted for each other"],correct:1,exp:"Module 18 states: General Liability Insurance — Covers bodily injury and property damage during business operations but NOT from vehicle operation. Some brokers require this others do not. Ask each broker specifically."},
+  {q:"What is Trailer Interchange Insurance and when is it required according to Module 18?",opts:["Coverage that pays the carrier if a broker cancels a load after pickup — required on all loads","When a carrier uses a trailer they do not own this covers damage to that borrowed trailer — required by some brokers for specific load types","Coverage for the trailer when it is parked at a shipper facility — required universally","Insurance that covers the trailer during international border crossings — required for Canadian loads"],correct:1,exp:"Module 18 states: Trailer Interchange Insurance — When a carrier uses a trailer they do not own this covers damage to that borrowed trailer. Required by some brokers for specific load types — check each broker's requirements."},
+  {q:"What is the ACORD 25 form according to Module 18?",opts:["A federal government form required by FMCSA for all interstate carriers","A standardized COI format used across the US insurance industry — the standard form all COIs are issued on","A broker-specific contract template used by the top 10 freight brokers","A carrier financial statement required annually by the Department of Transportation"],correct:1,exp:"Module 18 states: A standard COI uses the ACORD 25 form — a standardized certificate format used across the US insurance industry."},
+  {q:"What does the Producer field on the ACORD 25 COI represent according to Module 18?",opts:["The freight broker who will be receiving loads from the carrier","The insurance agency that issued the certificate — where to call with questions or requests for updated certificates — save this contact permanently","The carrier's legal business name as registered with FMCSA","The insurance company underwriting the policy"],correct:1,exp:"Module 18 states: Producer (Top Left) — The insurance agency that issued the certificate. This is where to call with questions or requests for updated certificates. Save this contact permanently."},
+  {q:"What does Module 18 say about the Insured field on the ACORD 25, and what causes broker rejection?",opts:["The Insured field shows the broker's legal name — any mismatch with the broker's portal registration causes rejection","The carrier's legal business name and address — verify this matches EXACTLY with the carrier's FMCSA registration — any mismatch can cause broker rejection","The dispatcher's business name and contact information — mismatches with Google records cause rejection","The insurance company's legal name — any mismatch with the state insurance registry causes rejection"],correct:1,exp:"Module 18 states: Insured — The carrier's legal business name and address. Verify this matches EXACTLY with the carrier's FMCSA registration — any mismatch can cause broker rejection."},
+  {q:"What information does the Coverages section of the ACORD 25 show according to Module 18?",opts:["Only the total premium amount paid and the insurance company's contact details","Each row shows: type of insurance — policy number — effective date — expiration date — and limits of coverage — review all amounts carefully against broker requirements","Only the cargo coverage amount and the deductible for each coverage type","The list of brokers currently authorized to assign loads to this carrier"],correct:1,exp:"Module 18 states: Coverages (Center) — Most important section. Each row shows: type of insurance — policy number — effective date — expiration date — and limits of coverage. Review all amounts carefully against broker requirements."},
+  {q:"What does Module 18 say about the Certificate Holder field, and what happens if there is an error?",opts:["The certificate holder is the carrier's bank — errors result in payment delays","Bottom right — who the COI is issued TO — typically the freight broker — the broker's exact company name and address must appear here — any error means the COI is invalid for that broker","The certificate holder is always FMCSA — errors must be corrected within 30 days","The certificate holder is the dispatcher — errors must be reported to the state insurance commissioner"],correct:1,exp:"Module 18 states: Certificate Holder — Bottom right — who the COI is issued TO — typically the freight broker. The broker's exact company name and address must appear here. Any error means the COI is invalid for that broker."},
+  {q:"What is the Cancellation Notice on a COI and what is the standard according to Module 18?",opts:["A notice sent to the carrier when a broker cancels a load — standard is 24 hours","How many days notice the insurance company provides to the certificate holder if the policy is cancelled — standard is 30 days — protects the broker if coverage is suddenly terminated","A notice sent to FMCSA when a carrier's authority is being revoked — standard is 60 days","A clause allowing the carrier to cancel their insurance mid-year with 30 days notice"],correct:1,exp:"Module 18 states: Cancellation Notice — How many days notice the insurance company provides to the certificate holder if the policy is cancelled. Standard is 30 days. This protects the broker if coverage is suddenly terminated."},
+  {q:"What important warning does Module 18 give about what a COI does NOT guarantee?",opts:["A COI does not guarantee the carrier will accept loads from that specific broker","A COI is evidence of insurance at the time of issuance — NOT a guarantee coverage remains in place — insurance can be cancelled for non-payment — set up monthly reminders to verify carriers' insurance remains active","A COI does not guarantee the cargo coverage amount will be sufficient for all load types","A COI does not guarantee the carrier meets CSA safety score requirements"],correct:1,exp:"Module 18 states: What COI Does NOT Guarantee — A COI is evidence of insurance at the time of issuance — NOT a guarantee coverage remains in place. Insurance can be cancelled for non-payment. Set up monthly reminders to verify your carriers' insurance remains active."},
+  {q:"What is Step 1 in Module 18's 5-step process for requesting a COI?",opts:["Email the broker to get their exact legal company name and coverage requirements","Get the carrier's insurance agent contact — name, phone number, and email — collect this during initial carrier setup as it is essential for same-day COI emergencies","Submit a COI request through the broker's online portal immediately","Contact FMCSA to verify the carrier's authority is active before requesting a COI"],correct:1,exp:"Module 18 states Step 1: Get the Carrier's Insurance Agent Contact — Your carrier provides the name phone number and email of their insurance agent. Collect this during initial carrier setup — it is essential for same-day COI emergencies."},
+  {q:"What does Module 18 say about Step 2 — Determining the Broker's Requirements?",opts:["Call the broker's load booking team to verbally confirm coverage amounts are acceptable","Broker provides their exact legal company name, their address, and any specific coverage amounts or endorsements required — get all details before contacting the agent","Ask the carrier what coverage amounts the broker previously accepted and use those same figures","Check the broker's website for their standard requirements — no direct communication needed"],correct:1,exp:"Module 18 states Step 2: Determine the Broker's Requirements — Broker provides their exact legal company name their address and any specific coverage amounts or endorsements required. Get all details before contacting the agent."},
+  {q:"What does Module 18 say about Step 4 — Receiving and Reviewing the COI?",opts:["Forward the COI directly to the broker immediately upon receipt to save time","When COI arrives — review against the checklist before sending to broker — errors must be corrected before submission — never send an unreviewed COI","Sign and date the COI to confirm receipt before forwarding to the broker","Scan the COI and store it digitally — no review needed if it came from a licensed insurance agent"],correct:1,exp:"Module 18 states Step 4: Receive and Review Carefully — When COI arrives — review against the checklist below before sending to broker. Errors must be corrected before submission — never send an unreviewed COI."},
+  {q:"What does Module 18's COI review checklist include regarding the carrier name?",opts:["Carrier name must include the owner's personal name alongside the business name","Carrier name spelled correctly and exactly matching FMCSA registration","Carrier name must be followed by the MC number in parentheses","Carrier name must match the dispatcher's contract regardless of FMCSA registration"],correct:1,exp:"Module 18 states COI Review Checklist: Carrier name spelled correctly and exactly matching FMCSA registration."},
+  {q:"What does Module 18 say is the critical rule for COI renewal management?",opts:["Always renew the COI 90 days before expiration to allow for processing delays","Never let a COI expire on file with a broker without replacement — expired insurance means the broker immediately stops assigning loads, potentially leaving your carrier without freight at the worst possible moment","Renew COIs annually in January regardless of the actual policy expiration date","Let the carrier handle all COI renewals directly with the broker — the dispatcher's role ends at initial setup"],correct:1,exp:"Module 18 states: Critical Rule — Never let a COI expire on file with a broker without replacement. Expired insurance means the broker immediately stops assigning loads — potentially leaving your carrier without freight at the worst possible moment."},
+  {q:"What is Module 18's recommended renewal timeline for COI management?",opts:["Set reminders 90 days before expiration — request new COI 60 days before — submit 30 days before","Set calendar reminders 45 days before policy expiration — two weeks before contact agent to confirm renewal is in process — one week before request updated COIs for all active brokers and submit proactively","Set reminders 30 days before expiration — request new COI 15 days before — submit the day before expiration","Set reminders 60 days before expiration — request new COI the same day as expiration — submit immediately after renewal"],correct:1,exp:"Module 18 states: Renewal Timeline — Set calendar reminders 45 days before each carrier's policy expiration. Two weeks before — contact agent to confirm renewal is in process. One week before — request updated COIs for all active brokers and submit proactively before the old policy expires."},
+  {q:"What is an Additional Insured request and how does Module 18 say it is handled?",opts:["A request to add the dispatcher as an insured party — handled by having the carrier sign an amendment","Some large brokers require being named as additional insured — not just certificate holder — this is a policy modification requiring contact with the insurance agent directly — usually at no or minimal cost","A request to add multiple carriers to a single COI — handled by the insurance agent reissuing the form","A request to increase coverage amounts beyond the minimum — handled by paying an additional premium"],correct:1,exp:"Module 18 states: Additional Insured Request — Some large brokers require being named as additional insured — not just certificate holder. This is a policy modification — contact the insurance agent directly. Usually at no or minimal cost."},
+  {q:"What is a Waiver of Subrogation and what does Module 18 say about it?",opts:["A clause that waives the carrier's right to dispute a broker's rate after a load is completed","Prevents carrier's insurance company from suing the broker if they pay a claim — this is a policy endorsement requiring contact with the insurance agent — required by some large brokers","A waiver that allows the carrier to operate without cargo insurance on loads under $50,000","A clause in the carrier agreement that waives the broker's liability for cargo damage"],correct:1,exp:"Module 18 states: Waiver of Subrogation — Prevents carrier's insurance company from suing the broker if they pay a claim. This is a policy endorsement — contact the insurance agent. Required by some large brokers."},
+  {q:"What does Module 18 say about handling a same-day emergency COI situation?",opts:["Email the insurance agent with urgent in the subject line and wait for a response","Call the insurance agent directly — do NOT email — insurance agents can issue COIs within 30 to 60 minutes by phone — keep agent's direct number accessible always","Request the broker to accept a temporary verbal confirmation while the COI is being processed","Contact FMCSA directly to request an emergency insurance verification for the broker"],correct:1,exp:"Module 18 states: Same-Day Emergency COI — Broker needs COI immediately for a time-sensitive load. Call the insurance agent directly — do NOT email. Insurance agents can issue COIs within 30 to 60 minutes by phone. Keep agent's direct phone number accessible always."},
+  {q:"What does Module 18 say about email versus phone for emergency COI requests?",opts:["Email is preferred for emergencies because it creates a written record of the request","A phone call gets a COI in 30 to 60 minutes — an email gets one in 24 hours — know the difference","Both email and phone take the same amount of time — use whichever is more convenient","Phone calls are only effective for COI requests during business hours — email works 24/7"],correct:1,exp:"Module 18 states: Keep insurance agent's direct phone number accessible — for same-day emergencies a phone call gets a COI in 30 to 60 minutes. An email gets one in 24 hours. Know the difference."},
+  {q:"What does Module 18 say makes flawless COI management a competitive advantage?",opts:["Dispatchers who manage COIs efficiently pay lower insurance premiums over time","Brokers remember dispatchers who handle insurance documentation efficiently — in an industry where errors cause costs, accuracy builds reputation","Carriers pay higher commission rates to dispatchers who never have COI problems","FMCSA gives priority authority renewal to carriers whose dispatchers have clean COI records"],correct:1,exp:"Module 18 states: Flawless COI management is a competitive advantage — brokers remember dispatchers who handle insurance documentation efficiently. In an industry where errors cause costs accuracy builds reputation."},
+  {q:"According to Module 18's COI review checklist, what must be verified about the policy dates?",opts:["The policy must have been issued at least 6 months before the load date","Policy is NOT expired — expiration date is in the future — AND policy effective date is before today — coverage is currently active","The policy must have at least 90 days remaining before expiration","Both the effective date and expiration date must fall within the current calendar year"],correct:1,exp:"Module 18 states COI Review Checklist: Policy is NOT expired — expiration date is in the future. Policy effective date is before today — coverage is currently active."},
+  {q:"What coverage types does Module 18's COI review checklist say must be listed?",opts:["Auto liability and cargo only — general liability is never required","All required coverage types are listed — auto liability, cargo, and general liability if required","Auto liability, cargo, general liability, and trailer interchange regardless of broker requirements","Only the coverage types that exceed the FMCSA minimum — standard minimums are assumed"],correct:1,exp:"Module 18 states COI Review Checklist: All required coverage types are listed — auto liability cargo and general liability if required."},
+  {q:"What does Module 18's COI Request Email Template specify must be included in the email to the insurance agent?",opts:["The carrier's dispatch fee percentage and the broker's credit score from Carrier411","Certificate holder with broker's exact legal name and address, coverage requirements for each type with dollar amounts, and a request to send to the dispatcher and copy the carrier","The load details including pickup and delivery addresses and the freight description","The FMCSA MC number of both the carrier and the broker for verification purposes"],correct:1,exp:"Module 18 states the COI Request Email Template includes: Certificate Holder with broker's exact legal name and address — Coverage requirements listing commercial auto liability at $1M, motor truck cargo at $100K, and general liability if required — a request to send to dispatcher email and copy the carrier's email."},
+  {q:"What does Module 18 identify as the next module and its topic?",opts:["Module 19 — Load Board Mastery — covering advanced DAT search strategies for finding high-paying loads","Module 19 — Notice of Assignment NOA — the document that ensures a factoring carrier's payment goes to the right place every single time","Module 19 — Rate Negotiation — covering how to consistently negotiate rates above market with brokers","Module 19 — Carrier Recruitment — covering how to find and onboard new carriers into your dispatch portfolio"],correct:1,exp:"Module 18 states: Module 19 is next — Notice of Assignment NOA. The document that ensures your factoring carrier's payment goes to the right place every single time."},
+  {q:"What does Module 18 say about the Insurer(s) field on the ACORD 25 form?",opts:["There can only be one insurer per COI — multiple insurers indicate a fraudulent document","The insurance companies providing coverage — multiple insurers may appear if different coverage types are provided by different companies — this is normal","The insurer field must always show a company rated A or above by AM Best","The insurer listed must be pre-approved by FMCSA before the COI is accepted by any broker"],correct:1,exp:"Module 18 states: Insurer(s) — The insurance companies providing coverage. Multiple insurers may appear if different coverage types are provided by different companies — this is normal."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all fields to begin.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  document.getElementById('prog-score').textContent='Score: 0';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var letters=['A','B','C','D'];
+  var pct=Math.round(((currentQ)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-fill').style.width=Math.max(pct,5)+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').className='timer-fill';
+  document.getElementById('timer-text').textContent='30s';
+  var html='<div class="q-num">Question '+(currentQ+1)+' of 20</div>';
+  html+='<div class="q-text">'+q.q+'</div><div class="options">';
+  q.opts.forEach(function(o,i){html+='<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';});
+  html+='</div><div class="explanation" id="explanation">💡 '+q.exp+'</div>';
+  html+='<button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  document.getElementById('question-card').innerHTML=html;
+  startTimer();
+}
+
+function startTimer(){
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    document.getElementById('timer-text').textContent=timeLeft+'s';
+    document.getElementById('timer-fill').style.width=(timeLeft/30*100)+'%';
+    if(timeLeft<=10)document.getElementById('timer-fill').classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know what a COI is, all 4 insurance types and their coverage minimums, how to read every field of the ACORD 25 form, the 5-step COI request process, the 6-point review checklist, renewal management timelines, and special situations like additional insured and same-day emergencies. Module 19 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review what a COI is and is not, all 4 insurance types with their minimums, every ACORD 25 field, the 5-step request process, the 6-point checklist, the 45-day renewal system, and special COI situations. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 18 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2018%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-19-notice-of-assignment.html" class="btn-next-mod">Module 19 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the COI definition, all 4 insurance types and minimums, every ACORD 25 field, the 5-step request process, 6-point checklist, 45-day renewal system, and special situations. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-18-certificate-of-insurance.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 18</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='18';
+    document.getElementById('gf-modtitle').value='Certificate of Insurance';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
