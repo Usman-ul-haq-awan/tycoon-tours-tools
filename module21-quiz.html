@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 21 Quiz — Rate Confirmation | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 21 — Rate Confirmation. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 21 of 23</span>
+<h1>Rate <span>Confirmation</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 21</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"How does Module 21 define a Rate Confirmation?",opts:["An informal memo exchanged between dispatcher and carrier summarising a load offer","A contractual document issued by a freight broker confirming the specific terms of a load agreement between the broker and carrier — generated after verbal agreement and serving as the written binding contract","A government-required safety document submitted to FMCSA before each load departs","An insurance pre-approval form authorising the carrier to haul a specific commodity"],correct:1,exp:"Module 21 states: A Rate Confirmation is a contractual document issued by a freight broker confirming the specific terms of a load agreement between the broker and the carrier. It is generated after a load has been verbally agreed upon over the phone and serves as the written binding contract for that specific load transaction."},
+  {q:"What does Module 21 say about the enforceability of a Rate Con once signed?",opts:["It is enforceable only if the verbal agreement was also recorded and saved","Once both parties have a copy and the carrier has confirmed agreement, the contract is binding — changes require a Rate Con amendment documented in writing","It can be cancelled verbally within 24 hours of signing without penalty","It is enforceable only for the linehaul rate — accessorial terms must be separately agreed in writing"],correct:1,exp:"Module 21 states: Once both parties have a copy of the Rate Con and the carrier has confirmed agreement, the contract is binding. Changes to any term after Rate Con issuance require a Rate Con amendment — which must also be documented in writing."},
+  {q:"What does Module 21 say an incorrect Rate Con signed without catching the error can cost?",opts:["Only a minor inconvenience — errors are usually corrected on the final 1099 at year-end","Hundreds or thousands of dollars — and a missing or disputed Rate Con creates payment problems that can persist for weeks","A $50 administrative correction fee charged by the broker","The carrier's CSA safety score rating due to documentation violations"],correct:1,exp:"Module 21 states: An incorrect Rate Con signed without catching the error can cost your carrier hundreds or thousands of dollars. A missing or disputed Rate Con creates payment problems that can persist for weeks."},
+  {q:"What pickup information fields does Module 21 list on a Rate Con?",opts:["Only the shipper name and pickup date — other details are confirmed verbally","Shipper name and pickup address, pickup date and appointment time, pickup reference number, and contact name and phone at pickup facility","Shipper name, load weight, pickup date, and broker margin percentage","Driver name, truck plate number, pickup city, and estimated departure time"],correct:1,exp:"Module 21 lists the Pickup Information section as: Shipper name and pickup address, pickup date and appointment time, pickup reference number, and contact name and phone at pickup facility."},
+  {q:"What load detail fields does Module 21 say appear in the Rate Con?",opts:["Only commodity type and total weight — other details are on the BOL","Commodity, weight in pounds, piece count and pallet count, temperature requirements for reefer loads, hazmat classification if applicable, and special handling instructions","Carrier equipment age, driver CDL number, load board reference, and shipper account number","Broker margin, shipper payment terms, carrier credit score, and estimated fuel cost"],correct:1,exp:"Module 21 lists Load Details as: Commodity, weight in pounds, piece count and pallet count, temperature requirements for reefer loads, hazmat classification if applicable, and special handling instructions."},
+  {q:"What rate and payment fields does Module 21 say appear in the Rate Con?",opts:["Only the total rate and payment due date","Linehaul rate, fuel surcharge FSC, total rate, payment terms (Quick Pay or Net 30), and payment to carrier or factoring company per NOA","Broker commission, shipper invoice amount, carrier fuel card balance, and ACH routing number","Only the linehaul rate — FSC is calculated and added separately by the factoring company"],correct:1,exp:"Module 21 lists Rate and Payment fields as: Linehaul rate, fuel surcharge FSC, total rate, payment terms (Quick Pay or Net 30), and payment to carrier or factoring company per NOA."},
+  {q:"What is the typical free time at pickup before detention charges begin according to Module 21?",opts:["30 minutes free time","1 hour free time","2 hours free time — then $50 to $100/hour detention rate applies","4 hours free time for all dock-door facilities"],correct:2,exp:"Module 21 states: Detention Policy — Free time at pickup — typically 2 hours. Detention rate after free time — $50 to $100/hour."},
+  {q:"What does TONU stand for and where does Module 21 say it appears?",opts:["Transport Operations Not Undertaken — appears on the carrier's insurance certificate","Truck Ordered Not Used — appears in the Rate Con's detention policy section","Total Outstanding Net Units — appears on the broker's invoice to the shipper","Terminal Operations Notification Update — appears on the FMCSA compliance portal"],correct:1,exp:"Module 21 states: TONU rate — Truck Ordered Not Used. This appears in the Detention Policy section of the Rate Con alongside detention rate, layover rate, and lumper policy."},
+  {q:"What GPS tracking apps does Module 21 name in the compliance requirements section of a Rate Con?",opts:["Google Maps and Waze — standard for all brokers","Macropoint and FourKites — listed as broker GPS tracking app requirements","KeepTruckin ELD and Samsara — the two approved tracking systems","DAT CarrierWatch and Trucker Tools — load board tracking integration"],correct:1,exp:"Module 21 states: Compliance Requirements include GPS tracking app — Macropoint, FourKites. These are listed alongside check-call frequency, POD submission deadline, and insurance requirements confirmation."},
+  {q:"How many points are on Module 21's Rate Con Review Checklist?",opts:["10 points","12 points","15 points","20 points"],correct:2,exp:"Module 21 states: Rate Con Review Checklist — 15 Points. Never simply glance at a Rate Con and confirm it. Every Rate Con must be reviewed point-by-point against what was verbally agreed."},
+  {q:"What does Module 21 say to do to verify the pickup address on a Rate Con?",opts:["Call the shipper directly to confirm their address is correct","Google the address to verify it is a legitimate facility at the right location","Check the address against the DAT load board posting","Confirm the address with the carrier who may have hauled there before"],correct:1,exp:"Module 21 states checklist point 2: Pickup location correct — Google the address to verify it is a legitimate facility at the right location."},
+  {q:"What HOS limit does Module 21 reference when checking if a delivery time is realistic?",opts:["HOS limits driving to 8 hours per day","HOS limits driving to 10 hours per day","HOS limits driving to 11 hours per day","HOS limits driving to 14 hours per day"],correct:2,exp:"Module 21 states checklist point 5: Delivery date and time realistic — calculate drive time — HOS limits driving to 11 hours per day. This must be factored into every delivery window review."},
+  {q:"Why does Module 21 say an unexpected commodity change on a Rate Con matters?",opts:["Commodity changes affect broker commission calculations and must be re-negotiated","Unexpected commodity changes affect insurance coverage — the carrier's policy may not cover the actual commodity being shipped","Commodity changes invalidate the broker's FMCSA operating authority for that specific load","Commodity changes require the carrier to obtain a new CDL endorsement before pickup"],correct:1,exp:"Module 21 states checklist point 6: Commodity correct — matches what broker described — unexpected commodity changes affect insurance coverage."},
+  {q:"What is the approximate maximum legal payload capacity for a 53-foot dry van that Module 21 references?",opts:["Approximately 30,000 lbs","Approximately 38,000 lbs","Approximately 44,000 lbs","Approximately 52,000 lbs"],correct:2,exp:"Module 21 states checklist point 7: Weight correct — does not exceed carrier's legal payload capacity — max approximately 44,000 lbs for 53-foot dry van."},
+  {q:"What does Module 21 say about a $50 rate discrepancy between the Rate Con and the verbal agreement?",opts:["A $50 discrepancy is within the acceptable tolerance range and can be ignored","Even a $50 discrepancy must be corrected — contact the broker and request an amended Rate Con","Only discrepancies over $100 per mile require correction","$50 discrepancies are corrected automatically during factoring settlement"],correct:1,exp:"Module 21 states checklist point 8: Rate correct — total rate linehaul plus FSC matches exactly what was verbally negotiated — even $50 discrepancy must be corrected."},
+  {q:"How does Module 21 say to verify the rate per mile on a Rate Con?",opts:["Ask the broker to confirm RPM verbally on a recorded call","Calculate total rate divided by loaded miles and confirm it equals the agreed RPM","Compare the RPM against the DAT 30-day average for the lane","Use the load board's built-in RPM calculator to cross-check the broker's figure"],correct:1,exp:"Module 21 states checklist point 9: Rate per mile matches — calculate total rate divided by loaded miles equals agreed RPM. This arithmetic check catches errors not visible in the total rate alone."},
+  {q:"What is the most common Rate Con error described in Module 21?",opts:["Wrong pickup date — brokers frequently enter the wrong day of the month","Rate lower than agreed — the most common error and sometimes intentional, such as $2.30 on the Rate Con when $2.50 was agreed","Missing consignee address — delivery location left blank requiring a phone call to confirm","Carrier MC number incorrect — copied from a previous Rate Con for a different carrier"],correct:1,exp:"Module 21 states: Rate Lower Than Agreed — The most common error — and sometimes intentional. '$2.50 but the Rate Con shows $2.30' happens regularly. Always catch this — even a $0.20 per mile difference on a 500-mile load is $100 lost."},
+  {q:"What specific dollar example does Module 21 give to show the cost of a $0.20 per mile rate error?",opts:["$0.20/mile error on a 250-mile load = $50 lost","$0.20/mile error on a 500-mile load = $100 lost","$0.20/mile error on a 1,000-mile load = $200 lost","$0.20/mile error on a 2,000-mile load = $400 lost"],correct:1,exp:"Module 21 states: Even a $0.20 per mile difference on a 500-mile load is $100 lost. Catch it before signing. (The module also separately notes that on a 1,000-mile load the same error equals $200 lost.)"},
+  {q:"What does Module 21 say a wrong pickup date on a Rate Con can cause?",opts:["A minor scheduling inconvenience that the broker will correct at no cost","It can turn a profitable load into a TONU situation if the carrier arrives on the correct date that the Rate Con incorrectly states","It automatically voids the Rate Con requiring a completely new load to be booked","It causes a CSA safety violation for the carrier for failing to meet the contracted appointment"],correct:1,exp:"Module 21 states: Wrong Pickup Date — A difference of one day in pickup date can turn a profitable load into a TONU situation if your carrier arrives on the correct date that the Rate Con incorrectly states."},
+  {q:"What payment-to-wrong-party error does Module 21 describe and which previous module does it reference?",opts:["Rate Con pays the dispatcher directly instead of the carrier — covered in Module 15","Rate Con directs payment to the carrier when an NOA is on file requiring payment to the factoring company — or vice versa — creating the double-payment conflict covered in Module 19","Rate Con directs payment via wire instead of ACH — causing a 5-day delay covered in Module 15","Rate Con omits the broker's bank details — preventing automated settlement covered in Module 18"],correct:1,exp:"Module 21 states: Payment to Wrong Party — Rate Con directs payment to the carrier when an NOA is on file requiring payment to the factoring company — or vice versa. This creates the double-payment conflict covered in Module 19."},
+  {q:"Why does Module 21 say 'General Freight' as a commodity description is problematic?",opts:["'General Freight' triggers a mandatory FMCSA inspection at every state border crossing","'General Freight' is vague and creates insurance coverage disputes if damage occurs — push for specific commodity description on every load","'General Freight' is an outdated term that modern brokers no longer use on Rate Cons","'General Freight' disqualifies the load from Quick Pay — factoring companies require specific commodity names"],correct:1,exp:"Module 21 states: Missing Commodity Description — 'General Freight' is vague and creates insurance coverage disputes if damage occurs. Push for specific commodity description on every load."},
+  {q:"What transit time example does Module 21 give to illustrate an unrealistic delivery appointment?",opts:["500 miles in 6 hours is physically impossible under HOS regulations","1,000 miles in 12 hours is physically impossible under HOS regulations","2,000 miles in 24 hours is physically impossible under HOS regulations","800 miles in 8 hours is physically impossible under HOS regulations"],correct:2,exp:"Module 21 states: Unrealistic Transit Time — Delivery appointment that cannot be met without HOS violations. Calculate drive time before confirming — 2,000 miles in 24 hours is physically impossible under HOS regulations."},
+  {q:"What does Module 21 say about missing accessorial terms like detention rate on a Rate Con?",opts:["Missing accessorial terms default to industry standard rates which are legally enforceable","Detention rate not specified makes it nearly impossible to collect detention pay later — if it is not in the Rate Con it is very difficult to enforce","Missing accessorial terms can be added verbally after delivery and still collected","Detention pay can still be collected if the carrier has photos timestamped at the facility"],correct:1,exp:"Module 21 states: Missing Accessorial Terms — Detention rate not specified — makes it nearly impossible to collect detention pay later. If it is not in the Rate Con it is very difficult to enforce."},
+  {q:"What is the exact discrepancy resolution script Module 21 provides when a rate error is found?",opts:["'I cannot confirm this load until you send the correct Rate Con — please revise immediately.'","'Hi [Broker Name] I received the Rate Con for load [reference number]. I am seeing the rate shows $2.30 but we agreed to $2.50 on our call. Can you send an amended Rate Con reflecting $2.50? I will confirm as soon as I receive the corrected version.'","'The rate on the Rate Con is wrong — I need you to fix it or we cannot haul this load.'","'Please check your records — there may be a system error on the rate figure shown on this Rate Con.'"],correct:1,exp:"Module 21 provides this exact script: 'Hi [Broker Name] I received the Rate Con for load [reference number]. I am seeing the rate shows $2.30 but we agreed to $2.50 on our call. Can you send an amended Rate Con reflecting $2.50? I will confirm as soon as I receive the corrected version.'"},
+  {q:"What does Module 21 say it means if a broker resists correcting a clear Rate Con error?",opts:["It is normal — brokers often need 24 hours to process amendments in their system","It is a significant red flag about their business practices — document all communications and consider whether to proceed with this broker at all","It means the dispatcher should simply accept the lower rate and make up the difference on the next load","It means the error was actually on the dispatcher's side and the Rate Con is correct"],correct:1,exp:"Module 21 states: If a broker resists correcting a clear error that is a significant red flag about their business practices. Document all communications and consider whether to proceed with this broker at all."},
+  {q:"How long does Module 21 say Rate Cons must be archived?",opts:["1 year — the standard broker audit period","3 years minimum — organised, accessible, and retained for dispute resolution","5 years — the IRS standard for business document retention","7 years — matching the W9 retention requirement from Module 20"],correct:1,exp:"Module 21 states: Every Rate Con must be archived — organised, accessible, and retained for a minimum of 3 years."},
+  {q:"What file naming convention does Module 21 recommend for archived Rate Cons?",opts:["[Broker Name] — [Carrier Name] — [Load Amount] — [RC Number]","[Date] — [Origin] to [Destination] — [Broker Name] — [RC Reference Number] — Example: '2025-03-15 — Chicago IL to Atlanta GA — TQL — RC-847291'","[Carrier MC] — [Date] — [Rate] — [Commodity]","[Driver Name] — [Pickup City] — [Delivery City] — [Date]"],correct:1,exp:"Module 21 states: Recommended File Naming: '[Date] — [Origin] to [Destination] — [Broker Name] — [RC Reference Number]' — Example: '2025-03-15 — Chicago IL to Atlanta GA — TQL — RC-847291' — This naming convention allows you to find any Rate Con instantly when a dispute arises months later."},
+  {q:"Why does Module 21 say factoring companies require Rate Cons at submission time?",opts:["Factoring companies use Rate Cons to verify the broker's FMCSA license is active before advancing funds","Rate Cons are required by the factoring company — submit them along with the BOL and invoice when the carrier submits for their factoring advance — missing Rate Con delays the advance","Factoring companies use Rate Cons to calculate their fee percentage based on the negotiated rate","Rate Cons are filed with FMCSA by factoring companies as part of carrier compliance monitoring"],correct:1,exp:"Module 21 states: Factoring Submission — Rate Cons are required by the factoring company — submit them along with the BOL and invoice when the carrier submits for their factoring advance. Missing Rate Con delays the advance."},
+  {q:"What does Module 21 say about Rate Con review being a 'routine' task?",opts:["Rate Con review becomes routine after 3 months of dispatching and can be done in under 30 seconds","Rate Con review is never routine — it is the discipline that protects carrier income and your commission — use the 15-point checklist on every load, not most loads","Rate Con review is only critical for loads over $3,000 — smaller loads have standard terms","Rate Con review is handled by the broker's compliance team — the dispatcher only needs to verify the total rate"],correct:1,exp:"Module 21 states: Use the 15-point checklist on every load — not most loads, every load. Rate Con review is never routine. It is the discipline that protects carrier income and your commission."},
+  {q:"What does Module 21 describe as the consequence of a Rate Con that is not reviewed carefully?",opts:["The broker will be notified by FMCSA and the dispatcher's account will be flagged","A Rate Con that is not reviewed carefully is a liability — an incorrect one signed without catching the error can cost the carrier hundreds or thousands of dollars","Minor administrative corrections are made automatically at settlement — no real consequence","The carrier's insurance company will reject coverage claims citing improper documentation"],correct:1,exp:"Module 21 states: A Rate Con that is not reviewed carefully is a liability. An incorrect Rate Con signed without catching the error can cost your carrier hundreds or thousands of dollars. A missing or disputed Rate Con creates payment problems that can persist for weeks."},
+  {q:"What does Module 21 say the Rate Con compliance section confirms about insurance?",opts:["It confirms the broker's cargo insurance covers the full declared value of the freight","Insurance requirements confirmation — verifying the carrier meets the broker's minimum insurance standards for this specific load","It confirms the dispatcher's errors and omissions insurance is active for the load period","It confirms the shipper's product liability insurance is in force before the carrier accepts the load"],correct:1,exp:"Module 21 lists Insurance requirements confirmation as one of the four Compliance Requirements fields in the Rate Con, alongside check-call frequency, GPS tracking app, and POD submission deadline."}
+];
+
+var studentName='', studentEmail='', studentWA='';
+var selectedQuestions=[], currentQ=0, score=0, answered=false;
+var timerInterval, timeLeft=30;
+var letters=['A','B','C','D'];
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin.');return;}
+  var shuffled=shuffle(QUESTION_BANK);
+  selectedQuestions=shuffled.slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var pct=Math.round(((currentQ+1)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').classList.remove('warn');
+  document.getElementById('timer-text').textContent='30s';
+  var opts=q.opts.map(function(o,i){return '<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+opts+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    var tw=document.getElementById('timer-fill');
+    var tt=document.getElementById('timer-text');
+    if(tw)tw.style.width=Math.round((timeLeft/30)*100)+'%';
+    if(tt)tt.textContent=timeLeft+'s';
+    if(timeLeft<=10&&tw)tw.classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know the Rate Con structure, the 15-point review checklist, all 6 common errors, the discrepancy script, and the 3-year archiving system. Module 22 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the Rate Con fields, the 15-point checklist, HOS 11-hour limit, the 44,000 lb weight cap, common errors, the resolution script, and the file naming convention. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 21 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2021%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-22-bill-of-lading.html" class="btn-next-mod">Module 22 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the Rate Con components, 15-point checklist, 6 common errors, discrepancy resolution script, archiving requirements, and factoring submission rules. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-21-rate-confirmation.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 21</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='21';
+    document.getElementById('gf-modtitle').value='Rate Confirmation';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
