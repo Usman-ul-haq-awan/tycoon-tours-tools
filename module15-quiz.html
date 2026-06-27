@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 15 Quiz — Payment Gateways in USA | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 15 — Payment Gateways in USA. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 15 of 23</span>
+<h1>Payment Gateways <span>in USA</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 15</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 15 say about a dispatcher who cannot collect their commission?",opts:["They are still building their business and should not worry yet","A dispatcher who cannot collect their commission is running a charity not a business","They should reduce their dispatch fee until payment infrastructure is ready","They should ask carriers to pay in cash until a bank account is set up"],correct:1,exp:"Module 15 states: A dispatcher who cannot collect their commission is running a charity not a business. Getting paid reliably is not a bonus topic — it is essential."},
+  {q:"In the trucking payment chain described in Module 15, who pays the broker first?",opts:["The carrier pays the broker after fuel is deducted","The dispatcher pays the broker from their commission","The shipper pays the broker after successful delivery and POD confirmation","The factoring company pays the broker on behalf of the carrier"],correct:2,exp:"Module 15 states: Step 1 — Shipper Pays Broker — After successful delivery and POD confirmation the shipper pays the broker — typically Net 30 or Net 45 days after delivery."},
+  {q:"What are the two broker payment options described in Module 15 for paying carriers?",opts:["Wire transfer in 7 days or check by mail in 30 days","Quick Pay in 2 to 5 days with a fee, or standard 30 to 45 days","PayPal in 24 hours or ACH in 14 days","Zelle same day or SWIFT wire in 5 business days"],correct:1,exp:"Module 15 states: Broker pays the carrier minus their margin — via Quick Pay 2 to 5 days with a fee, or standard 30 to 45 days."},
+  {q:"What does Module 15 say most dispatch service agreements require regarding carrier payment timing?",opts:["Monthly payment at the end of each calendar month","Weekly payment upon the carrier receiving broker payment","Payment only after the full load cycle including return trip is complete","Payment within 60 days following the delivery date"],correct:1,exp:"Module 15 states: Carrier pays your commission from the payment received from the broker. Most dispatch agreements require weekly payment upon receiving broker payment."},
+  {q:"How does factoring improve payment timing for dispatchers according to Module 15?",opts:["Factoring extends the payment window to 90 days giving carriers more flexibility","Factoring advances 95 to 97% to the carrier within 24 to 48 hours — the carrier pays the dispatcher from the advance, meaning commission arrives within days of delivery instead of 30 to 45 days","Factoring companies pay the dispatcher directly, bypassing the carrier","Factoring doubles the carrier's invoice but splits the extra amount with the dispatcher"],correct:1,exp:"Module 15 states: With Factoring — Carrier submits invoice, factoring company advances 95 to 97% within 24 to 48 hours, carrier pays you from the advance, you receive commission within days of delivery instead of 30 to 45 days."},
+  {q:"What must a dispatcher ensure before any load is run when a carrier uses a factoring company, according to Module 15?",opts:["The dispatcher must co-sign the factoring agreement as a guarantor","The NOA must be properly filed with every broker before any load is run to avoid payment complications","The carrier must switch to a factoring company recommended by the dispatcher","The dispatcher must negotiate rates directly with the factoring company"],correct:1,exp:"Module 15 states: As a dispatcher you must ensure the broker is notified of the factoring company via NOA before any load is run — otherwise payment disputes become very complicated."},
+  {q:"Which factoring companies does Module 15 list as major players in the trucking industry?",opts:["PayPal, Stripe, Square, Klarna, and Afterpay","RTS Financial, Triumph Business Capital, OTR Capital, Apex Capital, Thunder Funding, and Riviera Finance","Chase Factoring, Wells Fargo Freight Finance, Citibank Carrier Services, and Bank of America Logistics","DAT Financial, Truckstop Capital, LoadPay, and CarrierPay"],correct:1,exp:"Module 15 lists six major factoring companies: RTS Financial, Triumph Business Capital, OTR Capital, Apex Capital, Thunder Funding, and Riviera Finance."},
+  {q:"What factoring rate range does Module 15 state for established carriers?",opts:["0.5% to 1% of invoice value","1.5% to 5% — most established carriers pay 2 to 3%","5% to 10% of invoice value","10% to 15% — the industry standard rate"],correct:1,exp:"Module 15 states: Factoring Rates — 1.5% to 5% of invoice value. Most established carriers pay 2 to 3%."},
+  {q:"Which US bank does Module 15 recommend as the top choice for Pakistani dispatchers?",opts:["Chase Business Checking","Wells Fargo Small Business","Mercury Bank — designed for international LLC founders, 100% online, no fees, no minimum balance","Citibank Global Business Account"],correct:2,exp:"Module 15 states: Mercury Bank — Top Recommendation. mercuryhq.com — Designed for international LLC founders. Mercury is the most popular US business bank account for international founders of US LLCs."},
+  {q:"What are the key features of Mercury Bank listed in Module 15?",opts:["$25 monthly fee, $1,000 minimum balance, US address required, wire-only transfers","100% online, no monthly fees, no minimum balance, free ACH transfers, international wire receiving, virtual and physical debit cards, mobile app, QuickBooks and Xero integration","$10 monthly fee waived with $500 balance, 2% cashback on business spending, US SSN required","In-person setup required, $500 minimum balance, business credit card included"],correct:1,exp:"Module 15 lists Mercury's features: 100% online, no monthly fees, no minimum balance, free ACH transfers, international wire receiving, virtual and physical debit cards, excellent mobile app, QuickBooks and Xero integration."},
+  {q:"What opening requirements does Module 15 list for Mercury Bank?",opts:["US Social Security Number, US residential address, and two forms of ID","US LLC formation documents — Articles of Organization — EIN number, and personal identification of the LLC owner","A US business credit score of 650 or above and 2 years of business history","A Pakistani bank statement showing $10,000 in savings and a valid passport"],correct:1,exp:"Module 15 states: Opening Requirements — US LLC formation documents — Articles of Organization — EIN number and personal identification of LLC owner. Tycoon Tours assists with the complete setup process."},
+  {q:"What is Relay Bank best suited for according to Module 15?",opts:["Solo dispatchers who want to earn interest on their USD balance","Operations with multiple carriers or team members who need granular financial organization — up to 20 checking accounts and 50 virtual debit cards","New dispatchers opening their first US business bank account","Dispatchers who want a business credit card with travel rewards"],correct:1,exp:"Module 15 states: Relay Bank — Best for Growing Operations. Up to 20 separate checking accounts, up to 50 virtual debit cards, team access features. Best For: Operations with multiple carriers or team members."},
+  {q:"What unique feature does Module 15 highlight about Bluevine bank?",opts:["Bluevine offers same-day ACH transfers at no cost","Bluevine offers interest on the business checking balance — a rare feature — plus a line of credit for business cash flow","Bluevine has a dedicated trucking dispatcher support team","Bluevine waives all wire fees for international transfers to Pakistan"],correct:1,exp:"Module 15 states: Bluevine — Interest Earning Option. Bluevine offers business checking with interest on balance — a rare feature. Also provides line of credit for business cash flow management."},
+  {q:"Which USD transfer method does Module 15 rank as the top recommendation for sending money to Pakistan?",opts:["Direct SWIFT wire from Mercury to a Pakistani bank","Crypto USDT stablecoins for speed and rate","Wise — near-market exchange rates, approximately 0.5 to 2% fee","Payoneer — most popular with Pakistani freelancers"],correct:2,exp:"Module 15 ranks Wise first: Wise — Recommended. Near-market exchange rates. $5,000 transfer costs $25 to $50. 1 to 2 business days to Pakistani bank. Hold USD and convert when rate is favorable."},
+  {q:"How much does Module 15 say a $5,000 transfer via Wise costs compared to a traditional bank wire?",opts:["$5 via Wise versus $50 via traditional wire","$25 to $50 via Wise versus $100 to $200+ via traditional international wire","$100 via Wise versus $500 via traditional wire","They cost the same — approximately $35 per transfer"],correct:1,exp:"Module 15 states: Wise Example — Transferring $5,000 from Mercury to a Pakistani bank via Wise costs approximately $25 to $50 in fees versus $100 to $200+ via traditional international wire through Pakistani banks. Save thousands per year by using Wise."},
+  {q:"What does Module 15 say about Payoneer as a transfer option?",opts:["Payoneer is not recommended for Pakistani dispatchers due to high fees","Very popular with Pakistani freelancers — PKR withdrawal to Pakistani bank, Payoneer debit card available, widely accepted by Pakistani banks, slightly higher fees than Wise","Payoneer only works for amounts above $10,000","Payoneer requires a US SSN and is unavailable to Pakistani residents"],correct:1,exp:"Module 15 states: Payoneer — Very popular with Pakistani freelancers. PKR withdrawal to Pakistani bank. Payoneer debit card available. Widely accepted by Pakistani banks. Slightly higher fees than Wise."},
+  {q:"What caution does Module 15 give about using crypto USDT for transfers?",opts:["Crypto is the safest and fastest method — no caution needed","Regulatory status in Pakistan varies — use with full awareness of current SBP regulations and proper tax declaration","Crypto transfers are banned for Pakistani dispatchers earning from US clients","USDT is only usable if your carrier also accepts crypto payments"],correct:1,exp:"Module 15 states: Crypto USDT — Some dispatchers use stablecoins for speed and rates. Regulatory status in Pakistan varies. Use with full awareness of current SBP regulations and proper tax declaration."},
+  {q:"What is the recommended method for carriers to pay dispatch commissions according to Module 15?",opts:["Paper check mailed to a US virtual mailbox address","Zelle peer-to-peer transfer using the carrier's personal phone","ACH transfer directly to the dispatcher's Mercury or Relay account — free for both parties, settles in 1 to 2 business days","Wire transfer via SWIFT to the dispatcher's Pakistani bank account"],correct:2,exp:"Module 15 states: ACH Transfer — Recommended. Carrier sends payment via ACH directly to your Mercury or Relay account. Free for both parties. Settles within 1 to 2 business days. Specify this method in your dispatch service agreement."},
+  {q:"What limitation does Module 15 mention about using Zelle for commission collection?",opts:["Zelle is not available in the USA for business transactions","Daily and monthly transfer limits may constrain larger payments","Zelle charges a 3% fee on all business transactions","Zelle requires a Pakistani bank account to withdraw funds"],correct:1,exp:"Module 15 states: Zelle — Many owner-operators use Zelle for quick payments. Mercury supports Zelle. Note daily and monthly transfer limits may constrain larger payments."},
+  {q:"What does Module 15 say a paper check payment from a carrier requires from the dispatcher?",opts:["A US Social Security Number to cash the check at a local bank","A US mailing address — registered agent or US virtual mailbox — then mobile deposit via Mercury or Relay app","Flying to the USA to deposit the check in person","A US PayPal account linked to the carrier's business checking"],correct:1,exp:"Module 15 states: Paper Check — Some carriers still pay by check. Requires a US mailing address — your registered agent or a US virtual mailbox — then mobile deposit via Mercury or Relay app."},
+  {q:"What does Module 15 recommend specifying in the dispatch service agreement regarding commission payment?",opts:["Commissions paid quarterly via wire transfer to Pakistani bank","Commissions paid via ACH to the US business bank account weekly, with a weekly invoice listing every load dispatched with gross revenue and commission amount","Commissions paid in cash at carrier terminal monthly","Commissions deducted automatically by the factoring company before carrier receives payment"],correct:1,exp:"Module 15 states: Recommended Policy — Specify in your dispatch service agreement that commissions are paid via ACH to your US business bank account weekly. Send a weekly invoice listing every load dispatched with gross revenue and your commission amount."},
+  {q:"What does Module 15 say about Pakistani tax obligations for dispatchers earning USD from US clients?",opts:["Income earned from US clients is tax-exempt in Pakistan under a bilateral treaty","Pakistan taxes its residents on worldwide income — foreign currency income must be declared to FBR. Establish proper declaration practices from the beginning","Pakistani dispatchers only pay tax if they earn more than $50,000 per year","Tax is automatically withheld by US brokers and remitted to Pakistani authorities"],correct:1,exp:"Module 15 states: Earning income in USD from US clients does not exempt you from Pakistani tax obligations. Pakistan taxes its residents on worldwide income. Foreign currency income earned remotely must be declared to FBR — Federal Board of Revenue."},
+  {q:"What advice does Module 15 give about when to consult a Pakistani tax advisor?",opts:["Wait until your annual income exceeds $20,000 before consulting a tax advisor","Consult early in your dispatching career — proper tax compliance is not a burden, it is protection for everything you build","Only consult a tax advisor if you are audited by FBR","Wait until you have been dispatching for 2 years to understand your income pattern first"],correct:1,exp:"Module 15 states: We strongly recommend consulting a qualified Pakistani tax advisor early in your dispatching career. Proper tax compliance is not a burden — it is protection for everything you build."},
+  {q:"What does Module 15 identify as the foundation of a Pakistani dispatcher's entire payment infrastructure?",opts:["A Wise account with USD balance","A Payoneer debit card linked to a Pakistani bank","A US business bank account — Mercury or Relay — without which you cannot receive ACH payments from carriers","A Pakistani bank account with a USD-receiving SWIFT code"],correct:2,exp:"Module 15 states: Open Mercury or Relay immediately — your US LLC bank account is the foundation of your entire payment infrastructure. Without it you cannot receive ACH payments from carriers."},
+  {q:"What does Module 15 say happens if the NOA is not properly filed before a load is run with a factoring carrier?",opts:["The broker will refuse to assign future loads to that carrier","Payment disputes become very complicated","The factoring company will charge a penalty fee of 5% of the invoice","The dispatcher loses their commission entirely on that load"],correct:1,exp:"Module 15 states: You must ensure the broker is notified of the factoring company via NOA before any load is run — otherwise payment disputes become very complicated."},
+  {q:"What does Module 15 describe as the direct SWIFT wire transfer method best suited for?",opts:["Regular weekly commission payments from multiple carriers","Infrequent large transfers — most straightforward method but less cost-effective for regular monthly income","Dispatchers who want the fastest possible transfer to Pakistan","Emergency transfers needed within the same business day"],correct:1,exp:"Module 15 states: Direct Wire SWIFT — Most straightforward method. Mercury sends directly to your Pakistani bank. Best for infrequent large transfers. Less cost-effective for regular monthly income."},
+  {q:"What does Module 15 say about when Wise allows you to convert your USD to PKR?",opts:["Wise converts automatically on the same day you receive USD","You can hold USD in Wise and convert when the exchange rate is favorable","Wise requires conversion within 24 hours of receiving funds","Wise only converts at the rate fixed on the day of account opening"],correct:1,exp:"Module 15 states: Wise — Hold USD and convert when rate is favorable. This feature allows dispatchers to wait for a better exchange rate before transferring to Pakistani rupees."},
+  {q:"According to Module 15, what is the full four-step payment chain sequence in trucking?",opts:["Carrier hauls load → Broker posts payment → Dispatcher invoices → Pakistan bank receives funds","Shipper pays broker → broker pays carrier → carrier pays dispatcher → dispatcher accesses funds in US business bank","Dispatcher books load → broker confirms → carrier delivers → shipper pays dispatcher directly","Factoring company pays everyone simultaneously after delivery confirmation"],correct:1,exp:"Module 15 outlines the four steps: 1 — Shipper pays broker after delivery and POD confirmation. 2 — Broker pays carrier minus margin. 3 — Carrier pays dispatcher commission. 4 — Dispatcher accesses funds in US business bank account then transfers to Pakistan."},
+  {q:"What does Module 15 say Relay Bank offers that makes it ideal for operations with team members?",opts:["A dedicated dispatcher support hotline and account manager","Up to 20 separate checking accounts, up to 50 virtual debit cards, team access features, and automated savings rules","A business credit card with 3% cashback on fuel purchases","Free international wires to Pakistan with no transfer fee"],correct:1,exp:"Module 15 states Relay Bank offers: Up to 20 separate checking accounts, up to 50 virtual debit cards, team access features, automated savings rules, and strong accounting integrations. Best For: Operations with multiple carriers or team members."},
+  {q:"What does Module 15 warn about declaring foreign currency income in Pakistan?",opts:["You can wait until your income is large before declaring — small amounts are not monitored","Do not wait until your income is large — establish proper declaration practices from the beginning — it protects you from future legal complications","Foreign currency income is automatically declared by your bank when received","Only declare income if you transfer more than $10,000 per year"],correct:1,exp:"Module 15 states: Do not wait until your income is large. Establish proper declaration practices from the beginning — it protects you from future legal complications."}
+];
+
+var studentName='', studentEmail='', studentWA='';
+var selectedQuestions=[], currentQ=0, score=0, answered=false;
+var timerInterval, timeLeft=30;
+var letters=['A','B','C','D'];
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all three fields to begin.');return;}
+  var shuffled=shuffle(QUESTION_BANK);
+  selectedQuestions=shuffled.slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var pct=Math.round(((currentQ+1)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-score').textContent='Score: '+score;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').classList.remove('warn');
+  document.getElementById('timer-text').textContent='30s';
+  var opts=q.opts.map(function(o,i){return '<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';}).join('');
+  document.getElementById('question-card').innerHTML='<div class="q-num">Question '+(currentQ+1)+' of 20</div><div class="q-text">'+q.q+'</div><div class="options">'+opts+'</div><div class="explanation" id="explanation">💡 '+q.exp+'</div><button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    var tw=document.getElementById('timer-fill');
+    var tt=document.getElementById('timer-text');
+    if(tw)tw.style.width=Math.round((timeLeft/30)*100)+'%';
+    if(tt)tt.textContent=timeLeft+'s';
+    if(timeLeft<=10&&tw)tw.classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know the full payment chain, factoring, US bank accounts, USD-to-PKR transfer methods, and Pakistan tax obligations. Module 16 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the payment chain steps, factoring companies and rates, Mercury vs Relay vs Bluevine, Wise vs Payoneer, and FBR declaration requirements. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 15 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2015%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-16-dealing-and-setup-with.html" class="btn-next-mod">Module 16 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the payment chain, factoring, US bank options, transfer methods, commission collection, and Pakistan tax obligations. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-15-payment-gateways-in-usa.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 15</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='15';
+    document.getElementById('gf-modtitle').value='Payment Gateways in USA';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
