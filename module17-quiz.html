@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 17 Quiz — Dealing and Setup With Brokers | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 17 — Dealing and Setup With Brokers. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 17 of 23</span>
+<h1>Dealing and Setup <span>With Brokers</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 17</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 17 say broker setup is the gateway to?",opts:["Getting your dispatcher license approved by FMCSA","Load access — without it you cannot book loads regardless of how good your negotiation skills are","Receiving your first commission payment from a carrier","Accessing the DAT load board at a discounted rate"],correct:1,exp:"Module 17 states: Broker setup is the gateway to load access. Without it you cannot book loads regardless of how good your negotiation skills are."},
+  {q:"According to Module 17, what does a carrier set up with 30 quality brokers gain?",opts:["A guaranteed minimum of 10 loads per week across any lane","The ability to find a load in virtually any market condition","Automatic priority status on all major load boards","A fixed contract rate with every broker in their network"],correct:1,exp:"Module 17 states: A carrier set up with 30 quality brokers can find a load in virtually any market condition. Build this infrastructure now."},
+  {q:"What does Module 17 describe as the competitive advantage of experienced dispatchers?",opts:["They charge brokers higher rates because of their volume","They have their carriers set up with dozens of brokers across all primary lanes — so when one broker's network is scarce or rates are below market, they access another's","They only work with Tier 1 brokers to maximize commission rates","They negotiate dedicated lane contracts exclusively with CH Robinson"],correct:1,exp:"Module 17 states: Experienced dispatchers have their carriers set up with dozens of brokers across all their primary lanes. When loads on one broker's network are scarce you access another's. When one broker's rates are below market you have alternatives."},
+  {q:"What is a broker carrier packet according to Module 17?",opts:["A digital app that brokers use to post available loads to carriers","A collection of documents and agreements that a new carrier or their dispatcher must complete before the broker will assign loads","A government-issued document required by FMCSA for all broker-carrier transactions","A subscription package brokers sell to carriers for load board access"],correct:1,exp:"Module 17 states: Every broker has a carrier packet — a collection of documents and agreements that a new carrier or their dispatcher must complete before the broker will assign loads."},
+  {q:"What does Module 17 say about the Carrier Agreement in the broker packet?",opts:["It is a one-page standard document identical across all brokers — no need to read carefully","It is a legal contract covering payment terms, insurance requirements, liability provisions, dispute resolution, and non-circumvention clauses — read carefully before signing as some contain unfavorable terms","It only needs to be signed once and applies to all brokers automatically","It is optional for carriers who have been operating for more than 2 years"],correct:1,exp:"Module 17 states: Carrier Agreement — Legal contract between carrier and broker covering payment terms insurance requirements liability provisions dispute resolution and non-circumvention clauses. Read carefully before signing — some agreements contain unfavorable terms."},
+  {q:"What are the standard minimum insurance requirements specified in Module 17 for broker setup?",opts:["$500,000 auto liability and $50,000 cargo per occurrence","Auto liability $1M per occurrence and cargo insurance $100K per occurrence","$750,000 auto liability and $250,000 cargo per occurrence","$2M auto liability and $500,000 cargo per occurrence"],correct:1,exp:"Module 17 states: Standard minimums: Auto liability $1M per occurrence — Cargo insurance $100K per occurrence. Carrier's insurance agent issues a COI naming the broker as certificate holder."},
+  {q:"According to Module 17, what do most brokers do regarding FMCSA authority verification?",opts:["They accept a verbal confirmation from the dispatcher that the carrier is active","They verify MC and DOT numbers directly with FMCSA — some require copies of authority documents submitted alongside the carrier packet","They only check authority once a year during annual contract renewal","They rely on the load board to verify carrier authority before assigning loads"],correct:1,exp:"Module 17 states: FMCSA Authority Verification — Most brokers verify MC and DOT numbers directly with FMCSA. Some require copies of authority documents submitted alongside the carrier packet."},
+  {q:"What is the W9 form used for in broker setup according to Module 17?",opts:["It authorizes the dispatcher to sign contracts on behalf of the carrier","Required for the broker to process payments properly for IRS tax reporting purposes — always have an updated W9 ready","It serves as the carrier's proof of insurance for all brokers","It replaces the carrier agreement for brokers who use digital-only onboarding"],correct:1,exp:"Module 17 states: W9 Form — Required for the broker to process payments properly for IRS tax reporting purposes. Covered in detail in Module 20. Always have an updated W9 ready."},
+  {q:"What is Step 1 in Module 17's 6-step broker setup process?",opts:["Submit all documents to the broker's online portal immediately","Call or email the broker's carrier relations team to ask: what is your setup process and what documents do you need?","Get the broker contact's name and add them to your tracker","Request a dedicated lane agreement before beginning the setup process"],correct:1,exp:"Module 17 states Step 1: Identify the Broker's Setup Process — Call or email the broker's carrier relations team: 'Hi I have a dry van carrier I would like to get set up with your company. What is your setup process and what documents do you need?'"},
+  {q:"What does Module 17 say about confirming broker setup completion after submitting documents?",opts:["If the broker does not respond within 72 hours the setup is automatically approved","Follow up after 24 to 48 hours — do not assume setup is complete because you submitted documents — confirm explicitly with the compliance team","Send a second copy of all documents if no response within 5 days","Setup is complete the moment the broker's portal shows documents received"],correct:1,exp:"Module 17 states Step 4: Confirm Receipt and Approval — Follow up after 24 to 48 hours. Do not assume setup is complete because you submitted documents — confirm explicitly with the compliance team."},
+  {q:"What is Step 6 in Module 17's broker setup process, and why is it important?",opts:["Request a dedicated lane agreement — it locks in rates before market prices change","Record in your carrier-broker setup tracker with completion date, approval status, and contact information — your tracker is your operation's memory","Send a thank-you email to the broker's compliance team to build goodwill","Request Quick Pay terms immediately after approval to begin cash flowing"],correct:1,exp:"Module 17 states Step 6: Record in Your Tracker — Update your carrier-broker setup tracker with completion date approval status and contact information. Your tracker is your operation's memory."},
+  {q:"What is TQL's website for carrier setup according to Module 17, and what is its approval timeline?",opts:["tql.com/carriers — approval typically same day","carrier.tql.com — approval typically 24 to 48 hours","setup.tql.com — approval typically 5 to 7 business days","portal.tql.com — approval in 72 hours minimum"],correct:1,exp:"Module 17 states: TQL — carrier.tql.com. TQL checks CSA scores and may decline carriers with poor safety records. Approval typically 24 to 48 hours."},
+  {q:"What unique insurance verification method does Coyote Logistics use according to Module 17?",opts:["Coyote requires the COI to be faxed directly from the carrier's insurance agent within 24 hours","Coyote checks insurance directly with the insurance company via FMCSA rather than requiring the COI document — making approval typically same day to 24 hours","Coyote sends a third-party auditor to verify all carrier documents in person","Coyote only accepts insurance verification through their proprietary digital portal"],correct:1,exp:"Module 17 states: Coyote — COI verification is automated — Coyote checks insurance directly with the insurance company via FMCSA rather than requiring the COI document. Approval typically same day to 24 hours."},
+  {q:"What does Module 17 say about CH Robinson's setup process compared to other brokers?",opts:["CHR has the simplest setup — one page form with same-day approval","More complex due to CHR's size and corporate processes — requires full carrier packet, insurance verification, and compliance review — may take several days but is worth the effort for the load access","CHR only accepts carriers who have been operating for at least 3 years","CHR setup is identical to TQL and takes the same 24 to 48 hours"],correct:1,exp:"Module 17 states: CH Robinson — More complex due to CHR's size and corporate processes. Requires full carrier packet insurance verification and compliance review. May take several days for full approval. Worth the effort for the load access it provides."},
+  {q:"How does Module 17 describe Transfix compared to traditional brokers?",opts:["Transfix is a traditional broker with a large team of human freight agents available 24/7","Technology-first freight marketplace — more algorithmic matching, less negotiation — loads are offered via app/platform rather than traditional phone calls — good supplementary load source","Transfix specializes exclusively in refrigerated freight for grocery chains","Transfix operates only in the Southeast US corridor"],correct:1,exp:"Module 17 states: Transfix — Technology-first freight marketplace — more algorithmic matching less negotiation. Loads are offered via app/platform rather than traditional phone calls. Good supplementary digital load source."},
+  {q:"What does Module 17 recommend as the Master Broker Setup Matrix?",opts:["A phone list of all broker contact numbers organized by load volume","A spreadsheet with carriers as rows and brokers as columns — marking each cell with setup status: not started / submitted / approved / active — giving instant overview of where you can book loads","A color-coded map showing which brokers operate in which US states","A ranking system scoring each broker by payment speed and load volume"],correct:1,exp:"Module 17 states: Master Broker Setup Matrix — Create a spreadsheet with carriers as rows and brokers as columns. Mark each cell with setup status — not started / submitted / approved / active. This gives you an instant overview of which broker-carrier combinations are ready for load booking."},
+  {q:"What does Module 17 say about managing insurance renewal dates across your carrier portfolio?",opts:["Brokers automatically update their records when a carrier's insurance renews — no action needed from the dispatcher","Set calendar reminders 30 days before each carrier's insurance renewal date — proactively request the updated COI and update all broker records before the old policy expires — expired COI means immediate halt to load assignments","Contact brokers only after the insurance has already renewed to provide the new COI","Insurance renewal management is handled by the carrier's insurance agent directly with each broker"],correct:1,exp:"Module 17 states: Insurance Renewal Management — Set calendar reminders 30 days before each carrier's insurance renewal date. Proactively request the updated COI and update all broker records before the old policy expires. Expired COI = immediate halt to load assignments."},
+  {q:"According to Module 17, when can a dispatcher negotiate Quick Pay fee reductions with brokers?",opts:["During the initial carrier packet submission — ask for reduced fees upfront","After 3 to 4 successful loads for high-volume relationships — some brokers reduce Quick Pay fees from standard 2 to 3 percent","Quick Pay fees are fixed by law and cannot be negotiated under any circumstances","Only after the carrier has completed 100 loads with that specific broker"],correct:1,exp:"Module 17 states: Quick Pay Fees — For high-volume relationships some brokers reduce Quick Pay fees from standard 2 to 3 percent. Worth negotiating after you demonstrate volume."},
+  {q:"What does Module 17 say Tier 1 brokers represent and when should they be set up?",opts:["Mid-sized regional brokers active in your lanes — set up within the first 30 days","The highest load volume brokers in your carrier's primary lanes — representing the majority of available loads — set these up first before the carrier needs a load","Smaller specialty brokers for specific load types — set up as specific needs arise","Technology platform brokers like Convoy and Transfix — set up simultaneously with traditional brokers"],correct:1,exp:"Module 17 states Tier 1: The highest load volume brokers in your carrier's primary lanes. These represent the majority of available loads and are the highest priority for setup. Do these first — before the carrier needs a load."},
+  {q:"What does Module 17 describe as a dedicated lane agreement and when can it be earned?",opts:["A government contract that guarantees minimum freight volumes for carriers with clean safety records","Consistent lane availability can earn dedicated contract lanes at fixed rates — providing stability and predictability for your carrier","A one-time agreement signed during initial broker setup covering the carrier's home lane","An agreement that locks in Quick Pay terms for a full year with a specific broker"],correct:1,exp:"Module 17 states: Dedicated Lane Agreements — Consistent lane availability can earn dedicated contract lanes at fixed rates — providing stability and predictability for your carrier."},
+  {q:"What does Module 17 say about Tier 3 brokers and when they should be set up?",opts:["Tier 3 are the most important brokers — set up before Tier 1 to establish volume","Smaller or specialty brokers for specific load types or corridor backup — set up when a specific need arises, not proactively","Mid-sized regional brokers that should be set up within the first 30 days","All Tier 3 brokers should be set up simultaneously with Tier 1 during initial carrier onboarding"],correct:1,exp:"Module 17 states Tier 3: Smaller or specialty brokers for specific load types or corridor backup. Set up when a specific need arises — not proactively."},
+  {q:"What specialty certifications does Module 17 mention may be required in a broker carrier packet?",opts:["A dispatcher's license issued by the National Freight Association and a DOT physical clearance","Food-grade certification for reefer loads, TWIC card for port facilities, hazmat certification, and TSA security clearance for air cargo — required only for specific load types","A background check on the dispatcher personally and a credit score of 700 or above","A commercial driver's license copy and a clean MVR from the carrier's state DMV"],correct:1,exp:"Module 17 states: Specialty Certifications — Food-grade certification for reefer loads — TWIC card for port facilities — Hazmat certification — TSA security clearance for air cargo. Required only for specific load types."},
+  {q:"According to Module 17, what payment terms does TQL offer and what is the Quick Pay option?",opts:["Net 45 standard terms with a 5% Quick Pay fee for same-day payment","ACH via Quick Pay 2 days with a small fee or standard 30-day terms — described as a high-volume reliable payer","Net 60 standard terms with a 1% Quick Pay fee for 7-day payment","Net 15 standard terms for all carriers regardless of volume"],correct:1,exp:"Module 17 states: TQL Payment — ACH via Quick Pay 2 days with small fee or standard 30-day terms. High-volume reliable payer."},
+  {q:"What does Module 17 say about the Echo Global Logistics platform?",opts:["Echo is the largest freight broker in North America with the most complex setup process","Strong particularly in the Midwest and for retail-related loads — good load volume and reliable processes — online setup with document upload and response time of 24 to 48 hours","Echo specializes exclusively in temperature-controlled freight for grocery chains","Echo only works with carriers who have been operating for more than 5 years"],correct:1,exp:"Module 17 states: Echo Global Logistics — Strong particularly in the Midwest and for retail-related loads. Good load volume and reliable processes. Online setup with document upload. Response time 24 to 48 hours. Straightforward portal."},
+  {q:"What is the Convoy platform best suited for according to Module 17?",opts:["High-value spot loads requiring negotiation — Convoy's agents negotiate every load manually","Consistent predictable freight on specific lanes — fully digital setup with algorithmically matched loads","Exclusively refrigerated freight in the Southeast corridor","Emergency loads that need to be booked within 2 hours"],correct:1,exp:"Module 17 states: Convoy — Uses automated matching algorithms. Good for consistent predictable freight on specific lanes. Fully digital fast setup algorithmically matched loads."},
+  {q:"What does Module 17 say is the purpose of getting the broker contact's name during setup (Step 5)?",opts:["To send them a commission payment for helping with the setup process","The broker's carrier relations contact is your ongoing compliance resource for insurance updates and authority changes","To add them to your marketing list for future load negotiation calls","To verify their identity before submitting sensitive carrier documents"],correct:1,exp:"Module 17 states Step 5: Get the Broker Contact's Name — Identify and record the name of the broker's carrier relations contact. This is your ongoing compliance resource for insurance updates and authority changes."},
+  {q:"What does Module 17 say about insurance waivers when negotiating broker agreements?",opts:["Insurance waivers are illegal under FMCSA regulations and can never be requested","Some brokers will waive slightly below-standard cargo insurance for specific load types — always ask rather than assuming a hard requirement cannot be adjusted","Insurance requirements are the only non-negotiable element in all broker carrier agreements","Waivers are only available to carriers with more than 5 years of operating history"],correct:1,exp:"Module 17 states: Insurance Waivers — Some brokers will waive slightly below-standard cargo insurance for specific load types. Always ask rather than assuming a hard requirement cannot be adjusted."},
+  {q:"What does Module 17 say about the navisphere.com portal?",opts:["It is TQL's carrier setup portal with same-day approvals for new carriers","It is CH Robinson's platform — access to CH Robinson's load network is significant for any carrier portfolio","It is Echo Global Logistics' setup portal focused on Midwest freight","It is Coyote Logistics' carrier portal with automated insurance verification"],correct:1,exp:"Module 17 states: CH Robinson — navisphere.com. One of the largest freight brokers in North America. Access to CH Robinson's load network is significant for any carrier portfolio."},
+  {q:"According to Module 17, why should dispatchers not try to set up carriers with every broker simultaneously?",opts:["FMCSA prohibits carriers from being registered with more than 10 brokers at one time","Use a tiered approach — prioritize the highest load volume brokers first to avoid overwhelm and focus effort where it generates the most immediate load access","Brokers will reject carriers who apply to too many brokers at once as it signals unreliability","Setting up with multiple brokers simultaneously triggers an audit from the carrier's insurance company"],correct:1,exp:"Module 17 states: Do not try to set up your carrier with every broker simultaneously. Prioritize with a tiered approach. Tier 1 brokers first — before the carrier needs a load. Avoid the overwhelm of trying to set up with 50 brokers at once."},
+  {q:"What does Module 17 say broker setup truly is — beyond just administrative work?",opts:["A legal obligation required by FMCSA before any carrier can haul freight","Infrastructure — not administrative work. A carrier set up with 30 quality brokers can find a load in virtually any market condition. Build this infrastructure now.","A one-time task that is completed during the carrier's first week and never revisited","An optional service offered by experienced dispatchers for an additional monthly fee"],correct:1,exp:"Module 17 states: Broker setup is infrastructure — not administrative work. A carrier set up with 30 quality brokers can find a load in virtually any market condition. Build this infrastructure now."},
+  {q:"What module does Module 17 say comes next and what is its topic?",opts:["Module 18 — Rate Negotiation — covering how to negotiate higher rates with brokers on every load","Module 18 — Certificate of Insurance — the gateway document for every carrier-broker relationship that you will deal with every single day as a professional dispatcher","Module 18 — Load Board Mastery — covering advanced search strategies on DAT and Trulos","Module 18 — Carrier Onboarding — covering how to recruit and onboard your first 10 carriers"],correct:1,exp:"Module 17 states: Module 18 is next — Certificate of Insurance. The gateway document for every carrier-broker relationship — you will deal with COIs every single day as a professional dispatcher."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all fields to begin.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  document.getElementById('prog-score').textContent='Score: 0';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var letters=['A','B','C','D'];
+  var pct=Math.round(((currentQ)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-fill').style.width=Math.max(pct,5)+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').className='timer-fill';
+  document.getElementById('timer-text').textContent='30s';
+  var html='<div class="q-num">Question '+(currentQ+1)+' of 20</div>';
+  html+='<div class="q-text">'+q.q+'</div><div class="options">';
+  q.opts.forEach(function(o,i){html+='<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';});
+  html+='</div><div class="explanation" id="explanation">💡 '+q.exp+'</div>';
+  html+='<button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  document.getElementById('question-card').innerHTML=html;
+  startTimer();
+}
+
+function startTimer(){
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    document.getElementById('timer-text').textContent=timeLeft+'s';
+    document.getElementById('timer-fill').style.width=(timeLeft/30*100)+'%';
+    if(timeLeft<=10)document.getElementById('timer-fill').classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know the broker carrier packet, the 6-step setup process, all 6 major broker portals with their URLs and approval timelines, the Master Broker Setup Matrix, tiered setup strategy, and broker agreement negotiation. Module 18 is next!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review the carrier packet documents, the 6-step setup process, broker portal URLs and timelines, the setup matrix, insurance renewal management, and the tiered approach. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 17 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2017%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-18-certificate-of-insurance.html" class="btn-next-mod">Module 18 →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review the broker packet documents, the 6-step setup process, all 6 broker portal URLs, the setup matrix, insurance renewal management, and tiered strategy. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-17-dealing-and-setup-with-brokers.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 17</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='17';
+    document.getElementById('gf-modtitle').value='Dealing and Setup With Brokers';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
