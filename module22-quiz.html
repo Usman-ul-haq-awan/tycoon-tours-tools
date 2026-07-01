@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Module 22 Quiz — Bill of Lading | Tycoon Tours</title>
+<meta name="description" content="Test your knowledge of Module 22 — Bill of Lading. 20 questions from the Tycoon Tours Dispatching Academy quiz."/>
+<meta name="robots" content="index, follow"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f4f6fb;}
+.tt-hero{background:linear-gradient(135deg,#0a2a6e 0%,#0d3080 50%,#0a2a6e 100%);padding:40px 20px;text-align:center;}
+.tt-hero .mod-badge{display:inline-block;background:#cc0000;color:#fff;font-size:13px;font-weight:900;padding:6px 20px;border-radius:25px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
+.tt-hero h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.tt-hero h1 span{color:#cc0000;}
+.tt-hero p{font-size:14px;color:#cccccc;max-width:600px;margin:0 auto;line-height:1.8;}
+.content-wrap{max-width:800px;margin:0 auto;padding:35px 20px;}
+.student-form{background:#fff;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #cc0000;}
+.student-form h2{font-size:18px;font-weight:900;color:#0a2a6e;margin-bottom:6px;}
+.student-form p{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.fg input{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:#0a2a6e;}
+.fg.full{grid-column:1/-1;}
+.btn-start{width:100%;background:#0a2a6e;color:#fff;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:900;cursor:pointer;transition:background .3s;}
+.btn-start:hover{background:#cc0000;}
+.quiz-wrap{display:none;}
+.progress-bar-wrap{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.prog-label{font-size:13px;font-weight:900;color:#0a2a6e;}
+.prog-score{font-size:13px;font-weight:700;color:#cc0000;}
+.prog-bg{background:#e0e0e0;border-radius:4px;height:8px;overflow:hidden;}
+.prog-fill{height:100%;background:#0a2a6e;border-radius:4px;transition:width .4s ease;}
+.timer-bar{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.timer-icon{font-size:16px;}
+.timer-bg{flex:1;background:#e0e0e0;border-radius:4px;height:6px;overflow:hidden;}
+.timer-fill{height:100%;background:#25d366;border-radius:4px;transition:width 1s linear;}
+.timer-fill.warn{background:#cc0000;}
+.timer-text{font-size:12px;font-weight:900;color:#555;min-width:30px;}
+.question-card{background:#fff;border-radius:12px;padding:28px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.06);border-left:6px solid #0a2a6e;}
+.q-num{font-size:11px;font-weight:900;color:#cc0000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;color:#0a2a6e;line-height:1.6;margin-bottom:20px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px;color:#444;line-height:1.5;}
+.option:hover{border-color:#0a2a6e;background:#f0f4ff;}
+.option.correct{border-color:#25d366;background:#f0fff4;color:#1a7a3a;font-weight:700;}
+.option.wrong{border-color:#cc0000;background:#fff3f3;color:#cc0000;}
+.option.disabled{cursor:not-allowed;}
+.opt-letter{background:#0a2a6e;color:#fff;font-size:11px;font-weight:900;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.option.correct .opt-letter{background:#25d366;}
+.option.wrong .opt-letter{background:#cc0000;}
+.explanation{background:#f0f4ff;border:2px solid #0a2a6e;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#0a2a6e;line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.btn-next{width:100%;background:#cc0000;color:#fff;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:900;cursor:pointer;margin-top:16px;transition:background .3s;display:none;}
+.btn-next:hover{background:#aa0000;}
+.btn-next.show{display:block;}
+.results-wrap{display:none;background:#fff;border-radius:12px;padding:35px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,0.06);text-align:center;}
+.result-icon{font-size:60px;margin-bottom:16px;}
+.result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.result-sub{font-size:15px;color:#666;margin-bottom:24px;line-height:1.7;}
+.score-big{background:linear-gradient(135deg,#0a2a6e,#0d3080);border-radius:12px;padding:24px;margin-bottom:20px;}
+.score-big .sb-label{font-size:13px;color:#ccc;margin-bottom:6px;}
+.score-big .sb-score{font-size:52px;font-weight:900;color:#cc0000;}
+.score-big .sb-total{font-size:16px;color:#aaa;}
+.result-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.rc{background:#f4f6fb;border-radius:10px;padding:14px;}
+.rc .rc-l{font-size:11px;color:#888;margin-bottom:4px;font-weight:700;text-transform:uppercase;}
+.rc .rc-v{font-size:20px;font-weight:900;color:#0a2a6e;}
+.verdict-pass{background:#f0fff4;border:2px solid #25d366;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-pass p{font-size:14px;color:#1a7a3a;font-weight:700;line-height:1.8;}
+.verdict-fail{background:#fff3f3;border:2px solid #cc0000;border-radius:10px;padding:18px;margin-bottom:20px;}
+.verdict-fail p{font-size:14px;color:#cc0000;font-weight:700;line-height:1.8;}
+.btn-wa{display:inline-block;background:#25d366;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #25d366;transition:background .3s,color .3s;margin:6px;}
+.btn-wa:hover{background:#fff;color:#25d366;}
+.btn-retry{display:inline-block;background:#0a2a6e;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #0a2a6e;transition:background .3s,color .3s;margin:6px;cursor:pointer;}
+.btn-retry:hover{background:#fff;color:#0a2a6e;}
+.btn-next-mod{display:inline-block;background:#cc0000;color:#fff;padding:14px 35px;border-radius:50px;font-size:15px;font-weight:900;text-decoration:none;border:3px solid #cc0000;transition:background .3s,color .3s;margin:6px;}
+.btn-next-mod:hover{background:#fff;color:#cc0000;}
+#tt-copyright-bar{background:#0a2a6e;padding:15px 20px;text-align:center;}
+#tt-copyright-bar p{margin:0;font-size:13px;color:#cccccc;}
+#tt-copyright-bar a.brand{color:#cc0000;font-weight:900;text-decoration:none;}
+#tt-copyright-bar a{color:#fff;font-weight:700;text-decoration:none;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}.result-cards{grid-template-columns:1fr 1fr;}.tt-hero h1{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div class="tt-hero">
+<span class="mod-badge">📚 Module 22 of 23</span>
+<h1>Bill <span>of Lading</span></h1>
+<p>20 questions randomly selected from our question bank. Every attempt is different. Pass with 70% or above to claim your certificate.</p>
+</div>
+
+<div class="content-wrap">
+<div class="student-form" id="student-form">
+<h2>📋 Enter Your Details to Begin</h2>
+<p>Your details are required to record your score and issue your certificate. Stored securely and only used for your quiz results.</p>
+<div class="form-grid">
+<div class="fg"><label>Full Name</label><input type="text" id="s-name" placeholder="e.g. Ali Hassan"/></div>
+<div class="fg"><label>Email Address</label><input type="email" id="s-email" placeholder="e.g. ali@gmail.com"/></div>
+<div class="fg full"><label>WhatsApp Number</label><input type="text" id="s-wa" placeholder="e.g. 923001234567"/></div>
+</div>
+<button class="btn-start" onclick="startQuiz()">🚀 Start Quiz — Module 22</button>
+</div>
+
+<div class="quiz-wrap" id="quiz-wrap">
+<div class="progress-bar-wrap">
+<div class="prog-top"><span class="prog-label" id="prog-label">Question 1 of 20</span><span class="prog-score" id="prog-score">Score: 0</span></div>
+<div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:5%;"></div></div>
+<div class="timer-bar"><span class="timer-icon">⏱️</span><div class="timer-bg"><div class="timer-fill" id="timer-fill"></div></div><span class="timer-text" id="timer-text">30s</span></div>
+</div>
+<div class="question-card" id="question-card"></div>
+</div>
+<div class="results-wrap" id="results-wrap"></div>
+</div>
+
+<div id="tt-copyright-bar">
+<p>© 2026 <a href="https://tycoontoursofficial.blogspot.com/" class="brand">Tycoon Tours</a> — All Rights Reserved &nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/privacy-policy.html">Privacy Policy</a>&nbsp;|&nbsp;
+<a href="https://tycoontoursofficial.blogspot.com/p/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+</div>
+
+<iframe name="tt_hidden_frame" style="display:none;"></iframe>
+<form id="tt-gform" action="https://docs.google.com/forms/d/e/1FAIpQLSdw5ZMRc3Z9XoCHX-tJPcPW-HZ-HfaiKropVIm_E3ScEkrrMQ/formResponse" method="POST" target="tt_hidden_frame" style="display:none;">
+<input type="text" name="entry.162722829" id="gf-name"/>
+<input type="text" name="entry.295556761" id="gf-email"/>
+<input type="text" name="entry.777151074" id="gf-wa"/>
+<input type="text" name="entry.2029299506" id="gf-modnum"/>
+<input type="text" name="entry.171128487" id="gf-modtitle"/>
+<input type="text" name="entry.1707671960" id="gf-score"/>
+<input type="text" name="entry.255573310" id="gf-total"/>
+<input type="text" name="entry.1021719303" id="gf-pct"/>
+<input type="text" name="entry.746918137" id="gf-pass"/>
+<input type="text" name="entry.170755011" id="gf-date"/>
+<input type="text" name="entry.489384834" id="gf-time"/>
+</form>
+
+<script>
+var QUESTION_BANK = [
+  {q:"What does Module 22 say the BOL is universally called in trucking?",opts:["The BC — Booking Confirmation — the document that confirms a load is officially assigned to a carrier","The BOL — Bill of Lading — the official shipping document that accompanies every load from pickup to delivery","The POD — Proof of Delivery — the document the broker requires before releasing payment","The RC — Rate Confirmation — the binding contract for each individual load transaction"],correct:1,exp:"Module 22 states: The Bill of Lading — universally called the BOL — is the official shipping document that accompanies every load from pickup to delivery."},
+  {q:"What three things simultaneously is the BOL according to Module 22?",opts:["A government form, a tax document, and a safety inspection record","A receipt for the freight, a contract of carriage between the shipper and the carrier, and the primary document required to prove that a load was picked up and delivered successfully","A payment authorization, an insurance claim form, and a driver log","A load board posting, a rate negotiation record, and a broker payment confirmation"],correct:1,exp:"Module 22 states: It is simultaneously a receipt for the freight, a contract of carriage between the shipper and the carrier, and the primary document required to prove that a load was picked up and delivered successfully."},
+  {q:"What does Module 22 say happens without a properly completed and signed BOL?",opts:["The carrier receives a reduced payment of 80% of the agreed rate until the BOL is submitted","A carrier cannot prove they made the pickup or delivery — which means brokers and factoring companies will not release payment","FMCSA issues a compliance violation that goes on the carrier's safety record","The broker holds payment for 30 days while the missing BOL is investigated"],correct:1,exp:"Module 22 states: Without a properly completed and signed BOL a carrier cannot prove they made the pickup or delivery — which means brokers and factoring companies will not release payment."},
+  {q:"What does Module 22 say about the dispatcher's physical role with the BOL?",opts:["The dispatcher is responsible for completing the BOL on behalf of the carrier before the driver arrives at the shipper","As a dispatcher you do not physically handle the BOL — but you must understand it completely to coach your drivers","The dispatcher countersigns every BOL to confirm they arranged the load before it is accepted by the shipper","The dispatcher submits the BOL directly to FMCSA within 24 hours of delivery as required by federal law"],correct:1,exp:"Module 22 states: As a dispatcher you do not physically handle the BOL — but you must understand it completely to coach your drivers."},
+  {q:"What is the Receipt for Goods legal function of the BOL according to Module 22?",opts:["The BOL serves as the carrier's receipt confirming they have been paid for the load","When the driver arrives at the shipper's facility and freight is loaded, both the shipper's representative and driver sign the BOL — acknowledging that described freight was handed over in the described condition","The BOL is the shipper's receipt confirming the broker has paid for transportation services","The BOL serves as FMCSA's receipt confirming the carrier's authority is valid for this specific load type"],correct:1,exp:"Module 22 states: Receipt for Goods — When the driver arrives at the shipper's facility and freight is loaded both the shipper's representative and driver sign the BOL — acknowledging that described freight was handed over in the described condition."},
+  {q:"What is the Contract of Carriage legal function of the BOL according to Module 22?",opts:["A contract between the broker and dispatcher establishing commission rates for the load","The BOL establishes the terms under which the carrier agrees to transport the freight from origin to destination — including rights and obligations regarding damage, delay, and liability","A contract between the factoring company and the carrier establishing the advance rate for this specific load","A contract between the shipper and consignee confirming the purchase price of the goods being transported"],correct:1,exp:"Module 22 states: Contract of Carriage — The BOL establishes the terms under which the carrier agrees to transport the freight from origin to destination — including rights and obligations regarding damage delay and liability."},
+  {q:"What is the Document of Title legal function of the BOL and when does it apply according to Module 22?",opts:["In all trucking situations the BOL serves as a document of title — the carrier legally owns the freight until delivery","In certain high-value domestic freight situations the BOL functions as a document of title — physical possession of the BOL represents ownership of the goods","The document of title function applies only to hazmat freight under federal hazardous materials regulations","The document of title function applies when the carrier uses a sealed trailer — breaking the seal transfers ownership"],correct:1,exp:"Module 22 states: Document of Title — In certain high-value domestic freight situations the BOL functions as a document of title — physical possession of the BOL represents ownership of the goods."},
+  {q:"What is a Straight BOL and how common is it according to Module 22?",opts:["A BOL with no commodity description — used only for sealed trailer loads where contents cannot be verified","The most common type in domestic trucking — a non-negotiable document designating a specific consignee — freight can only be delivered to the named recipient — this is what you will work with daily","A BOL that can only be issued by the shipper — brokers are not authorized to create Straight BOLs","A digital BOL used exclusively by major retailers like Walmart and Amazon"],correct:1,exp:"Module 22 states: Straight BOL — Most common type in domestic trucking. Non-negotiable document designating a specific consignee. Freight can only be delivered to the named recipient. This is what you will work with daily."},
+  {q:"What is an Order BOL according to Module 22?",opts:["A BOL ordered in advance by the broker before the load is posted — allows faster carrier setup","A negotiable document that can be transferred from one party to another — much less common in standard trucking — more relevant to international shipping","A BOL used for loads with multiple pickup stops — orders freight from multiple shippers onto one trailer","A BOL that requires a court order to dispute — used for high-value loads above $100,000"],correct:1,exp:"Module 22 states: Order BOL (Negotiable) — A negotiable document that can be transferred from one party to another. Much less common in standard trucking — more relevant to international shipping."},
+  {q:"What is a Uniform BOL according to Module 22?",opts:["A BOL that all carriers are legally required to use under FMCSA interstate commerce regulations","A standardized format used by many carriers and brokers in domestic trucking based on industry association templates — establishes standard terms and conditions of carriage","A BOL issued by FMCSA to carriers who complete the federal freight certification program","A BOL that must be identical across all shipments for the same shipper regardless of destination"],correct:1,exp:"Module 22 states: Uniform BOL — Standardized format used by many carriers and brokers in domestic trucking based on industry association templates. Establishes standard terms and conditions of carriage."},
+  {q:"What is an Electronic BOL and who does Module 22 say requires or prefers it?",opts:["An email confirmation from the broker — TQL and Echo require this instead of paper BOLs","A digital BOL signed using smartphone apps instead of paper — Walmart, Amazon, and Home Depot now require or prefer eBOL processes — the industry is rapidly moving toward digital","A BOL stored in the broker's cloud portal — required by all brokers who use the Macropoint GPS tracking system","A BOL filed electronically with FMCSA — required for all hazmat loads under federal safety regulations"],correct:1,exp:"Module 22 states: Electronic BOL (eBOL) — Digital BOL signed using smartphone apps instead of paper. Walmart Amazon Home Depot now require or prefer eBOL processes. The industry is rapidly moving toward digital."},
+  {q:"What is the first driver responsibility at pickup according to Module 22?",opts:["Sign the BOL immediately to confirm arrival at the facility and begin the detention clock","Verify freight matches the BOL description — before signing the driver should verify commodity, piece count, and weight roughly match the BOL description — significant discrepancies must be noted before signing","Call the dispatcher to confirm the load reference number matches the Rate Con before proceeding","Record the trailer number and compare it to the number on the Rate Con before loading begins"],correct:1,exp:"Module 22 states: Verify Freight Matches BOL Description — Before signing the driver should verify commodity piece count and weight roughly match the BOL description. Significant discrepancies must be noted before signing."},
+  {q:"What does Module 22 say about a driver signing a clean BOL for visibly damaged freight?",opts:["Signing a clean BOL is acceptable if the damage is minor and under the cargo deductible amount","Never sign a clean BOL for visibly damaged freight — this creates carrier liability for pre-existing damage — any damage must be noted on the BOL as 'exceptions noted'","A clean BOL signature is required by shippers regardless of freight condition — disputes are handled after delivery","The driver should refuse to load visibly damaged freight and contact the dispatcher before signing anything"],correct:1,exp:"Module 22 states: Inspect for Visible Damage — Driver inspects all accessible freight for visible damage before the trailer is sealed. Any damage noted on BOL as 'exceptions noted.' Never sign a clean BOL for visibly damaged freight — this creates carrier liability for pre-existing damage."},
+  {q:"What does Module 22 say the driver must do regarding the trailer seal at pickup?",opts:["Break the seal to verify the freight matches the BOL before the shipper's representative leaves the dock","If the trailer is sealed by the shipper, the driver records the seal number on their copy of the BOL and verifies it against what the shipper records","The driver is not responsible for seal numbers — this is the shipper's documentation responsibility","Seal numbers are only required for hazmat and temperature-controlled loads under federal regulations"],correct:1,exp:"Module 22 states: Record the Trailer Seal Number — If the trailer is sealed by the shipper the driver records the seal number on their copy of the BOL and verifies it against what the shipper records."},
+  {q:"What does Module 22 say about leaving the pickup facility without the shipper's signature?",opts:["A driver can leave without the shipper's signature if the load is sealed and the reference number is confirmed","Never leave the facility without the shipper's signature on the BOL — an unsigned BOL creates serious problems at delivery and for payment — this is non-negotiable","A photo of the loaded trailer can substitute for the shipper's signature if the facility is too busy to sign","The dispatcher can obtain the shipper's electronic signature remotely — the driver does not need to wait"],correct:1,exp:"Module 22 states: Get the Shipper's Signature — Never leave the facility without the shipper's signature on the BOL. An unsigned BOL creates serious problems at delivery and for payment. This is non-negotiable."},
+  {q:"What does the driver's copy of the BOL represent according to Module 22?",opts:["The driver's personal record of the trip for HOS and logbook purposes","The copy signed by shipper at pickup and consignee at delivery — this is the complete chain of custody document","The broker's copy of the delivery record used to confirm payment should be released","The factoring company's copy required to process the advance payment after delivery"],correct:1,exp:"Module 22 states: Retain the Driver's Copy — The driver must retain their copy of the BOL throughout transit. This copy — signed by shipper at pickup and consignee at delivery — is the complete chain of custody document."},
+  {q:"What does Module 22 say the driver should do regarding the seal at delivery?",opts:["Break the seal immediately upon arrival and begin unloading before the consignee's representative arrives","Before breaking the seal verify the seal number matches what was recorded at pickup — a broken or non-matching seal should be noted immediately as it may indicate tampering or theft during transit","Present the seal number to the consignee who will verify it against their purchase order","The consignee is responsible for seal verification — the driver's role ends when they arrive at the facility"],correct:1,exp:"Module 22 states: Verify Seal Integrity — Before breaking the seal verify the seal number matches what was recorded at pickup. A broken or non-matching seal should be noted immediately — it may indicate tampering or theft during transit."},
+  {q:"Why does Module 22 say drivers should observe the unloading process at delivery?",opts:["To ensure the consignee counts every piece so the driver can correct any count discrepancies on the spot","The driver should observe the unloading process and note any damaged or missing freight — active observation protects against false damage claims made after the driver leaves","Observation is required by FMCSA regulations for all loads over 10,000 lbs","To verify the consignee is not adding extra pallets to the load that were not part of the original shipment"],correct:1,exp:"Module 22 states: Unloading Inspection — The driver should observe the unloading process and note any damaged or missing freight. Active observation protects against false damage claims made after the driver leaves."},
+  {q:"What is the Proof of Delivery (POD) and what does it trigger according to Module 22?",opts:["The Rate Confirmation signed by the broker — it triggers the carrier's right to submit their invoice","The consignee's representative signs the BOL acknowledging receipt — this signed BOL is the POD — the document that triggers payment from the broker and factoring company","The driver's electronic check-in at the delivery facility — it triggers the broker's GPS tracking confirmation","The shipper's delivery confirmation email — it triggers the broker's 30-day payment clock"],correct:1,exp:"Module 22 states: Get the Consignee's Signature — POD — The consignee's representative signs the BOL acknowledging receipt. This signed BOL is the Proof of Delivery — POD — the document that triggers payment from the broker and factoring company."},
+  {q:"What does Module 22 say about noting delivery exceptions on the BOL?",opts:["Noting exceptions on the BOL automatically triggers a carrier liability claim — avoid noting exceptions whenever possible","If the consignee notes shortages, damage, or refusal of any portion these must be documented on the BOL before signing — a clear signed delivery with exceptions noted is far better than a disputed delivery with no documentation","Exceptions can only be noted after the driver has left the facility and confirmed the issue with the dispatcher","Delivery exceptions automatically void the Rate Con — the carrier must renegotiate payment with the broker"],correct:1,exp:"Module 22 states: Note Any Delivery Exceptions — If the consignee notes shortages damage or refusal of any portion these must be documented on the BOL before signing. A clear signed delivery with exceptions noted is far better than a disputed delivery with no documentation."},
+  {q:"What three documents must be submitted together for broker payment according to Module 22?",opts:["Signed BOL, carrier invoice, and the driver's HOS log for the load","Signed Rate Confirmation, signed BOL showing pickup AND delivery signatures, and any accessorial documentation such as detention logs and lumper receipts","Signed BOL, carrier's insurance certificate, and the broker's load confirmation email","Invoice, signed BOL, and proof of the carrier's FMCSA authority status"],correct:1,exp:"Module 22 states for Broker Payment: Submit signed Rate Confirmation, signed BOL showing pickup AND delivery signatures, and any accessorial documentation — detention logs and lumper receipts."},
+  {q:"What three documents must be submitted for a factoring advance according to Module 22?",opts:["Signed BOL, signed Rate Con, and the carrier's W9 form","Invoice to the broker, signed Rate Confirmation, and signed BOL — missing BOL delays the factoring advance significantly","Signed BOL, factoring agreement, and the NOA acknowledgment from the broker","Invoice, carrier's insurance certificate, and signed delivery receipt from the consignee"],correct:1,exp:"Module 22 states for Factoring Advance: Submit invoice to the broker, signed Rate Confirmation, and signed BOL. Missing BOL delays the factoring advance significantly."},
+  {q:"What does Module 22 say is the first BOL problem that delays payment?",opts:["BOL submitted more than 24 hours after delivery — brokers impose a late submission penalty","BOL not signed by consignee at delivery — no POD signature means no payment trigger","BOL commodity field is left blank — brokers cannot process invoices without commodity confirmation","BOL submitted without the Rate Con reference number — creates a payment matching error in the broker's system"],correct:1,exp:"Module 22 states: BOL not signed by consignee at delivery — no POD signature means no payment trigger."},
+  {q:"What does Module 22 recommend to protect against a driver losing the BOL in transit?",opts:["The broker keeps a digital copy of the BOL in their system — loss in transit is the broker's problem to resolve","Have the driver photograph both copies of the BOL immediately after pickup signing — a photo protects against the BOL being lost in transit and gives immediate access for invoice preparation","The dispatcher keeps a backup copy of all BOLs in their Google Drive — drivers are not responsible for document retention","The shipper keeps the original BOL — the driver only needs to carry a photocopy during transit"],correct:1,exp:"Module 22 states: Driver loses the BOL in transit — always have driver photograph both copies immediately after pickup signing."},
+  {q:"What BOL problem does Module 22 say creates insurance coverage disputes?",opts:["BOL signed after the driver leaves the shipper facility — creates a gap in chain of custody documentation","BOL commodity does not match the Rate Confirmation commodity — creates insurance coverage disputes","BOL signed by someone other than the shipper's loading dock supervisor — invalidates the chain of custody","BOL weight exceeds the amount listed on the Rate Confirmation — creates overweight liability disputes"],correct:1,exp:"Module 22 states: BOL commodity does not match Rate Confirmation commodity — creates insurance coverage disputes."},
+  {q:"What BOL problem does Module 22 say should be caught before the driver leaves the shipper?",opts:["Missing consignee phone number — must be added before departure to allow delivery communication","Wrong trailer number or load information on BOL — verify all fields before the driver leaves the shipper","Missing shipper reference number — the broker requires this to match payment to the correct load","Illegible shipper signature — must be re-signed before the driver departs the facility"],correct:1,exp:"Module 22 states: Wrong trailer number or load information on BOL — verify all fields before the driver leaves the shipper."},
+  {q:"What does Module 22 call the BOL in its key takeaways?",opts:["The gateway document — the entry point to the broker payment system for every load","The proof of work document — it proves your carrier picked up and delivered the load — without it brokers and factoring companies do not release payment","The chain of custody document — it tracks freight ownership from shipper to consignee","The compliance document — it proves the carrier met all regulatory requirements for the load"],correct:1,exp:"Module 22 states: BOL is the proof of work document — it proves your carrier picked up and delivered the load. Without it brokers and factoring companies do not release payment. Protect it."},
+  {q:"What does Module 22 say about the two required signatures on a BOL?",opts:["Only the consignee's delivery signature is mandatory — the shipper's pickup signature is best practice but not required","Shipper at pickup and consignee at delivery — both are mandatory — missing either one creates payment delays or disputes that can take weeks to resolve","Both signatures are required but can be obtained electronically after the fact if the driver forgets","The dispatcher can countersign on behalf of the shipper if the facility representative is unavailable"],correct:1,exp:"Module 22 states: Two signatures required — shipper at pickup and consignee at delivery. Both are mandatory. Missing either one creates payment delays or disputes that can take weeks to resolve."},
+  {q:"What does Module 22 say dispatchers must coach drivers on regarding exceptions at pickup?",opts:["Drivers should never note exceptions as this delays the pickup and risks losing the load to another carrier","Visible damage at pickup must be noted on the BOL before signing — a clean BOL for damaged freight creates carrier liability for damage they did not cause","Exceptions should only be noted if the damage exceeds the cargo insurance deductible","Drivers should photograph damage but note exceptions only if the shipper agrees in writing"],correct:1,exp:"Module 22 states: Coach drivers on exception notation — visible damage at pickup must be noted on the BOL before signing. A clean BOL for damaged freight creates carrier liability for damage they did not cause."},
+  {q:"What does Module 22 say about BOL submission timing after delivery?",opts:["Submit the signed BOL within 72 hours of delivery — brokers allow a 3-day grace period","After delivery submit the signed BOL immediately with the rate confirmation and invoice to the broker and factoring company — delays in submission delay payment","Submit the signed BOL within 30 days — matching the standard Net 30 payment cycle","The factoring company automatically retrieves the signed BOL from the broker's portal — no submission needed"],correct:1,exp:"Module 22 states: Submit promptly with invoice — after delivery submit the signed BOL immediately with the rate confirmation and invoice to the broker and factoring company. Delays in submission delay payment."},
+  {q:"What does Module 22 say is the final module and its topic?",opts:["Module 23 — Check Calls — covering how to perform professional load status updates and communicate with brokers throughout transit","Module 23 — Company Setup and LLC Formation — the step that transforms you from a solo freelancer into the owner of a legitimate American business","Module 23 — Carrier Invoicing — covering how to submit invoices correctly to brokers and factoring companies","Module 23 — Dispatch Service Agreement — covering how to structure your legal contract with carriers"],correct:1,exp:"Module 22 states: Module 23 is the final lecture — Company Setup and LLC Formation. The step that transforms you from a solo freelancer into the owner of a legitimate American business."}
+];
+
+var studentName='',studentEmail='',studentWA='';
+var selectedQuestions=[],currentQ=0,score=0,answered=false;
+var timerInterval,timeLeft=30;
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function startQuiz(){
+  studentName=document.getElementById('s-name').value.trim();
+  studentEmail=document.getElementById('s-email').value.trim();
+  studentWA=document.getElementById('s-wa').value.trim();
+  if(!studentName||!studentEmail||!studentWA){alert('Please fill in all fields to begin.');return;}
+  selectedQuestions=shuffle(QUESTION_BANK).slice(0,20);
+  currentQ=0;score=0;
+  document.getElementById('student-form').style.display='none';
+  document.getElementById('quiz-wrap').style.display='block';
+  document.getElementById('prog-score').textContent='Score: 0';
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;clearInterval(timerInterval);timeLeft=30;
+  var q=selectedQuestions[currentQ];
+  var letters=['A','B','C','D'];
+  var pct=Math.round(((currentQ)/20)*100);
+  document.getElementById('prog-label').textContent='Question '+(currentQ+1)+' of 20';
+  document.getElementById('prog-fill').style.width=Math.max(pct,5)+'%';
+  document.getElementById('timer-fill').style.width='100%';
+  document.getElementById('timer-fill').className='timer-fill';
+  document.getElementById('timer-text').textContent='30s';
+  var html='<div class="q-num">Question '+(currentQ+1)+' of 20</div>';
+  html+='<div class="q-text">'+q.q+'</div><div class="options">';
+  q.opts.forEach(function(o,i){html+='<div class="option" id="opt-'+i+'" onclick="selectAnswer('+i+')"><span class="opt-letter">'+letters[i]+'</span>'+o+'</div>';});
+  html+='</div><div class="explanation" id="explanation">💡 '+q.exp+'</div>';
+  html+='<button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question →</button>';
+  document.getElementById('question-card').innerHTML=html;
+  startTimer();
+}
+
+function startTimer(){
+  timerInterval=setInterval(function(){
+    timeLeft--;
+    document.getElementById('timer-text').textContent=timeLeft+'s';
+    document.getElementById('timer-fill').style.width=(timeLeft/30*100)+'%';
+    if(timeLeft<=10)document.getElementById('timer-fill').classList.add('warn');
+    if(timeLeft<=0){clearInterval(timerInterval);timeOut();}
+  },1000);
+}
+
+function timeOut(){
+  answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var correctEl=document.getElementById('opt-'+q.correct);
+  if(correctEl)correctEl.classList.add('correct');
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function selectAnswer(idx){
+  if(answered)return;answered=true;clearInterval(timerInterval);
+  var q=selectedQuestions[currentQ];
+  var selected=document.getElementById('opt-'+idx);var correct=document.getElementById('opt-'+q.correct);
+  [0,1,2,3].forEach(function(i){var el=document.getElementById('opt-'+i);if(el)el.classList.add('disabled');});
+  if(idx===q.correct){selected.classList.add('correct');score++;document.getElementById('prog-score').textContent='Score: '+score;}
+  else{selected.classList.add('wrong');if(correct)correct.classList.add('correct');}
+  var exp=document.getElementById('explanation');var btn=document.getElementById('btn-next');
+  if(exp)exp.classList.add('show');if(btn)btn.classList.add('show');
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=20){showResults();}else{showQuestion();}}
+
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById('quiz-wrap').style.display='none';
+  var pct=Math.round((score/20)*100);
+  var pass=pct>=70;
+  var now=new Date();
+  submitToSheet(score,pct,pass,now);
+  var resultHTML='';
+  if(pass){
+    resultHTML='<div class="result-icon">🏆</div><div class="result-title" style="color:#1a7a3a;">Congratulations! You Passed!</div><div class="result-sub">Excellent '+studentName+'! You know what the BOL is, all 3 legal functions, all 4 BOL types, all 5 driver responsibilities at pickup, all 4 at delivery, the full payment chain for both broker payment and factoring advance, and all 5 common BOL problems that delay payment. Module 23 is the final one!</div>';
+  }else{
+    resultHTML='<div class="result-icon">📚</div><div class="result-title" style="color:#cc0000;">Review and Retry!</div><div class="result-sub">Good effort '+studentName+'! Review what the BOL is, all 3 legal functions, all 4 BOL types, the 5 pickup responsibilities, the 4 delivery responsibilities, the payment chain documents, and the 5 common BOL problems. Try again — different questions every attempt.</div>';
+  }
+  resultHTML+='<div class="score-big"><div class="sb-label">Your Score</div><div class="sb-score">'+score+'/20</div><div class="sb-total">'+pct+'% — '+(pass?'PASS':'FAIL')+'</div></div><div class="result-cards"><div class="rc"><div class="rc-l">Correct</div><div class="rc-v" style="color:#1a7a3a;">'+score+'</div></div><div class="rc"><div class="rc-l">Wrong</div><div class="rc-v" style="color:#cc0000;">'+(20-score)+'</div></div><div class="rc"><div class="rc-l">Percentage</div><div class="rc-v">'+pct+'%</div></div></div>';
+  if(pass){
+    resultHTML+='<div class="verdict-pass"><p>✅ You passed with '+pct+'%! WhatsApp us with your name, email, and score to claim your Module 22 Certificate. Certificate fee: $5.</p></div><a href="https://wa.me/923114111899?text=I%20passed%20Module%2022%20quiz%20with%20'+pct+'%25.%20Name:%20'+encodeURIComponent(studentName)+'%20Email:%20'+encodeURIComponent(studentEmail)+'" class="btn-wa" target="_blank">💬 Claim My Certificate</a><a href="https://www.tycoondispatchacademy.online/p/module-23-company-setup-and-llc.html" class="btn-next-mod">Module 23 — Final →</a><br/><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Retake Quiz</button>';
+  }else{
+    resultHTML+='<div class="verdict-fail"><p>❌ You scored '+pct+'%. You need 70% to pass. Review what the BOL is, all 3 legal functions, all 4 BOL types, pickup and delivery responsibilities, the payment chain, and the 5 common problems. Try again with fresh questions.</p></div><a href="https://www.tycoondispatchacademy.online/p/module-22-bill-of-lading.html" class="btn-next-mod" style="background:#0a2a6e;border-color:#0a2a6e;" target="_blank">📖 Review Module 22</a><button class="btn-retry" onclick="retryQuiz()" style="margin-top:12px;">🔄 Try Again</button><br/><a href="https://wa.me/923114111899" class="btn-wa" target="_blank" style="margin-top:12px;">💬 Get Help from Tycoon Tours</a>';
+  }
+  document.getElementById('results-wrap').innerHTML=resultHTML;
+  document.getElementById('results-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitToSheet(score,pct,pass,now){
+  try{
+    document.getElementById('gf-name').value=studentName;
+    document.getElementById('gf-email').value=studentEmail;
+    document.getElementById('gf-wa').value=studentWA;
+    document.getElementById('gf-modnum').value='22';
+    document.getElementById('gf-modtitle').value='Bill of Lading';
+    document.getElementById('gf-score').value=score;
+    document.getElementById('gf-total').value='20';
+    document.getElementById('gf-pct').value=pct+'%';
+    document.getElementById('gf-pass').value=pass?'Pass':'Fail';
+    document.getElementById('gf-date').value=now.toLocaleDateString('en-GB');
+    document.getElementById('gf-time').value=now.toLocaleTimeString('en-GB');
+    document.getElementById('tt-gform').submit();
+  }catch(e){console.log('Sheet submission:',e);}
+}
+
+function retryQuiz(){
+  document.getElementById('results-wrap').style.display='none';
+  document.getElementById('results-wrap').innerHTML='';
+  startQuiz();
+}
+</script>
+</body>
+</html>
